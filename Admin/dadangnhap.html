@@ -1,0 +1,417 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+    <title>Quản lý sản phẩm - Flower Shop</title>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    
+    <link href="https://fonts.googleapis.com/css?family=Poppins:200,300,400,500,600,700,800&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/4.6.0/css/bootstrap.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
+    
+    <style>
+        body {
+            font-family: 'Poppins', sans-serif;
+            background-color: #f8f9fa;
+        }
+        
+        .header {
+            background: linear-gradient(135deg, #82B440 0%, #6a9634 100%);
+            color: white;
+            padding: 30px 0;
+            margin-bottom: 30px;
+            box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+        }
+        
+        .management-container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 20px;
+        }
+        
+        .btn-add-product {
+            background-color: #82B440;
+            color: white;
+            border: none;
+            padding: 12px 30px;
+            border-radius: 25px;
+            font-weight: 500;
+            transition: all 0.3s;
+        }
+        
+        .btn-add-product:hover {
+            background-color: #6a9634;
+            color: white;
+            transform: translateY(-2px);
+            box-shadow: 0 4px 8px rgba(130, 180, 64, 0.3);
+        }
+        
+        .product-card {
+            background: white;
+            border-radius: 15px;
+            padding: 20px;
+            margin-bottom: 20px;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.08);
+            transition: all 0.3s;
+        }
+        
+        .product-card:hover {
+            box-shadow: 0 5px 20px rgba(0,0,0,0.15);
+            transform: translateY(-3px);
+        }
+        
+
+        
+        .btn-edit {
+            background-color: #ffc107;
+            color: white;
+            border: none;
+            padding: 8px 20px;
+            border-radius: 20px;
+            margin-right: 10px;
+        }
+        
+        .btn-edit:hover {
+            background-color: #e0a800;
+            color: white;
+        }
+        
+        .btn-delete {
+            background-color: #dc3545;
+            color: white;
+            border: none;
+            padding: 8px 20px;
+            border-radius: 20px;
+        }
+        
+        .btn-delete:hover {
+            background-color: #c82333;
+            color: white;
+        }
+        
+        .modal-header {
+            background-color: #82B440;
+            color: white;
+            border-radius: 10px 10px 0 0;
+        }
+        
+        .modal-content {
+            border-radius: 10px;
+            border: none;
+        }
+        
+        .form-control:focus {
+            border-color: #82B440;
+            box-shadow: 0 0 0 0.2rem rgba(130, 180, 64, 0.25);
+        }
+        
+        .badge-discount {
+            background-color: #dc3545;
+            color: white;
+            padding: 5px 10px;
+            border-radius: 15px;
+            font-size: 12px;
+        }
+        
+        .price-original {
+            text-decoration: line-through;
+            color: #999;
+            margin-right: 10px;
+        }
+        
+        .price-sale {
+            color: #82B440;
+            font-weight: bold;
+            font-size: 1.2em;
+        }
+        
+        .search-box {
+            margin-bottom: 20px;
+        }
+        
+        .search-box input {
+            border-radius: 25px;
+            padding: 12px 20px;
+            border: 2px solid #e0e0e0;
+        }
+        
+        .empty-state {
+            text-align: center;
+            padding: 60px 20px;
+            color: #999;
+        }
+        
+        .empty-state i {
+            font-size: 80px;
+            margin-bottom: 20px;
+        }
+    </style>
+</head>
+<body>
+    <div class="header">
+        <div class="container">
+            <h1 class="mb-0"><i class="fas fa-boxes"></i> Quản lý sản phẩm</h1>
+        </div>
+    </div>
+
+    <div class="management-container">
+        <div class="d-flex justify-content-between align-items-center mb-4">
+            <button class="btn btn-add-product" onclick="showAddModal()">
+                <i class="fas fa-plus-circle"></i> Thêm sản phẩm mới
+            </button>
+            <div class="search-box" style="flex: 1; max-width: 400px; margin-left: 20px;">
+                <input type="text" class="form-control" id="searchInput" placeholder="Tìm kiếm sản phẩm..." onkeyup="searchProducts()">
+            </div>
+        </div>
+
+        <div id="productList"></div>
+        
+        <div id="emptyState" class="empty-state" style="display: none;">
+            <i class="fas fa-box-open"></i>
+            <h3>Chưa có sản phẩm nào</h3>
+            <p>Hãy thêm sản phẩm đầu tiên cho cửa hàng của bạn!</p>
+        </div>
+    </div>
+
+    <!-- Modal Thêm/Sửa Sản phẩm -->
+    <div class="modal fade" id="productModal" tabindex="-1">
+        <div class="modal-dialog modal-lg">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="modalTitle">Thêm sản phẩm mới</h5>
+                    <button type="button" class="close text-white" data-dismiss="modal">
+                        <span>&times;</span>
+                    </button>
+                </div>
+                <div class="modal-body">
+                    <form id="productForm">
+                        <input type="hidden" id="productId">
+                        <div class="row">
+                            <div class="col-md-6">
+                                <div class="form-group">
+                                    <label>Tên sản phẩm *</label>
+                                    <input type="text" class="form-control" id="productName" required>
+                                </div>
+                            </div>
+                            <div class="col-md-6">
+                                <div class="form-group">
+                                    <label>Giá gốc (VNĐ) *</label>
+                                    <input type="number" class="form-control" id="productPrice" required min="0">
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <div class="row">
+                            <div class="col-md-6">
+                                <div class="form-group">
+                                    <label>Giá khuyến mãi (VNĐ)</label>
+                                    <input type="number" class="form-control" id="productSalePrice" min="0">
+                                    <small class="form-text text-muted">Để trống nếu không có khuyến mãi</small>
+                                </div>
+                            </div>
+                            <div class="col-md-6">
+                                <div class="form-group">
+                                    <label>Số lượng *</label>
+                                    <input type="number" class="form-control" id="productStock" required min="0">
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <div class="form-group">
+                            <label>URL hình ảnh *</label>
+                            <input type="text" class="form-control" id="productImage" required>
+                            <small class="form-text text-muted">Nhập đường dẫn hình ảnh sản phẩm</small>
+                        </div>
+                        
+                        <div class="form-group">
+                            <label>Mô tả sản phẩm</label>
+                            <textarea class="form-control" id="productDescription" rows="3"></textarea>
+                        </div>
+                    </form>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Hủy</button>
+                    <button type="button" class="btn btn-add-product" onclick="saveProduct()">
+                        <i class="fas fa-save"></i> Lưu sản phẩm
+                    </button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/4.6.0/js/bootstrap.bundle.min.js"></script>
+    
+    <script>
+        let products = [
+            {
+                id: 1,
+                name: "Hoa Hồng Đỏ",
+                price: 120000,
+                salePrice: 80000,
+                stock: 50,
+                image: "https://images.unsplash.com/photo-1518709268805-4e9042af9f23?w=300",
+                description: "Hoa hồng đỏ tươi, tượng trưng cho tình yêu"
+            },
+            {
+                id: 2,
+                name: "Hoa Ly Trắng",
+                price: 150000,
+                salePrice: null,
+                stock: 30,
+                image: "https://images.unsplash.com/photo-1563291074-2bf8677ac0e5?w=300",
+                description: "Hoa ly trắng tinh khôi"
+            },
+            {
+                id: 3,
+                name: "Hoa Tulip Vàng",
+                price: 100000,
+                salePrice: 70000,
+                stock: 40,
+                image: "https://images.unsplash.com/photo-1520763185298-1b434c919102?w=300",
+                description: "Hoa tulip vàng rực rỡ"
+            }
+        ];
+        
+        let editingId = null;
+
+        function renderProducts() {
+            const productList = document.getElementById('productList');
+            const emptyState = document.getElementById('emptyState');
+            
+            if (products.length === 0) {
+                productList.innerHTML = '';
+                emptyState.style.display = 'block';
+                return;
+            }
+            
+            emptyState.style.display = 'none';
+            let html = '';
+            
+            products.forEach(product => {
+                const discount = product.salePrice ? Math.round((1 - product.salePrice / product.price) * 100) : 0;
+                
+                html += `
+                    <div class="product-card" data-product-id="${product.id}">
+                        <div class="row align-items-center">
+                            <div class="col-md-5">
+                                <h5 class="mb-1">${product.name}</h5>
+                                <p class="text-muted mb-0">${product.description || 'Chưa có mô tả'}</p>
+                            </div>
+                            <div class="col-md-4">
+                                ${product.salePrice ? `
+                                    <span class="badge-discount">${discount}% OFF</span><br>
+                                    <span class="price-original">${formatPrice(product.price)}</span>
+                                    <span class="price-sale">${formatPrice(product.salePrice)}</span>
+                                ` : `
+                                    <span class="price-sale">${formatPrice(product.price)}</span>
+                                `}
+                                <br>
+                                <small class="text-muted">Còn lại: ${product.stock} sản phẩm</small>
+                            </div>
+                            <div class="col-md-3 text-right">
+                                <button class="btn btn-edit" onclick="editProduct(${product.id})">
+                                    <i class="fas fa-edit"></i> Sửa
+                                </button>
+                                <button class="btn btn-delete" onclick="deleteProduct(${product.id})">
+                                    <i class="fas fa-trash"></i> Xóa
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+                `;
+            });
+            
+            productList.innerHTML = html;
+        }
+
+        function formatPrice(price) {
+            return new Intl.NumberFormat('vi-VN', { style: 'currency', currency: 'VND' }).format(price);
+        }
+
+        function showAddModal() {
+            editingId = null;
+            document.getElementById('modalTitle').textContent = 'Thêm sản phẩm mới';
+            document.getElementById('productForm').reset();
+            $('#productModal').modal('show');
+        }
+
+        function editProduct(id) {
+            const product = products.find(p => p.id === id);
+            if (!product) return;
+            
+            editingId = id;
+            document.getElementById('modalTitle').textContent = 'Chỉnh sửa sản phẩm';
+            document.getElementById('productId').value = product.id;
+            document.getElementById('productName').value = product.name;
+            document.getElementById('productPrice').value = product.price;
+            document.getElementById('productSalePrice').value = product.salePrice || '';
+            document.getElementById('productStock').value = product.stock;
+            document.getElementById('productImage').value = product.image;
+            document.getElementById('productDescription').value = product.description || '';
+            
+            $('#productModal').modal('show');
+        }
+
+        function saveProduct() {
+            const name = document.getElementById('productName').value;
+            const price = parseInt(document.getElementById('productPrice').value);
+            const salePrice = document.getElementById('productSalePrice').value ? 
+                             parseInt(document.getElementById('productSalePrice').value) : null;
+            const stock = parseInt(document.getElementById('productStock').value);
+            const image = document.getElementById('productImage').value;
+            const description = document.getElementById('productDescription').value;
+            
+            if (!name || !price || !stock || !image) {
+                alert('Vui lòng điền đầy đủ thông tin bắt buộc!');
+                return;
+            }
+            
+            if (editingId) {
+                const index = products.findIndex(p => p.id === editingId);
+                products[index] = {
+                    id: editingId,
+                    name, price, salePrice, stock, image, description
+                };
+                alert('Cập nhật sản phẩm thành công!');
+            } else {
+                const newId = products.length > 0 ? Math.max(...products.map(p => p.id)) + 1 : 1;
+                products.push({
+                    id: newId,
+                    name, price, salePrice, stock, image, description
+                });
+                alert('Thêm sản phẩm mới thành công!');
+            }
+            
+            $('#productModal').modal('hide');
+            renderProducts();
+        }
+
+        function deleteProduct(id) {
+            if (confirm('Bạn có chắc chắn muốn xóa sản phẩm này?')) {
+                products = products.filter(p => p.id !== id);
+                alert('Xóa sản phẩm thành công!');
+                renderProducts();
+            }
+        }
+
+        function searchProducts() {
+            const searchTerm = document.getElementById('searchInput').value.toLowerCase();
+            const productCards = document.querySelectorAll('.product-card');
+            
+            productCards.forEach(card => {
+                const productId = parseInt(card.getAttribute('data-product-id'));
+                const product = products.find(p => p.id === productId);
+                
+                if (product && product.name.toLowerCase().includes(searchTerm)) {
+                    card.style.display = 'block';
+                } else {
+                    card.style.display = 'none';
+                }
+            });
+        }
+
+        renderProducts();
+    </script>
+</body>
+</html>
