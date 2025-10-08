@@ -161,12 +161,24 @@
         
         .search-box {
             margin-bottom: 20px;
+            position: relative;
         }
         
         .search-box input {
             border-radius: 25px;
-            padding: 12px 20px;
+            padding: 12px 50px 12px 20px;
             border: 2px solid #e0e0e0;
+            width: 100%;
+        }
+        
+        .search-icon {
+            position: absolute;
+            right: 20px;
+            top: 50%;
+            transform: translateY(-50%);
+            color: #82B440;
+            font-size: 18px;
+            pointer-events: none;
         }
         
         .empty-state {
@@ -214,6 +226,7 @@
             </button>
             <div class="search-box" style="flex: 1; max-width: 400px; margin-left: 20px;">
                 <input type="text" class="form-control" id="searchInput" placeholder="Tìm kiếm sản phẩm..." onkeyup="searchProducts()">
+                <i class="fas fa-search search-icon"></i>
             </div>
         </div>
         
@@ -282,11 +295,11 @@
                             </div>
                         </div>
                         
-                        <!-- <div class="form-group">
+                        <div class="form-group">
                             <label>Hình ảnh (URL) *</label>
                             <input type="url" class="form-control" id="productImage" required>
                             <small class="form-text text-muted">Nhập link hình ảnh từ internet</small>
-                        </div> -->
+                        </div>
                         
                         <div class="form-group">
                             <label>Mô tả sản phẩm</label>
