@@ -60,7 +60,10 @@
             transform: translateY(-3px);
         }
         
-
+        .product-card.hidden-product {
+            opacity: 0.5;
+            background: #f5f5f5;
+        }
         
         .btn-edit {
             background-color: #ffc107;
@@ -82,11 +85,33 @@
             border: none;
             padding: 8px 20px;
             border-radius: 20px;
+            margin-right: 10px;
         }
         
         .btn-delete:hover {
             background-color: #c82333;
             color: white;
+        }
+        
+        .btn-toggle {
+            background-color: #6c757d;
+            color: white;
+            border: none;
+            padding: 8px 20px;
+            border-radius: 20px;
+        }
+        
+        .btn-toggle:hover {
+            background-color: #5a6268;
+            color: white;
+        }
+        
+        .btn-toggle.hidden {
+            background-color: #28a745;
+        }
+        
+        .btn-toggle.hidden:hover {
+            background-color: #218838;
         }
         
         .modal-header {
@@ -111,6 +136,15 @@
             padding: 5px 10px;
             border-radius: 15px;
             font-size: 12px;
+        }
+        
+        .badge-hidden {
+            background-color: #6c757d;
+            color: white;
+            padding: 5px 10px;
+            border-radius: 15px;
+            font-size: 12px;
+            margin-left: 10px;
         }
         
         .price-original {
@@ -145,6 +179,25 @@
             font-size: 80px;
             margin-bottom: 20px;
         }
+        
+        .filter-buttons {
+            margin-bottom: 20px;
+        }
+        
+        .filter-btn {
+            padding: 8px 20px;
+            border-radius: 20px;
+            border: 2px solid #82B440;
+            background: white;
+            color: #82B440;
+            margin-right: 10px;
+            transition: all 0.3s;
+        }
+        
+        .filter-btn:hover, .filter-btn.active {
+            background: #82B440;
+            color: white;
+        }
     </style>
 </head>
 <body>
@@ -162,6 +215,18 @@
             <div class="search-box" style="flex: 1; max-width: 400px; margin-left: 20px;">
                 <input type="text" class="form-control" id="searchInput" placeholder="Tìm kiếm sản phẩm..." onkeyup="searchProducts()">
             </div>
+        </div>
+        
+        <div class="filter-buttons">
+            <button class="filter-btn active" onclick="filterProducts('all')">
+                <i class="fas fa-list"></i> Tất cả
+            </button>
+            <button class="filter-btn" onclick="filterProducts('visible')">
+                <i class="fas fa-eye"></i> Đang hiển thị
+            </button>
+            <button class="filter-btn" onclick="filterProducts('hidden')">
+                <i class="fas fa-eye-slash"></i> Đang ẩn
+            </button>
         </div>
 
         <div id="productList"></div>
@@ -217,11 +282,11 @@
                             </div>
                         </div>
                         
-                        <div class="form-group">
-                            <label>URL hình ảnh *</label>
-                            <input type="text" class="form-control" id="productImage" required>
-                            <small class="form-text text-muted">Nhập đường dẫn hình ảnh sản phẩm</small>
-                        </div>
+                        <!-- <div class="form-group">
+                            <label>Hình ảnh (URL) *</label>
+                            <input type="url" class="form-control" id="productImage" required>
+                            <small class="form-text text-muted">Nhập link hình ảnh từ internet</small>
+                        </div> -->
                         
                         <div class="form-group">
                             <label>Mô tả sản phẩm</label>
@@ -251,7 +316,8 @@
                 salePrice: 80000,
                 stock: 50,
                 image: "https://images.unsplash.com/photo-1518709268805-4e9042af9f23?w=300",
-                description: "Hoa hồng đỏ tươi, tượng trưng cho tình yêu"
+                description: "Hoa hồng đỏ tươi, tượng trưng cho tình yêu",
+                hidden: false
             },
             {
                 id: 2,
@@ -260,7 +326,8 @@
                 salePrice: null,
                 stock: 30,
                 image: "https://images.unsplash.com/photo-1563291074-2bf8677ac0e5?w=300",
-                description: "Hoa ly trắng tinh khôi"
+                description: "Hoa ly trắng tinh khôi",
+                hidden: false
             },
             {
                 id: 3,
@@ -269,17 +336,27 @@
                 salePrice: 70000,
                 stock: 40,
                 image: "https://images.unsplash.com/photo-1520763185298-1b434c919102?w=300",
-                description: "Hoa tulip vàng rực rỡ"
+                description: "Hoa tulip vàng rực rỡ",
+                hidden: false
             }
         ];
         
         let editingId = null;
+        let currentFilter = 'all';
 
         function renderProducts() {
             const productList = document.getElementById('productList');
             const emptyState = document.getElementById('emptyState');
             
-            if (products.length === 0) {
+            let filteredProducts = products;
+            
+            if (currentFilter === 'visible') {
+                filteredProducts = products.filter(p => !p.hidden);
+            } else if (currentFilter === 'hidden') {
+                filteredProducts = products.filter(p => p.hidden);
+            }
+            
+            if (filteredProducts.length === 0) {
                 productList.innerHTML = '';
                 emptyState.style.display = 'block';
                 return;
@@ -288,14 +365,18 @@
             emptyState.style.display = 'none';
             let html = '';
             
-            products.forEach(product => {
+            filteredProducts.forEach(product => {
                 const discount = product.salePrice ? Math.round((1 - product.salePrice / product.price) * 100) : 0;
+                const hiddenClass = product.hidden ? 'hidden-product' : '';
                 
                 html += `
-                    <div class="product-card" data-product-id="${product.id}">
+                    <div class="product-card ${hiddenClass}" data-product-id="${product.id}">
                         <div class="row align-items-center">
                             <div class="col-md-5">
-                                <h5 class="mb-1">${product.name}</h5>
+                                <h5 class="mb-1">
+                                    ${product.name}
+                                    ${product.hidden ? '<span class="badge-hidden"><i class="fas fa-eye-slash"></i> Đang ẩn</span>' : ''}
+                                </h5>
                                 <p class="text-muted mb-0">${product.description || 'Chưa có mô tả'}</p>
                             </div>
                             <div class="col-md-4">
@@ -315,6 +396,9 @@
                                 </button>
                                 <button class="btn btn-delete" onclick="deleteProduct(${product.id})">
                                     <i class="fas fa-trash"></i> Xóa
+                                </button>
+                                <button class="btn btn-toggle ${product.hidden ? 'hidden' : ''}" onclick="toggleProduct(${product.id})">
+                                    <i class="fas fa-eye${product.hidden ? '' : '-slash'}"></i> ${product.hidden ? 'Hiện' : 'Ẩn'}
                                 </button>
                             </div>
                         </div>
@@ -354,23 +438,28 @@
         }
 
         function saveProduct() {
-            const name = document.getElementById('productName').value;
+            const name = document.getElementById('productName').value.trim();
             const price = parseInt(document.getElementById('productPrice').value);
             const salePrice = document.getElementById('productSalePrice').value ? 
                              parseInt(document.getElementById('productSalePrice').value) : null;
             const stock = parseInt(document.getElementById('productStock').value);
-            const image = document.getElementById('productImage').value;
-            const description = document.getElementById('productDescription').value;
+            const image = document.getElementById('productImage').value.trim();
+            const description = document.getElementById('productDescription').value.trim();
             
-            if (!name || !price || !stock || !image) {
+            if (!name || !price || stock < 0 || !image) {
                 alert('Vui lòng điền đầy đủ thông tin bắt buộc!');
+                return;
+            }
+            
+            if (salePrice && salePrice >= price) {
+                alert('Giá khuyến mãi phải thấp hơn giá gốc!');
                 return;
             }
             
             if (editingId) {
                 const index = products.findIndex(p => p.id === editingId);
                 products[index] = {
-                    id: editingId,
+                    ...products[index],
                     name, price, salePrice, stock, image, description
                 };
                 alert('Cập nhật sản phẩm thành công!');
@@ -378,7 +467,8 @@
                 const newId = products.length > 0 ? Math.max(...products.map(p => p.id)) + 1 : 1;
                 products.push({
                     id: newId,
-                    name, price, salePrice, stock, image, description
+                    name, price, salePrice, stock, image, description,
+                    hidden: false
                 });
                 alert('Thêm sản phẩm mới thành công!');
             }
@@ -393,6 +483,26 @@
                 alert('Xóa sản phẩm thành công!');
                 renderProducts();
             }
+        }
+
+        function toggleProduct(id) {
+            const product = products.find(p => p.id === id);
+            if (product) {
+                product.hidden = !product.hidden;
+                renderProducts();
+            }
+        }
+
+        function filterProducts(filter) {
+            currentFilter = filter;
+            
+            document.querySelectorAll('.filter-btn').forEach(btn => {
+                btn.classList.remove('active');
+            });
+            
+            event.target.classList.add('active');
+            
+            renderProducts();
         }
 
         function searchProducts() {
