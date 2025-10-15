@@ -24,7 +24,7 @@
         }
         
         .management-container {
-            max-width: 1200px;
+            max-width: 1400px;
             margin: 0 auto;
             padding: 20px;
         }
@@ -65,13 +65,41 @@
             background: #f5f5f5;
         }
         
+        .product-image {
+            width: 100%;
+            height: 100px;
+            object-fit: cover;
+            border-radius: 10px;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+        }
+        
+        .product-code {
+            display: inline-block;
+            background-color: #e9ecef;
+            color: #495057;
+            padding: 4px 12px;
+            border-radius: 12px;
+            font-size: 0.8em;
+            font-weight: 600;
+            margin-bottom: 8px;
+        }
+        
+        .action-buttons {
+            display: flex;
+            gap: 8px;
+            flex-wrap: nowrap;
+        }
+        
         .btn-edit {
             background-color: #ffc107;
             color: white;
             border: none;
-            padding: 8px 20px;
+            padding: 8px 16px;
             border-radius: 20px;
-            margin-right: 10px;
+            font-size: 0.9em;
+            white-space: nowrap;
+            flex: 1;
+            min-width: 70px;
         }
         
         .btn-edit:hover {
@@ -83,9 +111,12 @@
             background-color: #dc3545;
             color: white;
             border: none;
-            padding: 8px 20px;
+            padding: 8px 16px;
             border-radius: 20px;
-            margin-right: 10px;
+            font-size: 0.9em;
+            white-space: nowrap;
+            flex: 1;
+            min-width: 70px;
         }
         
         .btn-delete:hover {
@@ -97,8 +128,12 @@
             background-color: #6c757d;
             color: white;
             border: none;
-            padding: 8px 20px;
+            padding: 8px 16px;
             border-radius: 20px;
+            font-size: 0.9em;
+            white-space: nowrap;
+            flex: 1;
+            min-width: 70px;
         }
         
         .btn-toggle:hover {
@@ -267,14 +302,14 @@
                         <div class="row">
                             <div class="col-md-6">
                                 <div class="form-group">
-                                    <label>Tên sản phẩm *</label>
-                                    <input type="text" class="form-control" id="productName" required>
+                                    <label>Mã sản phẩm *</label>
+                                    <input type="text" class="form-control" id="productCode" required placeholder="VD: SP001">
                                 </div>
                             </div>
                             <div class="col-md-6">
                                 <div class="form-group">
-                                    <label>Giá gốc (VNĐ) *</label>
-                                    <input type="number" class="form-control" id="productPrice" required min="0">
+                                    <label>Tên sản phẩm *</label>
+                                    <input type="text" class="form-control" id="productName" required>
                                 </div>
                             </div>
                         </div>
@@ -282,9 +317,8 @@
                         <div class="row">
                             <div class="col-md-6">
                                 <div class="form-group">
-                                    <label>Giá khuyến mãi (VNĐ)</label>
-                                    <input type="number" class="form-control" id="productSalePrice" min="0">
-                                    <small class="form-text text-muted">Để trống nếu không có khuyến mãi</small>
+                                    <label>Giá gốc (VNĐ) *</label>
+                                    <input type="number" class="form-control" id="productPrice" required min="0">
                                 </div>
                             </div>
                             <div class="col-md-6">
@@ -293,6 +327,12 @@
                                     <input type="number" class="form-control" id="productStock" required min="0">
                                 </div>
                             </div>
+                        </div>
+                        
+                        <div class="form-group">
+                            <label>Giá khuyến mãi (VNĐ)</label>
+                            <input type="number" class="form-control" id="productSalePrice" min="0">
+                            <small class="form-text text-muted">Để trống nếu không có khuyến mãi</small>
                         </div>
                         
                         <div class="form-group">
@@ -324,6 +364,7 @@
         let products = [
             {
                 id: 1,
+                code: "SP001",
                 name: "Hoa Hồng Đỏ",
                 price: 120000,
                 salePrice: 80000,
@@ -334,6 +375,7 @@
             },
             {
                 id: 2,
+                code: "SP002",
                 name: "Hoa Ly Trắng",
                 price: 150000,
                 salePrice: null,
@@ -344,6 +386,7 @@
             },
             {
                 id: 3,
+                code: "SP003",
                 name: "Hoa Tulip Vàng",
                 price: 100000,
                 salePrice: 70000,
@@ -385,14 +428,18 @@
                 html += `
                     <div class="product-card ${hiddenClass}" data-product-id="${product.id}">
                         <div class="row align-items-center">
-                            <div class="col-md-5">
+                            <div class="col-md-2 col-sm-3 text-center">
+                                <img src="${product.image}" alt="${product.name}" class="product-image" onerror="this.src='https://via.placeholder.com/120x120?text=No+Image'">
+                            </div>
+                            <div class="col-md-4 col-sm-9">
+                                <div class="product-code"><i class="fas fa-barcode"></i> ${product.code}</div>
                                 <h5 class="mb-1">
                                     ${product.name}
                                     ${product.hidden ? '<span class="badge-hidden"><i class="fas fa-eye-slash"></i> Đang ẩn</span>' : ''}
                                 </h5>
-                                <p class="text-muted mb-0">${product.description || 'Chưa có mô tả'}</p>
+                                <p class="text-muted mb-0 small">${product.description || 'Chưa có mô tả'}</p>
                             </div>
-                            <div class="col-md-4">
+                            <div class="col-md-3 col-sm-6 mt-3 mt-md-0">
                                 ${product.salePrice ? `
                                     <span class="badge-discount">${discount}% OFF</span><br>
                                     <span class="price-original">${formatPrice(product.price)}</span>
@@ -401,18 +448,20 @@
                                     <span class="price-sale">${formatPrice(product.price)}</span>
                                 `}
                                 <br>
-                                <small class="text-muted">Còn lại: ${product.stock} sản phẩm</small>
+                                <small class="text-muted"><i class="fas fa-box"></i> Còn: ${product.stock} SP</small>
                             </div>
-                            <div class="col-md-3 d-flex justify-content-end align-items-center flex-wrap">
-                                <button class="btn btn-edit" onclick="editProduct(${product.id})">
-                                    <i class="fas fa-edit"></i> Sửa
-                                </button>
-                                <button class="btn btn-delete" onclick="deleteProduct(${product.id})">
-                                    <i class="fas fa-trash"></i> Xóa
-                                </button>
-                                <button class="btn btn-toggle ${product.hidden ? 'hidden' : ''}" onclick="toggleProduct(${product.id})">
-                                    <i class="fas fa-eye${product.hidden ? '' : '-slash'}"></i> ${product.hidden ? 'Hiện' : 'Ẩn'}
-                                </button>
+                            <div class="col-md-3 col-sm-6 mt-3 mt-md-0">
+                                <div class="action-buttons">
+                                    <button class="btn btn-edit" onclick="editProduct(${product.id})">
+                                        <i class="fas fa-edit"></i> Sửa
+                                    </button>
+                                    <button class="btn btn-delete" onclick="deleteProduct(${product.id})">
+                                        <i class="fas fa-trash"></i> Xóa
+                                    </button>
+                                    <button class="btn btn-toggle ${product.hidden ? 'hidden' : ''}" onclick="toggleProduct(${product.id})">
+                                        <i class="fas fa-eye${product.hidden ? '' : '-slash'}"></i> ${product.hidden ? 'Hiện' : 'Ẩn'}
+                                    </button>
+                                </div>
                             </div>
                         </div>
                     </div>
@@ -440,6 +489,7 @@
             editingId = id;
             document.getElementById('modalTitle').textContent = 'Chỉnh sửa sản phẩm';
             document.getElementById('productId').value = product.id;
+            document.getElementById('productCode').value = product.code;
             document.getElementById('productName').value = product.name;
             document.getElementById('productPrice').value = product.price;
             document.getElementById('productSalePrice').value = product.salePrice || '';
@@ -451,6 +501,7 @@
         }
 
         function saveProduct() {
+            const code = document.getElementById('productCode').value.trim();
             const name = document.getElementById('productName').value.trim();
             const price = parseInt(document.getElementById('productPrice').value);
             const salePrice = document.getElementById('productSalePrice').value ? 
@@ -459,8 +510,14 @@
             const image = document.getElementById('productImage').value.trim();
             const description = document.getElementById('productDescription').value.trim();
             
-            if (!name || !price || stock < 0 || !image) {
+            if (!code || !name || !price || stock < 0 || !image) {
                 alert('Vui lòng điền đầy đủ thông tin bắt buộc!');
+                return;
+            }
+            
+            const codeExists = products.some(p => p.code === code && p.id !== editingId);
+            if (codeExists) {
+                alert('Mã sản phẩm đã tồn tại! Vui lòng chọn mã khác.');
                 return;
             }
             
@@ -473,14 +530,14 @@
                 const index = products.findIndex(p => p.id === editingId);
                 products[index] = {
                     ...products[index],
-                    name, price, salePrice, stock, image, description
+                    code, name, price, salePrice, stock, image, description
                 };
                 alert('Cập nhật sản phẩm thành công!');
             } else {
                 const newId = products.length > 0 ? Math.max(...products.map(p => p.id)) + 1 : 1;
                 products.push({
                     id: newId,
-                    name, price, salePrice, stock, image, description,
+                    code, name, price, salePrice, stock, image, description,
                     hidden: false
                 });
                 alert('Thêm sản phẩm mới thành công!');
@@ -526,7 +583,7 @@
                 const productId = parseInt(card.getAttribute('data-product-id'));
                 const product = products.find(p => p.id === productId);
                 
-                if (product && product.name.toLowerCase().includes(searchTerm)) {
+                if (product && (product.name.toLowerCase().includes(searchTerm) || product.code.toLowerCase().includes(searchTerm))) {
                     card.style.display = 'block';
                 } else {
                     card.style.display = 'none';
