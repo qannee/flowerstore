@@ -131,8 +131,33 @@
 	    								<span><i class="ion-ios-menu"></i></span>
 	    							</a>
 	    							<a href="#" class="buy-now d-flex justify-content-center align-items-center mx-1">
-	    								<span><i class="ion-ios-cart"></i></span>
-	    							</a>
+  <span><i class="ion-ios-cart"></i></span>
+</a>
+
+<!-- Bootstrap -->
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@4.5.2/dist/js/bootstrap.bundle.min.js"></script>
+
+<!-- Script xử lý form -->
+<script>
+  document.addEventListener("DOMContentLoaded", function() {
+    const form = document.getElementById('profileForm');
+
+    if (form) {
+      form.addEventListener('submit', function(e) {
+        e.preventDefault();
+
+        // Hiển thị thông báo
+        alert("✅ Đã chỉnh sửa thông tin thành công!");
+
+        // Reset form (tùy chọn)
+        this.reset();
+
+   
+      });
+    }
+  });
+</script>
+
 	    							<a href="#" class="heart d-flex justify-content-center align-items-center ">
 	    								<span><i class="ion-ios-heart"></i></span>
 	    							</a>

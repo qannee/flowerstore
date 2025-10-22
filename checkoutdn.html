@@ -240,8 +240,20 @@
 											</div>
 										</div>
 									</div>
-									<p><a href="#"class="btn btn-primary py-3 px-4">Đặt hàng</a></p>
+									<p>
+  										<a href="chitietdamua.html" class="btn btn-primary py-3 px-4" onclick="datHang(event)">Đặt hàng</a>
+									</p>
+
+								<script>
+										function datHang(event) {
+  											event.preventDefault(); // Ngăn chuyển trang ngay lập tức
+  											alert("🎉 Đặt hàng thành công! Mời bạn xem lại đơn hàng 💐");
+  											window.location.href = "chitietdamua.html"; // Chuyển trang sau khi báo
+											}
+								</script>
+
 								</div>
+								
 	          	</div>
 	          </div>
           </div> <!-- .col-md-8 -->
