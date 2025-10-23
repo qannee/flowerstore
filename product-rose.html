@@ -162,7 +162,15 @@
 	          		<p style="color: #000;">1735 bông có sẵn</p>
 	          	</div>
           	</div>
-          	<p><a href="cartdn.html" class="btn btn-black py-3 px-5">Thêm vào giỏ hàng</a></p>
+          	<p><a href="cartdn.html" class="btn btn-black py-3 px-5" id="addToCartBtn">Thêm vào giỏ hàng</a>
+
+                     <script>
+                       document.getElementById('addToCartBtn').addEventListener('click', function(e) {
+                       e.preventDefault(); // không cho chuyển trang
+                       alert('✅ Đã thêm vào giỏ hàng!');
+                        });
+                      </script>
+</p>
     			</div>
     		</div>
     	</div>
