@@ -3,159 +3,28 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>🌿 Quản lý đơn hàng & tồn kho - Cửa hàng hoa</title>
+<title>🌿 Menu Quản lý - Cửa hàng hoa</title>
 <style>
   body {
     font-family: 'Segoe UI', sans-serif;
-    background: linear-gradient(135deg, #a8e063, #56ab2f);
+    background: linear-gradient(135deg, #0cb333, #56ab2f);
     margin: 0;
     padding: 0;
     color: #333;
     overflow-x: hidden;
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
   }
+  
   header {
     background-color: #56ab2f;
     color: white;
     text-align: center;
     padding: 20px 0;
     box-shadow: 0 3px 8px rgba(0,0,0,0.2);
-    position: relative;
   }
-  main {
-    max-width: 1000px;
-    margin: 30px auto;
-    background: rgba(255, 255, 255, 0.97);
-    border-radius: 16px;
-    box-shadow: 0 4px 12px rgba(0,0,0,0.15);
-    padding: 30px;
-  }
-  h2 {
-    border-left: 5px solid #56ab2f;
-    padding-left: 10px;
-    color: #2d6a1f;
-    font-weight: 600;
-  }
-  section { margin-bottom: 40px; }
-  label {
-    display: block;
-    margin: 8px 0 4px;
-    font-weight: 500;
-  }
-  input, select, button {
-    padding: 10px;
-    border: 1px solid #ccc;
-    border-radius: 6px;
-    width: 100%;
-    transition: all 0.3s;
-  }
-  input:focus, select:focus {
-    border-color: #56ab2f;
-    outline: none;
-    box-shadow: 0 0 5px #a8e063;
-  }
-  button {
-    background-color: #56ab2f;
-    color: white;
-    cursor: pointer;
-    border: none;
-    margin-top: 10px;
-    transition: all 0.3s ease;
-  }
-  button:hover {
-    background-color: #449b28;
-    transform: scale(1.05);
-    box-shadow: 0 2px 6px rgba(0,0,0,0.2);
-  }
-  table {
-    width: 100%;
-    border-collapse: collapse;
-    margin-top: 15px;
-    border-radius: 8px;
-    overflow: hidden;
-  }
-  th, td {
-    border: 1px solid #ddd;
-    padding: 10px;
-    text-align: center;
-  }
-  th {
-    background-color: #d9f7be;
-    color: #1d5d12;
-    font-weight: bold;
-  }
-  tr:hover {
-    background-color: #f0ffe0;
-    transition: background-color 0.3s;
-  }
-  .low-stock {
-    color: red;
-    font-weight: bold;
-    animation: blink 1.5s infinite;
-  }
-  @keyframes blink { 50% { opacity: 0.5; } }
-
-  /* Popup chi tiết đơn hàng */
-  .modal {
-    display: none;
-    position: fixed;
-    z-index: 100;
-    left: 0; top: 0;
-    width: 100%; height: 100%;
-    background-color: rgba(0,0,0,0.4);
-    justify-content: center;
-    align-items: center;
-    animation: fadeIn 0.4s;
-  }
-  @keyframes fadeIn {
-    from { opacity: 0; }
-    to { opacity: 1; }
-  }
-  .modal-content {
-    background: white;
-    border-radius: 10px;
-    width: 90%;
-    max-width: 600px;
-    padding: 20px;
-    box-shadow: 0 4px 15px rgba(0,0,0,0.3);
-    animation: slideIn 0.4s;
-  }
-  @keyframes slideIn {
-    from { transform: translateY(-30px); opacity: 0; }
-    to { transform: translateY(0); opacity: 1; }
-  }
-  .modal-header {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    border-bottom: 2px solid #56ab2f;
-    padding-bottom: 8px;
-  }
-  .close {
-    font-size: 24px;
-    cursor: pointer;
-    color: #56ab2f;
-  }
-  .close:hover { color: #2d6a1f; }
-  .modal h3 { color: #2d6a1f; }
-  .details-table {
-    width: 100%;
-    border-collapse: collapse;
-    margin-top: 10px;
-  }
-  .details-table th, .details-table td {
-    border: 1px solid #ddd;
-    padding: 8px;
-  }
-  .details-table th {
-    background-color: #e0f3cf;
-  }
-  .total {
-    text-align: right;
-    margin-top: 10px;
-    font-weight: bold;
-    color: #1d5d12;
-  }
-    /* ===== Nút Quay lại (dùng Flexbox) ===== */
+  
   .back-container {
     display: flex;
     justify-content: flex-start;
@@ -175,258 +44,137 @@
     cursor: pointer;
     transition: all 0.25s ease;
     box-shadow: 0 3px 10px rgba(0,0,0,0.15);
+    text-decoration: none;
   }
 
   .btn-back:hover {
     background: #22c81d;
     transform: translateY(-2px);
     box-shadow: 0 6px 14px rgba(0,0,0,0.25);
+    color: white;
   }
 
-  .btn-back:active {
-    transform: translateY(0);
-    opacity: 0.9;
+  main {
+    flex: 1;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 40px 20px;
   }
-
-  .btn-back .arrow {
+  
+  .menu-container {
+    max-width: 900px;
+    width: 100%;
+  }
+  
+  .menu-title {
+    text-align: center;
+    color: white;
+    margin-bottom: 50px;
+  }
+  
+  .menu-title h2 {
+    font-size: 36px;
+    margin-bottom: 10px;
+    text-shadow: 2px 2px 4px rgba(0,0,0,0.2);
+  }
+  
+  .menu-title p {
     font-size: 18px;
-    line-height: 1;
+    opacity: 0.95;
   }
-
-  .btn-back .text {
+  
+  .menu-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+    gap: 30px;
+  }
+  
+  .menu-card {
+    background: white;
+    border-radius: 20px;
+    padding: 50px 40px;
+    text-align: center;
+    box-shadow: 0 5px 20px rgba(0,0,0,0.15);
+    transition: all 0.4s ease;
+    cursor: pointer;
+    text-decoration: none;
+    color: #333;
+    display: block;
+  }
+  
+  .menu-card:hover {
+    transform: translateY(-10px);
+    box-shadow: 0 15px 40px rgba(0,0,0,0.25);
+  }
+  
+  .menu-icon {
+    font-size: 80px;
+    margin-bottom: 25px;
+    transition: transform 0.3s ease;
+  }
+  
+  .menu-card:hover .menu-icon {
+    transform: scale(1.1);
+  }
+  
+  .menu-card h3 {
+    font-size: 28px;
+    color: #2d6a1f;
+    margin-bottom: 15px;
+    font-weight: 600;
+  }
+  
+  .menu-card p {
     font-size: 16px;
+    color: #666;
+    line-height: 1.6;
   }
-
+  
+  .card-orders {
+    border-top: 5px solid #56ab2f;
+  }
+  
+  .card-inventory {
+    border-top: 5px solid #ff6b6b;
+  }
 </style>
 </head>
 <body>
-  <div style="display: flex; justify-content: flex-start; align-items: center;">
-    <div>
-      <button onclick="window.location.href='dadangnhap.html'" style="margin:6px; padding:10px 18px; background:#f247f8; color:white; border:none; border-radius:6px; cursor:pointer;">
-        <nav></nav>⬅ Quay lại
-      </button>
-    </div>
+  <div class="back-container">
+    <a href="atemp.html" class="btn-back">
+      <span>⬅</span>
+      <span>Quay lại trang chủ</span>
+    </a>
   </div>
+
   <header>
-    <h1>🌿 Quản lý đơn hàng & tồn kho - Cửa hàng hoa</h1>
+    <h1>🌿 Hệ thống quản lý - Cửa hàng hoa</h1>
   </header>
 
   <main>
-    <section id="orders">
-      <h2>🌸 Quản lý đơn đặt hàng</h2>
-      <label for="startDate">Từ ngày:</label>
-      <input type="date" id="startDate">
-      <label for="endDate">Đến ngày:</label>
-      <input type="date" id="endDate">
-      <label for="status">Tình trạng đơn hàng:</label>
-      <select id="status">
-        <option value="all">Tất cả</option>
-        <option value="new">Mới đặt</option>
-        <option value="processing">Đã xử lý</option>
-        <option value="delivered">Đã giao</option>
-        <option value="cancelled">Đã hủy</option>
-      </select>
-      <button onclick="filterOrders()">Tra cứu</button>
-
-      <table id="orderTable">
-        <thead>
-          <tr>
-            <th>Mã đơn</th>
-            <th>Khách hàng</th>
-            <th>Ngày đặt</th>
-            <th>Tình trạng</th>
-            <th>Chi tiết</th>
-          </tr>
-        </thead>
-        <tbody></tbody>
-      </table>
-    </section>
-
-    <section id="inventory">
-      <h2>🌷 Quản lý tồn kho hoa</h2>
-      <label for="flowerType">Loại hoa:</label>
-      <select id="flowerType" onchange="filterInventory()">
-        <option value="all">Tất cả</option>
-        <option value="rose">Hoa hồng</option>
-        <option value="tulip">Hoa tulip</option>
-        <option value="orchid">Hoa lan</option>
-        <option value="chrysanthemum">Hoa cúc</option>
-      </select>
-
-      <table id="inventoryTable">
-        <thead>
-          <tr>
-            <th>Tên hoa</th>
-            <th>Loại</th>
-            <th>Số lượng tồn</th>
-          </tr>
-        </thead>
-        <tbody></tbody>
-      </table>
-    </section>
+    <div class="menu-container">
+      <div class="menu-title">
+        <h2>Chọn chức năng quản lý</h2>
+        <p>Vui lòng chọn một trong các chức năng bên dưới</p>
+      </div>
+      
+      <div class="menu-grid">
+        <a href="quanlidondathang.html" class="menu-card card-orders">
+          <div class="menu-icon">📦</div>
+          <h3>Quản lý Đơn hàng</h3>
+          <p>Theo dõi, xử lý và quản lý tất cả các đơn đặt hàng. Xem chi tiết thông tin khách hàng và trạng thái giao hàng.</p>
+        </a>
+        
+        <a href="tonkho.html" class="menu-card card-inventory">
+          <div class="menu-icon">🌷</div>
+          <h3>Quản lý Tồn kho</h3>
+          <p>Kiểm tra số lượng hoa tồn kho hiện có. Theo dõi các loại hoa sắp hết và cần nhập thêm.</p>
+        </a>
+      </div>
+    </div>
   </main>
 
-  <!-- Modal hiển thị chi tiết đơn hàng -->
-  <div id="orderModal" class="modal">
-    <div class="modal-content">
-      <div class="modal-header">
-        <h3>Chi tiết đơn hàng</h3>
-        <span class="close" onclick="closeModal()">&times;</span>
-      </div>
-      <div id="orderDetail"></div>
-    </div>
-  </div>
-
-  <script>
-    const orders = [
-      {
-        id: 'DH001',
-        customer: { name: 'Quách A', phone: '0901 234 567', address: '123 Trần Hưng Đạo, Q1, TP.HCM' },
-        date: '2025-06-18',
-        status: 'new',
-        items: [
-          { flower: 'Hoa Hồng Đỏ', qty: 5, price: 15000 },
-          { flower: 'Hoa Tulip Hồng', qty: 3, price: 25000 }
-        ]
-      },
-      {
-        id: 'DH002',
-        customer: { name: 'Trần B', phone: '0902 345 678', address: '56 Nguyễn Huệ, Q1, TP.HCM' },
-        date: '2025-07 -19',
-        status: 'processing',
-        items: [
-          { flower: 'Hoa Lan Trắng', qty: 2, price: 60000 },
-          { flower: 'Hoa Cúc Vàng', qty: 4, price: 12000 }
-        ]
-      },
-      {
-        id: 'DH003',
-        customer: { name: 'Phan C', phone: '0903 456 789', address: '22 Lý Thường Kiệt, Hà Nội' },
-        date: '2025-10-20',
-        status: 'delivered',
-        items: [
-          { flower: 'Hoa Hồng Trắng', qty: 10, price: 15000 }
-        ]
-      },
-      {
-        id: 'DH004',
-        customer: { name: 'Lê D', phone: '0903 123 456', address: '22 Lý Thường Kiệt, TP HCM' },
-        date: '2025-01-20',
-        status: 'cancelled',
-        items: [
-          { flower: 'Hoa Hồng Trắng', qty: 10, price: 15000 },
-          { flower: 'Hoa Cúc Vàng', qty: 4, price: 12000 }
-        ]
-      }
-    ];
-
-    const inventory = [
-      { name: '🌹 Hoa Hồng Đỏ', type: 'rose', quantity: 5 },
-      { name: '🌷 Hoa Tulip Vàng', type: 'tulip', quantity: 12 },
-      { name: '🌸 Hoa Lan Hồ Điệp', type: 'orchid', quantity: 2 },
-      { name: '🌼 Hoa Cúc Trắng', type: 'chrysanthemum', quantity: 8 }
-    ];
-
-    function convertStatus(status) {
-      const map = {
-        new: '<span style="color:#56ab2f;font-weight:bold">Mới đặt</span>',
-        processing: '<span style="color:#d1a800;font-weight:bold">Đã xử lý</span>',
-        delivered: '<span style="color:#007c2e;font-weight:bold">Đã giao</span>',
-        cancelled: '<span style="color:red;font-weight:bold">Đã hủy</span>'
-      };
-      return map[status] || status;
-    }
-
-    function loadOrders(list) {
-      const tbody = document.querySelector('#orderTable tbody');
-      tbody.innerHTML = '';
-      list.forEach(o => {
-        const tr = document.createElement('tr');
-        tr.innerHTML = `
-          <td>${o.id}</td>
-          <td>${o.customer.name}</td>
-          <td>${o.date}</td>
-          <td>${convertStatus(o.status)}</td>
-          <td><button onclick="viewOrder('${o.id}')">Xem chi tiết</button></td>
-        `;
-        tbody.appendChild(tr);
-      });
-    }
-
-    function viewOrder(id) {
-      const order = orders.find(o => o.id === id);
-      if (!order) return;
-      const itemsHTML = order.items.map(i => `
-        <tr>
-          <td>${i.flower}</td>
-          <td>${i.qty}</td>
-          <td>${i.price.toLocaleString()}₫</td>
-          <td>${(i.qty * i.price).toLocaleString()}₫</td>
-        </tr>`).join('');
-      const total = order.items.reduce((sum, i) => sum + i.qty * i.price, 0);
-      document.getElementById('orderDetail').innerHTML = `
-        <p><b>Mã đơn hàng:</b> ${order.id}</p>
-        <p><b>Khách hàng:</b> ${order.customer.name}</p>
-        <p><b>Điện thoại:</b> ${order.customer.phone}</p>
-        <p><b>Địa chỉ:</b> ${order.customer.address}</p>
-        <p><b>Ngày đặt:</b> ${order.date}</p>
-        <p><b>Tình trạng:</b> ${convertStatus(order.status)}</p>
-        <table class="details-table">
-          <tr><th>Tên hoa</th><th>Số lượng</th><th>Đơn giá</th><th>Thành tiền</th></tr>
-          ${itemsHTML}
-        </table>
-        <div class="total">Tổng cộng: ${total.toLocaleString()}₫</div>
-      `;
-      document.getElementById('orderModal').style.display = 'flex';
-    }
-
-    function closeModal() {
-      const modal = document.getElementById('orderModal');
-      modal.style.animation = 'fadeOut 0.3s forwards';
-      setTimeout(() => {
-        modal.style.display = 'none';
-        modal.style.animation = 'fadeIn 0.4s';
-      }, 300);
-    }
-
-    function filterOrders() {
-      const start = document.getElementById('startDate').value;
-      const end = document.getElementById('endDate').value;
-      const status = document.getElementById('status').value;
-      const filtered = orders.filter(o => {
-        const matchStatus = status === 'all' || o.status === status;
-        const matchDate = (!start || o.date >= start) && (!end || o.date <= end);
-        return matchStatus && matchDate;
-      });
-      loadOrders(filtered);
-    }
-
-    function loadInventory(list) {
-      const tbody = document.querySelector('#inventoryTable tbody');
-      tbody.innerHTML = '';
-      list.forEach(i => {
-        const tr = document.createElement('tr');
-        tr.innerHTML = `<td>${i.name}</td><td>${getFlowerTypeName(i.type)}</td><td class='${i.quantity <= 3 ? 'low-stock' : ''}'>${i.quantity}</td>`;
-        tbody.appendChild(tr);
-      });
-    }
-
-    function getFlowerTypeName(type) {
-      const map = { rose: 'Hoa hồng', tulip: 'Hoa tulip', orchid: 'Hoa lan', chrysanthemum: 'Hoa cúc' };
-      return map[type] || type;
-    }
-
-    function filterInventory() {
-      const type = document.getElementById('flowerType').value;
-      const filtered = type === 'all' ? inventory : inventory.filter(i => i.type === type);
-      loadInventory(filtered);
-    }
-
-    window.onload = () => {
-      loadOrders(orders);
-      loadInventory(inventory);
-    };  
-  </script>
 </body>
-
 </html>
+

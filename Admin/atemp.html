@@ -8,22 +8,49 @@
     <link href="https://fonts.googleapis.com/css?family=Poppins:200,300,400,500,600,700,800&display=swap" rel="stylesheet">
     <link href="https://fonts.googleapis.com/css?family=Lora:400,400i,700,700i&display=swap" rel="stylesheet">
     <link href="https://fonts.googleapis.com/css?family=Amatic+SC:400,700&display=swap" rel="stylesheet">
-
-    <link rel="stylesheet" href="css/open-iconic-bootstrap.min.css">
-    <link rel="stylesheet" href="css/animate.css">
-    <link rel="stylesheet" href="css/owl.carousel.min.css">
-    <link rel="stylesheet" href="css/owl.theme.default.min.css">
-    <link rel="stylesheet" href="css/magnific-popup.css">
-    <link rel="stylesheet" href="css/aos.css">
-    <link rel="stylesheet" href="css/ionicons.min.css">
-    <link rel="stylesheet" href="css/bootstrap-datepicker.css">
-    <link rel="stylesheet" href="css/jquery.timepicker.css">
-    <link rel="stylesheet" href="css/flaticon.css">
-    <link rel="stylesheet" href="css/icomoon.css">
-    <link rel="stylesheet" href="css/style.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/4.6.0/css/bootstrap.min.css">
     
     <style>
+      body {
+        font-family: 'Poppins', sans-serif;
+        margin: 0;
+        padding: 0;
+      }
+      
+      .bg-primary {
+        background-color: #82B440 !important;
+      }
+      
+      .bg-dark {
+        background-color: #000000 !important;
+      }
+      
+      .ftco_navbar {
+        padding: 1rem 0;
+      }
+      
+      .navbar-brand {
+        font-size: 24px;
+        font-weight: 700;
+        color: #82B440 !important;
+      }
+      
+      .navbar-nav .nav-link {
+        color: white !important;
+        padding: 0.5rem 1.5rem !important;
+        font-weight: 500;
+        transition: all 0.3s;
+      }
+      
+      .navbar-nav .nav-link:hover {
+        color: #82B440 !important;
+      }
+      
+      .navbar-nav .nav-item.active .nav-link {
+        color: #82B440 !important;
+      }
+      
       /* Styles cho user menu */
       .user-menu {
         position: relative;
@@ -269,6 +296,31 @@
         color: #666;
         font-size: 14px;
       }
+      
+      .ftco-section {
+        padding: 3rem 0;
+      }
+      
+      .icon {
+        width: 40px;
+        height: 40px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+      }
+      
+      .topper {
+        color: white;
+        font-size: 13px;
+      }
+      
+      .text {
+        color: white;
+      }
+      
+      .py-1 {
+        padding: 0.5rem 0;
+      }
     </style>
   </head>
   <body class="goto-here">
@@ -278,11 +330,11 @@
           <div class="col-lg-12 d-block">
             <div class="row d-flex">
               <div class="col-md pr-4 d-flex topper align-items-center">
-                <div class="icon mr-2 d-flex justify-content-center align-items-center"><span class="icon-phone2"></span></div>
+                <div class="icon mr-2 d-flex justify-content-center align-items-center"><span>📞</span></div>
                 <span class="text">+ 84 336 36 36 36</span>
               </div>
               <div class="col-md pr-4 d-flex topper align-items-center">
-                <div class="icon mr-2 d-flex justify-content-center align-items-center"><span class="icon-paper-plane"></span></div>
+                <div class="icon mr-2 d-flex justify-content-center align-items-center"><span>✉️</span></div>
                 <span class="text">chohoasach@lmao.com</span>
               </div>
               <div class="col-md-5 pr-4 d-flex topper align-items-center text-lg-right">
@@ -296,26 +348,16 @@
     
     <nav class="navbar navbar-expand-lg navbar-dark ftco_navbar bg-dark ftco-navbar-light" id="ftco-navbar">
       <div class="container">
-        <a class="navbar-brand" href="index.html">ChoHoaSach.com</a>
+        <a class="navbar-brand" href="atemp.html">ChoHoaSach.com</a>
         <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#ftco-nav" aria-controls="ftco-nav" aria-expanded="false" aria-label="Toggle navigation">
-          <span class="oi oi-menu"></span> Menu
+          <span>☰</span> Menu
         </button>
 
         <div class="collapse navbar-collapse" id="ftco-nav">
           <ul class="navbar-nav ml-auto">
-            <li class="nav-item active"><a href="dadangnhap.html" class="nav-link">Trang chủ</a></li>
-            <li class="nav-item dropdown">
-              <a class="nav-link dropdown-toggle" href="#" id="dropdown04" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Mục lục</a>
-              <div class="dropdown-menu" aria-labelledby="dropdown04">
-                <a class="dropdown-item" href="shop.html">Mua sắm</a>
-                <a class="dropdown-item" href="wishlist.html">Yêu thích</a>
-                <a class="dropdown-item" href="product-single.html">Sản phẩm</a>
-                <a class="dropdown-item" href="cart.html">Giỏ hàng</a>
-                <a class="dropdown-item" href="checkout.html">Thanh toán</a>
-              </div>
-            </li>
-            <li class="nav-item"><a href="about.html" class="nav-link">Giới thiệu</a></li>
-            <li class="nav-item cta cta-colored"><a href="cart.html" class="nav-link"><span class="icon-shopping_cart"></span>[0]</a></li>
+            <li class="nav-item"><a href="quanlikhachhang.html" class="nav-link"><i class="fas fa-users"></i> Khách hàng</a></li>
+            <li class="nav-item"><a href="quanlidonhang.html" class="nav-link"><i class="fas fa-clipboard-list"></i> Đơn hàng</a></li>
+            <li class="nav-item"><a href="quanlisanpham.html" class="nav-link"><i class="fas fa-boxes"></i> Sản phẩm</a></li>
             
             <!-- User Menu -->
             <li class="nav-item user-menu">
@@ -327,10 +369,10 @@
                 <img src="https://i.pravatar.cc/150?img=68" alt="User Avatar" class="user-avatar">
               </div>
               <div class="dropdown-menu-user" id="userDropdown">
-                <a href="#profile"><i class="fas fa-user"></i> Thông tin cá nhân</a>
+                <!--<a href="#profile"><i class="fas fa-user"></i> Thông tin cá nhân</a>
                 <a href="#orders"><i class="fas fa-shopping-bag"></i> Đơn hàng của tôi</a>
-                <a href="#settings"><i class="fas fa-cog"></i> Cài đặt</a>
-                <a href="index.html" class="logout"><i class="fas fa-sign-out-alt"></i> Đăng xuất</a>
+                <a href="#settings"><i class="fas fa-cog"></i> Cài đặt</a> -->
+                <a href="dangnhap.html" class="logout"><i class="fas fa-sign-out-alt"></i> Đăng xuất</a>
               </div>
             </li>
           </ul>
@@ -386,268 +428,30 @@
       </div>
     </section>
 
-    <!-- Admin Management Panel -->
-    <section class="admin-panel">
-      <div class="container">
-        <div class="section-title">
-          <h2><i class="fas fa-tools"></i> Quản lý hệ thống</h2>
-          <p>Truy cập nhanh vào các chức năng quản trị chính</p>
-        </div>
-        
-        <div class="row">
-          <div class="col-md-4 mb-4">
-            <div class="admin-card">
-              <div class="admin-icon">
-                <i class="fas fa-boxes"></i>
-              </div>
-              <h3>Quản lý Sản phẩm</h3>
-              <p>Thêm, sửa, xóa và quản lý toàn bộ sản phẩm trong cửa hàng. Cập nhật giá, tồn kho và hình ảnh.</p>
-              <a href="quanlisanpham.html" class="btn">
-                <i class="fas fa-arrow-right"></i> Truy cập ngay
-              </a>
-            </div>
-          </div>
-          
-          <div class="col-md-4 mb-4">
-            <div class="admin-card">
-              <div class="admin-icon">
-                <i class="fas fa-clipboard-list"></i>
-              </div>
-              <h3>Quản lý Đơn hàng</h3>
-              <p>Theo dõi, xử lý đơn hàng và quản lý tồn kho. Xem chi tiết và cập nhật trạng thái đơn hàng.</p>
-              <a href="quanlidonhang.html" class="btn">
-                <i class="fas fa-arrow-right"></i> Truy cập ngay
-              </a>
-            </div>
-          </div>
-          
-          <div class="col-md-4 mb-4">
-            <div class="admin-card">
-              <div class="admin-icon">
-                <i class="fas fa-users"></i>
-              </div>
-              <h3>Quản lý Khách hàng</h3>
-              <p>Quản lý thông tin khách hàng, xem lịch sử mua hàng và khóa/mở khóa tài khoản người dùng.</p>
-              <a href="quanlikhachhang.html" class="btn">
-                <i class="fas fa-arrow-right"></i> Truy cập ngay
-              </a>
-            </div>
-          </div>
-        </div>
-      </div>
-    </section>
 
-    <!-- Original sections from index.html -->
-    <section class="ftco-section">
-      <div class="container">
-        <div class="row no-gutters ftco-services">
-          <div class="col-md-3 text-center d-flex align-self-stretch ftco-animate">
-            <div class="media block-6 services mb-md-0 mb-4">
-              <div class="icon bg-color-1 active d-flex justify-content-center align-items-center mb-2">
-                <span class="flaticon-shipped"></span>
-              </div>
-              <div class="media-body">
-                <h3 class="heading">Phờ ri síp</h3>
-                <span>Cho các hoá đơn lớn hơn 1 tỏi</span>
-              </div>
-            </div>      
-          </div>
-          <div class="col-md-3 text-center d-flex align-self-stretch ftco-animate">
-            <div class="media block-6 services mb-md-0 mb-4">
-              <div class="icon bg-color-2 d-flex justify-content-center align-items-center mb-2">
-                <span class="flaticon-diet"></span>
-              </div>
-              <div class="media-body">
-                <h3 class="heading">Luôn vui tươi</h3>
-                <span>hàng sạch giá tốt</span>
-              </div>
-            </div>    
-          </div>
-          <div class="col-md-3 text-center d-flex align-self-stretch ftco-animate">
-            <div class="media block-6 services mb-md-0 mb-4">
-              <div class="icon bg-color-3 d-flex justify-content-center align-items-center mb-2">
-                <span class="flaticon-award"></span>
-              </div>
-              <div class="media-body">
-                <h3 class="heading">Chất Vl</h3>
-                <span>Theo chuẩn châu phi</span>
-              </div>
-            </div>      
-          </div>
-          <div class="col-md-3 text-center d-flex align-self-stretch ftco-animate">
-            <div class="media block-6 services mb-md-0 mb-4">
-              <div class="icon bg-color-4 d-flex justify-content-center align-items-center mb-2">
-                <span class="flaticon-customer-service"></span>
-              </div>
-              <div class="media-body">
-                <h3 class="heading">Hỗ trợ tận tâm</h3>
-                <span>Nào rảnh thì làm</span>
-              </div>
-            </div>      
-          </div>
-        </div>
-      </div>
-    </section>
 
-    <section class="ftco-section ftco-category ftco-no-pt">
-      <div class="container">
-        <div class="row">
-          <div class="col-md-8">
-            <div class="row">
-              <div class="col-md-6 order-md-last align-items-stretch d-flex">
-                <div class="category-wrap-2 ftco-animate img align-self-stretch d-flex" style="background-image: url(images/category.jpg);">
-                  <div class="text text-center">
-                    <h2>Hoa sạch</h2>
-                    <p>mang lại hương thơm cho mọi nhà</p>
-                    <p><a href="#" class="btn btn-primary">Mua liền tay</a></p>
-                  </div>
-                </div>
-              </div>
-              <div class="col-md-6">
-                <div class="category-wrap ftco-animate img mb-4 d-flex align-items-end" style="background-image: url(images/category-1.jpg);">
-                  <div class="text px-3 py-1">
-                    <h2 class="mb-0"><a href="#">Hoa hồng</a></h2>
-                  </div>
-                </div>
-                <div class="category-wrap ftco-animate img d-flex align-items-end" style="background-image: url(images/category-2.jpg);">
-                  <div class="text px-3 py-1">
-                    <h2 class="mb-0"><a href="#">Hoa cúc</a></h2>
-                  </div>
-                </div>
-              </div>
-            </div>
-          </div>
-
-          <div class="col-md-4">
-            <div class="category-wrap ftco-animate img mb-4 d-flex align-items-end" style="background-image: url(images/category-3.jpg);">
-              <div class="text px-3 py-1">
-                <h2 class="mb-0"><a href="#">Hoa lan</a></h2>
-              </div>		
-            </div>
-            <div class="category-wrap ftco-animate img d-flex align-items-end" style="background-image: url(images/category-4.jpg);">
-              <div class="text px-3 py-1">
-                <h2 class="mb-0"><a href="#">Hoa sen</a></h2>
-              </div>
-            </div>
-          </div>
-        </div>
-      </div>
-    </section>
-
-    <section class="ftco-section">
-      <div class="container">
-        <div class="row justify-content-center mb-3 pb-3">
-          <div class="col-md-12 heading-section text-center ftco-animate">
-            <span class="subheading">Sản phẩm hiện có</span>
-            <h2 class="mb-4"></h2>
-            <p>Quẹo lựa quẹo lựa mấy ní ơi :3</p>
-          </div>
-        </div>   		
-      </div>
-      <div class="container">
-        <div class="row">
-          <div class="col-md-6 col-lg-3 ftco-animate">
-            <div class="product">
-              <a href="#" class="img-prod"><img class="img-fluid" src="images/product-1.jpg" alt="Colorlib Template">
-                <span class="status">60%</span>
-                <div class="overlay"></div>
-              </a>
-              <div class="text py-3 pb-4 px-3 text-center">
-                <h3><a href="#">Hoa hồng</a></h3>
-                <div class="d-flex">
-                  <div class="pricing">
-                    <p class="price"><span class="mr-2 price-dc">250.000đ</span><span class="price-sale">150.000đ</span></p>
-                  </div>
-                </div>
-                <div class="bottom-area d-flex px-3">
-                  <div class="m-auto d-flex">
-                    <a href="#" class="add-to-cart d-flex justify-content-center align-items-center text-center">
-                      <span><i class="ion-ios-menu"></i></span>
-                    </a>
-                    <a href="#" class="buy-now d-flex justify-content-center align-items-center mx-1">
-                      <span><i class="ion-ios-cart"></i></span>
-                    </a>
-                    <a href="#" class="heart d-flex justify-content-center align-items-center ">
-                      <span><i class="ion-ios-heart"></i></span>
-                    </a>
-                  </div>
-                </div>
-              </div>
-            </div>
-          </div>
-          <div class="col-md-6 col-lg-3 ftco-animate">
-            <div class="product">
-              <a href="#" class="img-prod"><img class="img-fluid" src="images/product-2.jpg" alt="Colorlib Template">
-                <div class="overlay"></div>
-              </a>
-              <div class="text py-3 pb-4 px-3 text-center">
-                <h3><a href="#">Hoa ly</a></h3>
-                <div class="d-flex">
-                  <div class="pricing">
-                    <p class="price"><span>270.000đ</span></p>
-                  </div>
-                </div>
-                <div class="bottom-area d-flex px-3">
-                  <div class="m-auto d-flex">
-                    <a href="#" class="add-to-cart d-flex justify-content-center align-items-center text-center">
-                      <span><i class="ion-ios-menu"></i></span>
-                    </a>
-                    <a href="#" class="buy-now d-flex justify-content-center align-items-center mx-1">
-                      <span><i class="ion-ios-cart"></i></span>
-                    </a>
-                    <a href="#" class="heart d-flex justify-content-center align-items-center ">
-                      <span><i class="ion-ios-heart"></i></span>
-                    </a>
-                  </div>
-                </div>
-              </div>
-            </div>
-          </div>
-          <div class="col-md-6 col-lg-3 ftco-animate">
-            <div class="product">
-              <a href="#" class="img-prod"><img class="img-fluid" src="images/product-3.jpg" alt="Colorlib Template">
-                <div class="overlay"></div>
-              </a>
-              <div class="text py-3 pb-4 px-3 text-center">
-                <h3><a href="#">Hoa giấy</a></h3>
-                <div class="d-flex">
-                  <div class="pricing">
-                    <p class="price"><span>200.000đ</span></p>
-                  </div>
-                </div>
-                <div class="bottom-area d-flex px-3">
-                  <div class="m-auto d-flex">
-                    <a href="#" class="add-to-cart d-flex justify-content-center align-items-center text-center">
-                      <span><i class="ion-ios-menu"></i></span>
-                    </a>
-                    <a href="#" class="buy-now d-flex justify-content-center align-items-center mx-1">
-                      <span><i class="ion-ios-cart"></i></span>
-                    </a>
-                    <a href="#" class="heart d-flex justify-content-center align-items-center ">
-                      <span><i class="ion-ios-heart"></i></span>
-                    </a>
-                  </div>
-                </div>
-              </div>
-            </div>
-          </div>
-          <div class="col-md-6 col-lg-3 ftco-animate">
-            <div class="product">
-              <a href="#" class="img-prod"><img class="img-fluid" src="images/product-4.jpg" alt="Colorlib Template">
-                <div class="overlay"></div>
-              </a>
-              <div class="text py-3 pb-4 px-3 text-center">
-                <h3><a href="#">Hoa tulip</a></h3>
-                <div class="d-flex">
-                  <div class="pricing">
-                    <p class="price"><span>350.000đ</span></p>
-                  </div>
-                </div>
-                <div class="bottom-area d-flex px-3">
-                  <div class="m-auto d-flex">
-                    <a href="#" class="add-to-cart d-flex justify-content-center align-items-center text-center">
-                      <span><i class="ion-ios-menu"></i></span>
-                    </a>
-                    <a href="#" class="buy-now d-flex justify-content-center align-items-center mx-1">
-                      <span><i class="ion-ios-cart"></i></span>
-                    </a>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/4.6.0/js/bootstrap.bundle.min.js"></script>
+    <script>
+      function toggleUserMenu() {
+        const dropdown = document.getElementById('userDropdown');
+        dropdown.classList.toggle('show');
+      }
+      
+      // Close dropdown when clicking outside
+      window.addEventListener('click', function(e) {
+        if (!e.target.closest('.user-menu')) {
+          const dropdown = document.getElementById('userDropdown');
+          dropdown.classList.remove('show');
+        }
+      });
+      
+      // Display current date
+      const dateOptions = { weekday: 'long', year: 'numeric', month: 'long', day: 'numeric' };
+      const currentDate = new Date().toLocaleDateString('vi-VN', dateOptions);
+      if (document.getElementById('currentDate')) {
+        document.getElementById('currentDate').textContent = currentDate;
+      }
+    </script>
+  </body>
+</html> 
