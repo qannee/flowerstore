@@ -27,6 +27,7 @@
     <link rel="stylesheet" href="css/flaticon.css">
     <link rel="stylesheet" href="css/icomoon.css">
     <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="css/find.css">
   </head>
   <body class="goto-here">
 		<div class="py-1 bg-primary">
@@ -55,8 +56,14 @@
 	      	<a class="navbar-brand" href="index.html">chohoasach.com</a>
 	      	<button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#ftco-nav" aria-controls="ftco-nav" aria-expanded="false" aria-label="Toggle navigation">
 	        	<span class="oi oi-menu"></span> Menu
-	      	</button>
-
+          </button>
+              	<form action="p_rose.html" method="GET" class="search-form" autocomplete="off">
+            <input type="text" name="q" class="search-input" id="searchBox" placeholder="Tìm kiếm hoa, sản phẩm...">
+            <button type="submit" class="search-btn">
+            <i class="icon-search"></i>
+            </button>
+           <div class="suggestions-box" id="suggestions"></div>
+        </form>
 	      	<div class="collapse navbar-collapse" id="ftco-nav">
 	        <ul class="navbar-nav ml-auto">
 	          	<li class="nav-item"><a href="index.html" class="nav-link">Trang chủ</a></li>
