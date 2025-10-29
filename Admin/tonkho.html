@@ -188,12 +188,12 @@
         </select>
       </div>
 
-      <button class="btn-search" onclick="searchInventory()">🔍 Tra cứu tồn kho</button>
-
-      <div class="info-box">
-        <p>💡 <strong>Gợi ý:</strong> Chọn khoảng thời gian và loại hoa để xem báo cáo chi tiết</p>
-        <p>📊 Hệ thống sẽ hiển thị tồn kho hiện tại và cảnh báo hàng sắp hết</p>
-      </div>
+      <button class="btn-search" onclick="redirectToPage()"> Tra cứu tồn kho</button>
+      <script>
+        function redirectToPage() {
+            window.location.href = 'tonkho_1.html';  // Chuyển sang trang code2.html
+        }
+      </script>
     </section>
   </main>
 

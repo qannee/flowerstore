@@ -3,29 +3,35 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>📦 Quản lý đơn hàng - Cửa hàng hoa</title>
+<title>🌷 Quản lý tồn kho - Cửa hàng hoa</title>
 <style>
-  body {
-    font-family: 'Segoe UI', sans-serif;
-    background: linear-gradient(135deg, #a8e063, #56ab2f);
+  * {
+    box-sizing: border-box;
     margin: 0;
     padding: 0;
+  }
+
+  body {
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    background: linear-gradient(135deg, #06a906, #31ce41);
     color: #333;
-    overflow-x: hidden;
+    min-height: 100vh;
   }
   
   header {
-    background-color: #56ab2f;
+    background-color: #32ac3e;
     color: white;
     text-align: center;
-    padding: 20px 0;
+    padding: 20px;
     box-shadow: 0 3px 8px rgba(0,0,0,0.2);
+  }
+
+  header h1 {
+    font-size: 1.8rem;
   }
   
   .back-container {
-    display: flex;
-    justify-content: flex-start;
-    padding: 12px 20px;
+    padding: 15px 20px;
   }
 
   .btn-back {
@@ -52,179 +58,94 @@
   }
   
   main {
-    max-width: 1000px;
-    margin: 30px auto;
+    max-width: 800px;
+    margin: 50px auto;
     background: rgba(255, 255, 255, 0.97);
     border-radius: 16px;
     box-shadow: 0 4px 12px rgba(0,0,0,0.15);
-    padding: 30px;
+    padding: 40px;
   }
   
   h2 {
-    border-left: 5px solid #56ab2f;
+    border-left: 5px solid #2cf430;
     padding-left: 10px;
-    color: #2d6a1f;
+    color: #a83a48;
     font-weight: 600;
+    margin-bottom: 30px;
   }
   
-  section { 
-    margin-bottom: 40px; 
+  .filter-section {
+    background: #f8f9fa;
+    padding: 30px;
+    border-radius: 8px;
+  }
+
+  .form-group {
+    margin-bottom: 20px;
   }
   
   label {
-    display: block;
-    margin: 8px 0 4px;
     font-weight: 500;
+    margin-bottom: 8px;
+    color: #555;
+    display: block;
   }
   
-  input, select, button {
-    padding: 10px;
+  input[type="date"],
+  select {
+    padding: 12px;
     border: 1px solid #ccc;
     border-radius: 6px;
-    width: 100%;
-    transition: all 0.3s;
-  }
-  
-  input:focus, select:focus {
-    border-color: #56ab2f;
-    outline: none;
-    box-shadow: 0 0 5px #a8e063;
-  }
-  
-  button {
-    background-color: #56ab2f;
-    color: white;
-    cursor: pointer;
-    border: none;
-    margin-top: 10px;
-    transition: all 0.3s ease;
-  }
-  
-  button:hover {
-    background-color: #449b28;
-    transform: scale(1.05);
-    box-shadow: 0 2px 6px rgba(0,0,0,0.2);
-  }
-  
-  table {
-    width: 100%;
-    border-collapse: collapse;
-    margin-top: 15px;
-    border-radius: 8px;
-    overflow: hidden;
-  }
-  
-  th, td {
-    border: 1px solid #ddd;
-    padding: 10px;
-    text-align: center;
-  }
-  
-  th {
-    background-color: #d9f7be;
-    color: #1d5d12;
-    font-weight: bold;
-  }
-  
-  tr:hover {
-    background-color: #f0ffe0;
-    transition: background-color 0.3s;
-  }
-  
-  .status-new {
-    color: #56ab2f;
-    font-weight: bold;
-  }
-
-  .status-processing {
-    color: #d1a800;
-    font-weight: bold;
-  }
-
-  .status-delivered {
-    color: #007c2e;
-    font-weight: bold;
-  }
-
-  .status-cancelled {
-    color: red;
-    font-weight: bold;
-  }
-
-  .detail-button {
-    padding: 6px 12px;
-    background-color: #56ab2f;
-    color: white;
-    border: none;
-    border-radius: 4px;
-    cursor: pointer;
     font-size: 14px;
-    width: auto;
+    transition: all 0.3s;
+    width: 100%;
+  }
+  
+  input[type="date"]:focus,
+  select:focus {
+    border-color: #34f066;
+    outline: none;
+    box-shadow: 0 0 5px #2be74a;
   }
 
-  .detail-button:hover {
-    background-color: #449b28;
-  }
-  /* Popup chi tiết đơn hàng */
-  .modal {
-    display: none;
-    position: fixed;
-    z-index: 100;
-    left: 0; top: 0;
-    width: 100%; height: 100%;
-    background-color: rgba(0,0,0,0.4);
-    justify-content: center;
-    align-items: center;
-    animation: fadeIn 0.4s;
-  }
-  @keyframes fadeIn {
-    from { opacity: 0; }
-    to { opacity: 1; }
-  }
-  .modal-content {
-    background: white;
-    border-radius: 10px;
-    width: 90%;
-    max-width: 600px;
-    padding: 20px;
-    box-shadow: 0 4px 15px rgba(0,0,0,0.3);
-    animation: slideIn 0.4s;
-  }
-  @keyframes slideIn {
-    from { transform: translateY(-30px); opacity: 0; }
-    to { transform: translateY(0); opacity: 1; }
-  }
-  .modal-header {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    border-bottom: 2px solid #56ab2f;
-    padding-bottom: 8px;
-  }
-  .close {
-    font-size: 24px;
+  .btn-search {
+    background: #32ac3e;
+    color: white;
+    border: none;
+    border-radius: 8px;
+    padding: 14px 32px;
+    font-weight: 600;
     cursor: pointer;
-    color: #56ab2f;
-  }
-  .close:hover { color: #2d6a1f; }
-  .modal h3 { color: #2d6a1f; }
-  .details-table {
+    transition: all 0.3s;
     width: 100%;
-    border-collapse: collapse;
+    font-size: 16px;
     margin-top: 10px;
   }
-  .details-table th, .details-table td {
-    border: 1px solid #ddd;
-    padding: 8px;
+
+  .btn-search:hover {
+    background: #28933a;
+    transform: translateY(-2px);
+    box-shadow: 0 4px 12px rgba(0,0,0,0.2);
   }
-  .details-table th {
-    background-color: #e0f3cf;
+
+  .info-box {
+    background: #e7f3ff;
+    border-left: 4px solid #2196F3;
+    padding: 15px;
+    margin-top: 20px;
+    border-radius: 6px;
   }
-  .total {
-    text-align: right;
-    margin-top: 10px;
-    font-weight: bold;
-    color: #1d5d12;
+
+  .info-box p {
+    color: #0d47a1;
+    margin: 5px 0;
+  }
+
+  @media (max-width: 768px) {
+    main {
+      margin: 20px 15px;
+      padding: 25px;
+    }
   }
 </style>
 </head>
@@ -237,7 +158,7 @@
   </div>
 
   <header>
-    <h1>📦 Quản lý đơn hàng - Cửa hàng hoa</h1>
+    <h1>🌸 Quản lý đơn hàng - Cửa hàng hoa</h1>
   </header>
 
   <main>
@@ -259,231 +180,13 @@
         <option value="cancelled">Đã hủy</option>
       </select>
       
-      <button>Tra cứu</button>
-
-      <table id="orderTable">
-        <thead>
-          <tr>
-            <th>Mã đơn</th>
-            <th>Khách hàng</th>
-            <th>Ngày đặt</th>
-            <th>Tình trạng</th>
-            <th>Chi tiết</th>
-          </tr>
-        </thead>
-        <tbody>
-          <tr>
-            <td>DH001</td>
-            <td>Quách A</td>
-            <td>2025-06-18</td>
-            <td><span class="status-new">Mới đặt</span></td>
-            <td><button class="detail-button">Xem chi tiết</button></td>
-          </tr>
-          <tr>
-            <td>DH002</td>
-            <td>Trần B</td>
-            <td>2025-07-19</td>
-            <td><span class="status-processing">Đã xử lý</span></td>
-            <td><button class="detail-button">Xem chi tiết</button></td>
-          </tr>
-          <tr>
-            <td>DH003</td>
-            <td>Phan C</td>
-            <td>2025-10-20</td>
-            <td><span class="status-delivered">Đã giao</span></td>
-            <td><button class="detail-button">Xem chi tiết</button></td>
-          </tr>
-          <tr>
-            <td>DH004</td>
-            <td>Lê D</td>
-            <td>2025-01-20</td>
-            <td><span class="status-cancelled">Đã hủy</span></td>
-            <td><button class="detail-button">Xem chi tiết</button></td>
-          </tr>
-          <tr>
-            <td>DH005</td>
-            <td>Nguyễn E</td>
-            <td>2025-08-15</td>
-            <td><span class="status-new">Mới đặt</span></td>
-            <td><button class="detail-button">Xem chi tiết</button></td>
-          </tr>
-          <tr>
-            <td>DH006</td>
-            <td>Hoàng F</td>
-            <td>2025-09-22</td>
-            <td><span class="status-delivered">Đã giao</span></td>
-            <td><button class="detail-button">Xem chi tiết</button></td>
-          </tr>
-        </tbody>
-      </table>
+      <button class="btn-search" onclick="redirectToPage()"> Tra cứu đơn hàng</button>
+      <script>
+        function redirectToPage() {
+            window.location.href = 'quanlidondathang_1.html';  // Chuyển sang trang code2.html
+        }
+      </script>
     </section>
   </main>
-
-  <!-- Modal hiển thị chi tiết đơn hàng -->
-  <div id="orderModal" class="modal">
-    <div class="modal-content">
-      <div class="modal-header">
-        <h3>Chi tiết đơn hàng</h3>
-        <span class="close" onclick="closeModal()">&times;</span>
-      </div>
-      <div id="orderDetail"></div>
-    </div>
-  </div>
-
-  <script>
-    const orders = [
-      {
-        id: 'DH001',
-        customer: { name: 'Quách A', phone: '0901 234 567', address: '123 Trần Hưng Đạo, Q1, TP.HCM' },
-        date: '2025-06-18',
-        status: 'new',
-        items: [
-          { flower: 'Hoa Hồng Đỏ', qty: 5, price: 15000 },
-          { flower: 'Hoa Tulip Hồng', qty: 3, price: 25000 }
-        ]
-      },
-      {
-        id: 'DH002',
-        customer: { name: 'Trần B', phone: '0902 345 678', address: '56 Nguyễn Huệ, Q1, TP.HCM' },
-        date: '2025-07 -19',
-        status: 'processing',
-        items: [
-          { flower: 'Hoa Lan Trắng', qty: 2, price: 60000 },
-          { flower: 'Hoa Cúc Vàng', qty: 4, price: 12000 }
-        ]
-      },
-      {
-        id: 'DH003',
-        customer: { name: 'Phan C', phone: '0903 456 789', address: '22 Lý Thường Kiệt, Hà Nội' },
-        date: '2025-10-20',
-        status: 'delivered',
-        items: [
-          { flower: 'Hoa Hồng Trắng', qty: 10, price: 15000 }
-        ]
-      },
-      {
-        id: 'DH004',
-        customer: { name: 'Lê D', phone: '0903 123 456', address: '22 Lý Thường Kiệt, TP HCM' },
-        date: '2025-01-20',
-        status: 'cancelled',
-        items: [
-          { flower: 'Hoa Hồng Trắng', qty: 10, price: 15000 },
-          { flower: 'Hoa Cúc Vàng', qty: 4, price: 12000 }
-        ]
-      }
-    ];
-
-    const inventory = [
-      { name: '🌹 Hoa Hồng Đỏ', type: 'rose', quantity: 5 },
-      { name: '🌷 Hoa Tulip Vàng', type: 'tulip', quantity: 12 },
-      { name: '🌸 Hoa Lan Hồ Điệp', type: 'orchid', quantity: 2 },
-      { name: '🌼 Hoa Cúc Trắng', type: 'chrysanthemum', quantity: 8 }
-    ];
-
-    function convertStatus(status) {
-      const map = {
-        new: '<span style="color:#56ab2f;font-weight:bold">Mới đặt</span>',
-        processing: '<span style="color:#d1a800;font-weight:bold">Đã xử lý</span>',
-        delivered: '<span style="color:#007c2e;font-weight:bold">Đã giao</span>',
-        cancelled: '<span style="color:red;font-weight:bold">Đã hủy</span>'
-      };
-      return map[status] || status;
-    }
-
-    function loadOrders(list) {
-      const tbody = document.querySelector('#orderTable tbody');
-      tbody.innerHTML = '';
-      list.forEach(o => {
-        const tr = document.createElement('tr');
-        tr.innerHTML = `
-          <td>${o.id}</td>
-          <td>${o.customer.name}</td>
-          <td>${o.date}</td>
-          <td>${convertStatus(o.status)}</td>
-          <td><button onclick="viewOrder('${o.id}')">Xem chi tiết</button></td>
-        `;
-        tbody.appendChild(tr);
-      });
-    }
-
-    function viewOrder(id) {
-      const order = orders.find(o => o.id === id);
-      if (!order) return;
-      const itemsHTML = order.items.map(i => `
-        <tr>
-          <td>${i.flower}</td>
-          <td>${i.qty}</td>
-          <td>${i.price.toLocaleString()}₫</td>
-          <td>${(i.qty * i.price).toLocaleString()}₫</td>
-        </tr>`).join('');
-      const total = order.items.reduce((sum, i) => sum + i.qty * i.price, 0);
-      document.getElementById('orderDetail').innerHTML = `
-        <p><b>Mã đơn hàng:</b> ${order.id}</p>
-        <p><b>Khách hàng:</b> ${order.customer.name}</p>
-        <p><b>Điện thoại:</b> ${order.customer.phone}</p>
-        <p><b>Địa chỉ:</b> ${order.customer.address}</p>
-        <p><b>Ngày đặt:</b> ${order.date}</p>
-        <p><b>Tình trạng:</b> ${convertStatus(order.status)}</p>
-        <table class="details-table">
-          <tr><th>Tên hoa</th><th>Số lượng</th><th>Đơn giá</th><th>Thành tiền</th></tr>
-          ${itemsHTML}
-        </table>
-        <div class="total">Tổng cộng: ${total.toLocaleString()}₫</div>
-      `;
-      document.getElementById('orderModal').style.display = 'flex';
-    }
-
-    function closeModal() {
-      const modal = document.getElementById('orderModal');
-      modal.style.animation = 'fadeOut 0.3s forwards';
-      setTimeout(() => {
-        modal.style.display = 'none';
-        modal.style.animation = 'fadeIn 0.4s';
-      }, 300);
-    }
-
-    function filterOrders() {
-      const start = document.getElementById('startDate').value;
-      const end = document.getElementById('endDate').value;
-      const status = document.getElementById('status').value;
-      const filtered = orders.filter(o => {
-        const matchStatus = status === 'all' || o.status === status;
-        const matchDate = (!start || o.date >= start) && (!end || o.date <= end);
-        return matchStatus && matchDate;
-      });
-      loadOrders(filtered);
-    }
-
-    function loadInventory(list) {
-      const tbody = document.querySelector('#inventoryTable tbody');
-      tbody.innerHTML = '';
-      list.forEach(i => {
-        const tr = document.createElement('tr');
-        tr.innerHTML = `<td>${i.name}</td><td>${getFlowerTypeName(i.type)}</td><td class='${i.quantity <= 3 ? 'low-stock' : ''}'>${i.quantity}</td>`;
-        tbody.appendChild(tr);
-      });
-    }
-
-    function getFlowerTypeName(type) {
-      const map = { rose: 'Hoa hồng', tulip: 'Hoa tulip', orchid: 'Hoa lan', chrysanthemum: 'Hoa cúc' };
-      return map[type] || type;
-    }
-
-    function filterInventory() {
-      const type = document.getElementById('flowerType').value;
-      const filtered = type === 'all' ? inventory : inventory.filter(i => i.type === type);
-      loadInventory(filtered);
-    }
-
-    window.onload = () => {
-      loadOrders(orders);
-      loadInventory(inventory);
-    };  
-  </script>s
 </body>
 </html>
-
-<!-- 
-  File này là trang quản lý đơn hàng
-  Lưu file này với tên: quanlidonhang.html
--->
