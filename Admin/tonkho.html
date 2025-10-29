@@ -5,27 +5,33 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>🌷 Quản lý tồn kho - Cửa hàng hoa</title>
 <style>
-  body {
-    font-family: 'Segoe UI', sans-serif;
-    background: linear-gradient(135deg, #06a906, #31ce41);
+  * {
+    box-sizing: border-box;
     margin: 0;
     padding: 0;
+  }
+
+  body {
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    background: linear-gradient(135deg, #06a906, #31ce41);
     color: #333;
-    overflow-x: hidden;
+    min-height: 100vh;
   }
   
   header {
     background-color: #32ac3e;
     color: white;
     text-align: center;
-    padding: 20px 0;
+    padding: 20px;
     box-shadow: 0 3px 8px rgba(0,0,0,0.2);
+  }
+
+  header h1 {
+    font-size: 1.8rem;
   }
   
   .back-container {
-    display: flex;
-    justify-content: flex-start;
-    padding: 12px 20px;
+    padding: 15px 20px;
   }
 
   .btn-back {
@@ -52,12 +58,12 @@
   }
   
   main {
-    max-width: 1000px;
-    margin: 30px auto;
+    max-width: 800px;
+    margin: 50px auto;
     background: rgba(255, 255, 255, 0.97);
     border-radius: 16px;
     box-shadow: 0 4px 12px rgba(0,0,0,0.15);
-    padding: 30px;
+    padding: 40px;
   }
   
   h2 {
@@ -65,88 +71,81 @@
     padding-left: 10px;
     color: #a83a48;
     font-weight: 600;
+    margin-bottom: 30px;
   }
   
-  section { 
-    margin-bottom: 40px; 
+  .filter-section {
+    background: #f8f9fa;
+    padding: 30px;
+    border-radius: 8px;
+  }
+
+  .form-group {
+    margin-bottom: 20px;
   }
   
   label {
-    display: block;
-    margin: 8px 0 4px;
     font-weight: 500;
+    margin-bottom: 8px;
+    color: #555;
+    display: block;
   }
   
+  input[type="date"],
   select {
-    padding: 10px;
+    padding: 12px;
     border: 1px solid #ccc;
     border-radius: 6px;
-    width: 100%;
+    font-size: 14px;
     transition: all 0.3s;
+    width: 100%;
   }
   
+  input[type="date"]:focus,
   select:focus {
     border-color: #34f066;
     outline: none;
     box-shadow: 0 0 5px #2be74a;
   }
-  
-  table {
-    width: 100%;
-    border-collapse: collapse;
-    margin-top: 15px;
+
+  .btn-search {
+    background: #32ac3e;
+    color: white;
+    border: none;
     border-radius: 8px;
-    overflow: hidden;
+    padding: 14px 32px;
+    font-weight: 600;
+    cursor: pointer;
+    transition: all 0.3s;
+    width: 100%;
+    font-size: 16px;
+    margin-top: 10px;
   }
-  
-  th, td {
-    border: 1px solid #ddd;
-    padding: 10px;
-    text-align: center;
+
+  .btn-search:hover {
+    background: #28933a;
+    transform: translateY(-2px);
+    box-shadow: 0 4px 12px rgba(0,0,0,0.2);
   }
-  
-  th {
-    background-color: #42d556;
-    color: #ffffff;
-    font-weight: bold;
-  }
-  
-  tr:hover {
-    background-color: #fff0f0;
-    transition: background-color 0.3s;
-  }
-  
-  .low-stock {
-    color: red;
-    font-weight: bold;
-    animation: blink 1.5s infinite;
-  }
-  
-  @keyframes blink { 
-    50% { opacity: 0.5; } 
-  }
-  
-  .warning-box {
-    background: #fff3cd;
-    border-left: 4px solid #ffc107;
+
+  .info-box {
+    background: #e7f3ff;
+    border-left: 4px solid #2196F3;
     padding: 15px;
     margin-top: 20px;
     border-radius: 6px;
   }
-  
-  .warning-box h3 {
-    margin: 0 0 10px 0;
-    color: #856404;
-  }
-  
-  .warning-box ul {
-    margin: 0;
-    padding-left: 20px;
-  }
-  
-  .warning-box li {
-    color: #856404;
+
+  .info-box p {
+    color: #0d47a1;
     margin: 5px 0;
+  }
+
+  @media (max-width: 768px) {
+    main {
+      margin: 20px 15px;
+      padding: 25px;
+    }
   }
 </style>
 </head>
@@ -163,105 +162,87 @@
   </header>
 
   <main>
-    <section id="inventory">
-      <h2>🌺 Danh sách tồn kho hoa</h2>
+    <section class="filter-section">
       
-      <label for="flowerType">Loại hoa:</label>
-      <select id="flowerType">
-        <option value="all" selected>Tất cả</option>
-        <option value="rose">Hoa hồng</option>
-        <option value="tulip">Hoa tulip</option>
-        <option value="orchid">Hoa lan</option>
-        <option value="chrysanthemum">Hoa cúc</option>
-        <option value="lily">Hoa ly</option>
-        <option value="sunflower">Hoa hướng dương</option>
-      </select>
+      
+      <div class="form-group">
+        <label for="startDate">Từ ngày:</label>
+        <input type="date" id="startDate" value="2025-01-01">
+      </div>
+      
+      <div class="form-group">
+        <label for="endDate">Đến ngày:</label>
+        <input type="date" id="endDate" value="2025-12-31">
+      </div>
+      
+      <div class="form-group">
+        <label for="flowerType">Loại hoa:</label>
+        <select id="flowerType">
+          <option value="all">Tất cả</option>
+          <option value="Hoa hồng">Hoa hồng</option>
+          <option value="Hoa tulip">Hoa tulip</option>
+          <option value="Hoa lan">Hoa lan</option>
+          <option value="Hoa cúc">Hoa cúc</option>
+          <option value="Hoa ly">Hoa ly</option>
+          <option value="Hoa hướng dương">Hoa hướng dương</option>
+        </select>
+      </div>
 
-      <table id="inventoryTable">
-        <thead>
-          <tr>
-            <th>Tên hoa</th>
-            <th>Loại</th>
-            <th>Số lượng tồn</th>
-            <th>Trạng thái</th>
-          </tr>
-        </thead>
-        <tbody>
-          <tr>
-            <td>🌹 Hoa Hồng Đỏ</td>
-            <td>Hoa hồng</td>
-            <td class="low-stock">5</td>
-            <td><span style="color: red;">⚠️ Sắp hết</span></td>
-          </tr>
-          <tr>
-            <td>🌷 Hoa Tulip Vàng</td>
-            <td>Hoa tulip</td>
-            <td>12</td>
-            <td><span style="color: green;">✓ Đủ hàng</span></td>
-          </tr>
-          <tr>
-            <td>🌸 Hoa Lan Hồ Điệp</td>
-            <td>Hoa lan</td>
-            <td class="low-stock">2</td>
-            <td><span style="color: red;">⚠️ Sắp hết</span></td>
-          </tr>
-          <tr>
-            <td>🌼 Hoa Cúc Trắng</td>
-            <td>Hoa cúc</td>
-            <td>8</td>
-            <td><span style="color: green;">✓ Đủ hàng</span></td>
-          </tr>
-          <tr>
-            <td>🌺 Hoa Hồng Trắng</td>
-            <td>Hoa hồng</td>
-            <td>15</td>
-            <td><span style="color: green;">✓ Đủ hàng</span></td>
-          </tr>
-          <tr>
-            <td>🌻 Hoa Hướng Dương</td>
-            <td>Hoa hướng dương</td>
-            <td class="low-stock">3</td>
-            <td><span style="color: red;">⚠️ Sắp hết</span></td>
-          </tr>
-          <tr>
-            <td>💐 Hoa Ly Trắng</td>
-            <td>Hoa ly</td>
-            <td>20</td>
-            <td><span style="color: green;">✓ Đủ hàng</span></td>
-          </tr>
-          <tr>
-            <td>🌷 Hoa Tulip Đỏ</td>
-            <td>Hoa tulip</td>
-            <td>18</td>
-            <td><span style="color: green;">✓ Đủ hàng</span></td>
-          </tr>
-          <tr>
-            <td>🌼 Hoa Cúc Vàng</td>
-            <td>Hoa cúc</td>
-            <td class="low-stock">1</td>
-            <td><span style="color: red;">⚠️ Sắp hết</span></td>
-          </tr>
-          <tr>
-            <td>🌸 Hoa Lan Tím</td>
-            <td>Hoa lan</td>
-            <td>10</td>
-            <td><span style="color: green;">✓ Đủ hàng</span></td>
-          </tr>
-        </tbody>
-      </table>
+      <button class="btn-search" onclick="searchInventory()">🔍 Tra cứu tồn kho</button>
 
-      <div class="warning-box">
-        <h3>⚠️ Cảnh báo tồn kho thấp (≤ 5 bông)</h3>
-        <ul>
-          <li><strong>Hoa Hồng Đỏ:</strong> Còn 5 bông - Cần nhập thêm</li>
-          <li><strong>Hoa Lan Hồ Điệp:</strong> Còn 2 bông - Cần nhập gấp</li>
-          <li><strong>Hoa Hướng Dương:</strong> Còn 3 bông - Cần nhập thêm</li>
-          <li><strong>Hoa Cúc Vàng:</strong> Còn 1 bông - Cần nhập gấp</li>
-        </ul>
+      <div class="info-box">
+        <p>💡 <strong>Gợi ý:</strong> Chọn khoảng thời gian và loại hoa để xem báo cáo chi tiết</p>
+        <p>📊 Hệ thống sẽ hiển thị tồn kho hiện tại và cảnh báo hàng sắp hết</p>
       </div>
     </section>
   </main>
 
+  <script>
+    // Class quản lý tìm kiếm
+    class SearchManager {
+      constructor() {
+        this.initializeDefaults();
+      }
+
+      initializeDefaults() {
+        const today = new Date();
+        const startOfYear = new Date(today.getFullYear(), 0, 1);
+        
+        document.getElementById('startDate').valueAsDate = startOfYear;
+        document.getElementById('endDate').valueAsDate = today;
+      }
+
+      getSearchParams() {
+        return {
+          startDate: document.getElementById('startDate').value,
+          endDate: document.getElementById('endDate').value,
+          flowerType: document.getElementById('flowerType').value
+        };
+      }
+
+      saveSearchParams() {
+        const params = this.getSearchParams();
+        sessionStorage.setItem('inventorySearchParams', JSON.stringify(params));
+      }
+
+      redirectToResults() {
+        this.saveSearchParams();
+        window.location.href = 'tonkho_1.html';
+      }
+    }
+
+    const searchManager = new SearchManager();
+
+    function searchInventory() {
+      searchManager.redirectToResults();
+    }
+
+    // Xử lý phím Enter
+    document.addEventListener('keypress', function(e) {
+      if (e.key === 'Enter') {
+        searchInventory();
+      }
+    });
+  </script>
 </body>
 </html>
-
