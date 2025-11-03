@@ -162,6 +162,8 @@
   </header>
 
   <main>
+    <section id="orders">
+      <h2>🌷 Quản lý tồn kho</h2>
     <section class="filter-section">
       
       
@@ -188,15 +190,13 @@
         </select>
       </div>
 
-      <button class="btn-search" onclick="redirectToPage()"> Tra cứu tồn kho</button>
-      <script>
-        function redirectToPage() {
-            window.location.href = 'tonkho_1.html';  // Chuyển sang trang code2.html
-        }
-      </script>
+      <button class="btn-search" onclick="searchInventory()">Tra cứu tồn kho</button>
+
+      <button class="btn-search" onclick="redirectToNhapHang()">Tra cứu nhập hàng</button>
     </section>
   </main>
 
+  
   <script>
     // Class quản lý tìm kiếm
     class SearchManager {
@@ -235,6 +235,10 @@
 
     function searchInventory() {
       searchManager.redirectToResults();
+    }
+
+    function redirectToNhapHang() {
+      window.location.href = 'tonkho_2.html';
     }
 
     // Xử lý phím Enter

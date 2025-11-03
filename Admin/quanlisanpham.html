@@ -301,6 +301,46 @@
             right: 20px;
             z-index: 9999;
         }
+        
+        /* Image Upload Styles */
+        .image-upload-container {
+            border: 2px dashed #82B440;
+            border-radius: 10px;
+            padding: 20px;
+            text-align: center;
+            cursor: pointer;
+            transition: all 0.3s;
+            background-color: #f8f9fa;
+        }
+        
+        .image-upload-container:hover {
+            background-color: #e9ecef;
+            border-color: #6a9634;
+        }
+        
+        .image-upload-container.dragover {
+            background-color: #d4edda;
+            border-color: #28a745;
+        }
+        
+        .image-preview {
+            max-width: 100%;
+            max-height: 200px;
+            margin-top: 10px;
+            border-radius: 8px;
+            display: none;
+        }
+        
+        .upload-icon {
+            font-size: 48px;
+            color: #82B440;
+            margin-bottom: 10px;
+        }
+        
+        .upload-text {
+            color: #6c757d;
+            margin-bottom: 5px;
+        }
     </style>
 </head>
 <body>
@@ -318,9 +358,20 @@
 
     <div class="management-container">
         <div class="d-flex justify-content-between align-items-center mb-4">
-            <button class="btn btn-add-product" onclick="showAddModal()">
-                <i class="fas fa-plus-circle"></i> Thêm sản phẩm mới
-            </button>
+            <div class="d-flex align-items-center" style="gap: 15px;">
+                <button class="btn btn-add-product" onclick="showAddModal()">
+                    <i class="fas fa-plus-circle"></i> Thêm sản phẩm mới
+                </button>
+                <select class="form-control" id="flowerTypeSelect" style="width: 200px; border-radius: 25px; padding: 10px 15px; height: auto; line-height: normal;">
+                    <option value="">-- Chọn loại hoa --</option>
+                    <option value="Hoa hồng">Hoa hồng</option>
+                    <option value="Hoa tulip">Hoa tulip</option>
+                    <option value="Hoa lan">Hoa lan</option>
+                    <option value="Hoa cúc">Hoa cúc</option>
+                    <option value="Hoa ly">Hoa ly</option>
+                    <option value="Hoa hướng dương">Hoa đào</option>
+                </select>
+            </div>
             <div class="search-box" style="flex: 1; max-width: 400px; margin-left: 20px;">
   <input type="text" class="form-control" id="searchInput" placeholder="Tìm kiếm sản phẩm...">
   <button id="searchButton" class="search-btn" aria-label="Tìm kiếm">
@@ -329,18 +380,6 @@
 </div>
 
         </div>
-        
-        <!--<div class="filter-buttons">
-            <button class="filter-btn active" onclick="filterProducts('all')">
-                <i class="fas fa-list"></i> Tất cả
-            </button>
-            <button class="filter-btn" onclick="filterProducts('visible')">
-                <i class="fas fa-eye"></i> Đang hiển thị
-            </button>
-            <button class="filter-btn" onclick="filterProducts('hidden')">
-                <i class="fas fa-eye-slash"></i> Đang ẩn
-            </button>
-        </div> -->
 
         <div id="productList"></div>
         
@@ -379,31 +418,16 @@
                             </div>
                         </div>
                         
-                        <div class="row">
-                            <div class="col-md-6">
-                                <div class="form-group">
-                                    <label>Giá gốc (VNĐ) *</label>
-                                    <input type="number" class="form-control" id="productPrice" required min="0">
-                                </div>
-                            </div>
-                            <div class="col-md-6">
-                                <div class="form-group">
-                                    <label>Số lượng *</label>
-                                    <input type="number" class="form-control" id="productStock" required min="0">
-                                </div>
-                            </div>
-                        </div>
-                        
                         <div class="form-group">
-                            <label>Giá khuyến mãi (VNĐ)</label>
-                            <input type="number" class="form-control" id="productSalePrice" min="0">
-                            <small class="form-text text-muted">Để trống nếu không có khuyến mãi</small>
-                        </div>
-                        
-                        <div class="form-group">
-                            <label>Hình ảnh (URL) *</label>
-                            <input type="url" class="form-control" id="productImage" required>
-                            <small class="form-text text-muted">Nhập link hình ảnh từ internet</small>
+                            <label>Hình ảnh *</label>
+                            <div class="image-upload-container" id="imageUploadContainer" onclick="document.getElementById('productImageInput').click()">
+                                <i class="fas fa-cloud-upload-alt upload-icon"></i>
+                                <div class="upload-text">Nhấp để chọn ảnh hoặc kéo thả ảnh vào đây</div>
+                                <small class="text-muted">Hỗ trợ: JPG, PNG, GIF (Tối đa 5MB)</small>
+                                <img id="imagePreview" class="image-preview" alt="Preview">
+                            </div>
+                            <input type="file" id="productImageInput" accept="image/*" style="display: none;">
+                            <input type="hidden" id="productImage" required>
                         </div>
                         
                         <div class="form-group">
@@ -431,9 +455,6 @@
                 id: 1,
                 code: "SP001",
                 name: "Hoa Hồng Đỏ",
-                price: 120000,
-                salePrice: 80000,
-                stock: 50,
                 image: "https://images.unsplash.com/photo-1518709268805-4e9042af9f23?w=300",
                 description: "Hoa hồng đỏ tươi, tượng trưng cho tình yêu",
                 hidden: false
@@ -442,9 +463,6 @@
                 id: 2,
                 code: "SP002",
                 name: "Hoa Ly Trắng",
-                price: 150000,
-                salePrice: null,
-                stock: 30,
                 image: "https://images.unsplash.com/photo-1563291074-2bf8677ac0e5?w=300",
                 description: "Hoa ly trắng tinh khôi",
                 hidden: false
@@ -453,17 +471,68 @@
                 id: 3,
                 code: "SP003",
                 name: "Hoa Tulip Vàng",
-                price: 100000,
-                salePrice: 70000,
-                stock: 40,
                 image: "https://images.unsplash.com/photo-1520763185298-1b434c919102?w=300",
                 description: "Hoa tulip vàng rực rỡ",
                 hidden: false
             }
         ];
         
-        <!--let editingId = null;-->
+        let editingId = null;
         let currentFilter = 'all';
+
+        // Image Upload Handler
+        const imageUploadContainer = document.getElementById('imageUploadContainer');
+        const imageInput = document.getElementById('productImageInput');
+        const imagePreview = document.getElementById('imagePreview');
+        const productImageHidden = document.getElementById('productImage');
+
+        imageInput.addEventListener('change', handleImageSelect);
+
+        imageUploadContainer.addEventListener('dragover', (e) => {
+            e.preventDefault();
+            imageUploadContainer.classList.add('dragover');
+        });
+
+        imageUploadContainer.addEventListener('dragleave', () => {
+            imageUploadContainer.classList.remove('dragover');
+        });
+
+        imageUploadContainer.addEventListener('drop', (e) => {
+            e.preventDefault();
+            imageUploadContainer.classList.remove('dragover');
+            const files = e.dataTransfer.files;
+            if (files.length > 0) {
+                handleImageFile(files[0]);
+            }
+        });
+
+        function handleImageSelect(e) {
+            const file = e.target.files[0];
+            if (file) {
+                handleImageFile(file);
+            }
+        }
+
+        function handleImageFile(file) {
+            if (!file.type.startsWith('image/')) {
+                alert('Vui lòng chọn file ảnh!');
+                return;
+            }
+
+            if (file.size > 5 * 1024 * 1024) {
+                alert('Kích thước ảnh không được vượt quá 5MB!');
+                return;
+            }
+
+            const reader = new FileReader();
+            reader.onload = (e) => {
+                const base64Image = e.target.result;
+                imagePreview.src = base64Image;
+                imagePreview.style.display = 'block';
+                productImageHidden.value = base64Image;
+            };
+            reader.readAsDataURL(file);
+        }
 
         function renderProducts() {
             const productList = document.getElementById('productList');
@@ -487,7 +556,6 @@
             let html = '';
             
             filteredProducts.forEach(product => {
-                const discount = product.salePrice ? Math.round((1 - product.salePrice / product.price) * 100) : 0;
                 const hiddenClass = product.hidden ? 'hidden-product' : '';
                 
                 html += `
@@ -496,7 +564,7 @@
                             <div class="col-md-2 col-sm-3 text-center">
                                 <img src="${product.image}" alt="${product.name}" class="product-image" onerror="this.src='https://via.placeholder.com/120x120?text=No+Image'">
                             </div>
-                            <div class="col-md-4 col-sm-9">
+                            <div class="col-md-7 col-sm-9">
                                 <div class="product-code"><i class="fas fa-barcode"></i> ${product.code}</div>
                                 <h5 class="mb-1">
                                     ${product.name}
@@ -504,18 +572,7 @@
                                 </h5>
                                 <p class="text-muted mb-0 small">${product.description || 'Chưa có mô tả'}</p>
                             </div>
-                            <div class="col-md-3 col-sm-6 mt-3 mt-md-0">
-                                ${product.salePrice ? `
-                                    <span class="badge-discount">${discount}% OFF</span><br>
-                                    <span class="price-original">${formatPrice(product.price)}</span>
-                                    <span class="price-sale">${formatPrice(product.salePrice)}</span>
-                                ` : `
-                                    <span class="price-sale">${formatPrice(product.price)}</span>
-                                `}
-                                <br>
-                                <small class="text-muted"><i class="fas fa-box"></i> Còn: ${product.stock} SP</small>
-                            </div>
-                            <div class="col-md-3 col-sm-6 mt-3 mt-md-0">
+                            <div class="col-md-3 col-sm-12 mt-3 mt-md-0">
                                 <div class="action-buttons">
                                     <button class="btn btn-edit" onclick="editProduct(${product.id})">
                                         <i class="fas fa-edit"></i> Sửa
@@ -536,14 +593,13 @@
             productList.innerHTML = html;
         }
 
-        function formatPrice(price) {
-            return new Intl.NumberFormat('vi-VN', { style: 'currency', currency: 'VND' }).format(price);
-        }
-
         function showAddModal() {
             editingId = null;
             document.getElementById('modalTitle').textContent = 'Thêm sản phẩm mới';
             document.getElementById('productForm').reset();
+            imagePreview.style.display = 'none';
+            imagePreview.src = '';
+            productImageHidden.value = '';
             $('#productModal').modal('show');
         }
 
@@ -556,11 +612,13 @@
             document.getElementById('productId').value = product.id;
             document.getElementById('productCode').value = product.code;
             document.getElementById('productName').value = product.name;
-            document.getElementById('productPrice').value = product.price;
-            document.getElementById('productSalePrice').value = product.salePrice || '';
-            document.getElementById('productStock').value = product.stock;
-            document.getElementById('productImage').value = product.image;
             document.getElementById('productDescription').value = product.description || '';
+            
+            if (product.image) {
+                imagePreview.src = product.image;
+                imagePreview.style.display = 'block';
+                productImageHidden.value = product.image;
+            }
             
             $('#productModal').modal('show');
         }
@@ -568,14 +626,10 @@
         function saveProduct() {
             const code = document.getElementById('productCode').value.trim();
             const name = document.getElementById('productName').value.trim();
-            const price = parseInt(document.getElementById('productPrice').value);
-            const salePrice = document.getElementById('productSalePrice').value ? 
-                             parseInt(document.getElementById('productSalePrice').value) : null;
-            const stock = parseInt(document.getElementById('productStock').value);
             const image = document.getElementById('productImage').value.trim();
             const description = document.getElementById('productDescription').value.trim();
             
-            if (!code || !name || !price || stock < 0 || !image) {
+            if (!code || !name || !image) {
                 alert('Vui lòng điền đầy đủ thông tin bắt buộc!');
                 return;
             }
@@ -586,23 +640,18 @@
                 return;
             }
             
-            if (salePrice && salePrice >= price) {
-                alert('Giá khuyến mãi phải thấp hơn giá gốc!');
-                return;
-            }
-            
             if (editingId) {
                 const index = products.findIndex(p => p.id === editingId);
                 products[index] = {
                     ...products[index],
-                    code, name, price, salePrice, stock, image, description
+                    code, name, image, description
                 };
                 alert('Cập nhật sản phẩm thành công!');
             } else {
                 const newId = products.length > 0 ? Math.max(...products.map(p => p.id)) + 1 : 1;
                 products.push({
                     id: newId,
-                    code, name, price, salePrice, stock, image, description,
+                    code, name, image, description,
                     hidden: false
                 });
                 alert('Thêm sản phẩm mới thành công!');
@@ -655,23 +704,23 @@
                 }
             });
         }
-        // 🔍 Xử lý tìm kiếm (chỉ hiển thị thông báo)
-document.getElementById("searchButton").addEventListener("click", handleSearch);
-document.getElementById("searchInput").addEventListener("keypress", function(event) {
-    if (event.key === "Enter") {
-        event.preventDefault();
-        handleSearch();
-    }
-});
 
-function handleSearch() {
-    const searchTerm = document.getElementById("searchInput").value.trim();
-    if (searchTerm === "") {
-        alert("Vui lòng nhập nội dung cần tìm kiếm!");
-    } else {
-        alert(`Đang tìm kiếm với từ khóa: "${searchTerm}"`);
-    }
-}
+        document.getElementById("searchButton").addEventListener("click", handleSearch);
+        document.getElementById("searchInput").addEventListener("keypress", function(event) {
+            if (event.key === "Enter") {
+                event.preventDefault();
+                handleSearch();
+            }
+        });
+
+        function handleSearch() {
+            const searchTerm = document.getElementById("searchInput").value.trim();
+            if (searchTerm === "") {
+                alert("Vui lòng nhập nội dung cần tìm kiếm!");
+            } else {
+                alert(`Đã tìm thấy: "${searchTerm}"`);
+            }
+        }
 
         renderProducts();
     </script>
