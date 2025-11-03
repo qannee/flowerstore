@@ -71,7 +71,7 @@
             <a class="nav-link dropdown-toggle" href="#" id="dropdown04" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Mua sắm</a>
             <div class="dropdown-menu" aria-labelledby="dropdown04">
             	<a class="dropdown-item" href="shopdn.html">Mua sắm</a>
-                <a class="dropdown-item" href="product-rose.html">Sản phẩm</a>
+                <!-- <a class="dropdown-item" href="product-rose.html">Sản phẩm</a> -->
                 <a class="dropdown-item" href="cartdn.html">Giỏ hàng</a>
                 <a class="dropdown-item" href="checkoutdn.html">Thanh toán</a>
             </div>
@@ -111,6 +111,39 @@
     		<div class="row justify-content-center">
     			<div class="col-md-10 mb-5 text-center">
 					<ul class="product-category">
+						<form action="shopdn.html" method="GET" class="advanced-search-form" autocomplete="off">
+
+  <!-- Từ khóa -->
+  <input type="text" name="q" class="search-input" placeholder="Tìm sách, tác giả...">
+
+  <!-- Dropdown Giá -->
+  <select name="price_range" class="price-select">
+    <option value="">Khoảng giá</option>
+    <option value="0-100000">Dưới 100k</option>
+    <option value="100000-200000">100k – 200k</option>
+    <option value="200000-500000">200k – 500k</option>
+    <option value="500000-1000000">500k – 1 triệu</option>
+    <option value="1000000-999999999">Trên 1 triệu</option>
+  </select>
+
+  <!-- Loại sản phẩm -->
+  <select name="category" class="category-select">
+    <option value="">Tất cả loại</option>
+    <option value="truyen">Truyện</option>
+    <option value="vanhoc">Văn học</option>
+    <option value="kinhte">Kinh tế</option>
+    <option value="thieunhi">Thiếu nhi</option>
+    <option value="kynang">Kỹ năng sống</option>
+  </select>
+
+  <!-- Nút tìm -->
+  <button type="submit" class="search-btn">
+    <i class="icon-search"></i>
+  </button>
+
+</form>
+
+
     					<li><a href="#" class="active">Tất cả sản phẩm</a></li>
 						<li><a href="shopdn_cate1.html">Hoa tết</a></li>
     					<li><a href="shopdn_cate2.html">Hoa trang trí</a></li>
