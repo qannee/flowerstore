@@ -358,7 +358,7 @@
             <li class="nav-item"><a href="quanlikhachhang.html" class="nav-link"><i class="fas fa-users"></i> Khách hàng</a></li>
             <li class="nav-item"><a href="quanlidonhang.html" class="nav-link"><i class="fas fa-clipboard-list"></i> Đơn hàng</a></li>
             <li class="nav-item"><a href="quanlisanpham.html" class="nav-link"><i class="fas fa-boxes"></i> Sản phẩm</a></li>
-            
+            <li class="nav-item"><a href="quanligiaban.html" class="nav-link"><i class="fas fa-boxes"></i> Giá bán</a></li>
             <!-- User Menu -->
             <li class="nav-item user-menu">
               <div class="d-flex align-items-center" onclick="toggleUserMenu()">
@@ -428,6 +428,164 @@
       </div>
     </section>
 
+    
+<!-- Thống kê -->
+<section class="ftco-section" style="background:#f8f9fa;">
+  <div class="container">
+    <h4 class="text-center mb-4 font-weight-bold">🌸 Thống kê 5 khách hàng có giá trị mua hoa cao nhất</h4>
+    <div class="table-responsive">
+      <table class="table table-bordered text-center bg-white shadow-sm">
+        <thead class="thead-light">
+          <tr>
+            <th>STT</th>
+            <th>TÊN KHÁCH HÀNG</th>
+            <th>EMAIL</th>
+            <th>SỐ ĐIỆN THOẠI</th>
+            <th>VAI TRÒ</th>
+            <th>SỐ ĐƠN HÀNG</th>
+            <th>TỔNG TIỀN</th>
+            <th>CHI TIẾT</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td>1</td>
+            <td>Nguyễn Thị Hoa</td>
+            <td>hoa.nguyen@example.com</td>
+            <td>0987654321</td>
+            <td><span class="badge badge-primary">VIP</span></td>
+            <td>20</td>
+            <td>32.500.000 VNĐ</td>
+            <td><button class="btn btn-sm btn-info">Xem chi tiết</button></td>
+          </tr>
+          <tr>
+            <td>2</td>
+            <td>Trần Văn Hùng</td>
+            <td>hung.tran@example.com</td>
+            <td>0909090909</td>
+            <td><span class="badge badge-success">Khách hàng</span></td>
+            <td>15</td>
+            <td>25.000.000 VNĐ</td>
+            <td><button class="btn btn-sm btn-info">Xem chi tiết</button></td>
+          </tr>
+          <tr>
+            <td>3</td>
+            <td>Lê Thị Mai</td>
+            <td>mai.le@example.com</td>
+            <td>0911222333</td>
+            <td><span class="badge badge-success">Khách hàng</span></td>
+            <td>10</td>
+            <td>18.000.000 VNĐ</td>
+            <td><button class="btn btn-sm btn-info">Xem chi tiết</button></td>
+          </tr>
+          <tr>
+            <td>4</td>
+            <td>Phạm Hoàng Nam</td>
+            <td>nam.pham@example.com</td>
+            <td>0944444444</td>
+            <td><span class="badge badge-success">Khách hàng</span></td>
+            <td>8</td>
+            <td>12.400.000 VNĐ</td>
+            <td><button class="btn btn-sm btn-info">Xem chi tiết</button></td>
+          </tr>
+          <tr>
+            <td>5</td>
+            <td>Đỗ Thanh Lan</td>
+            <td>lan.do@example.com</td>
+            <td>0933333333</td>
+            <td><span class="badge badge-success">Khách hàng</span></td>
+            <td>5</td>
+            <td>8.700.000 VNĐ</td>
+            <td><button class="btn btn-sm btn-info">Xem chi tiết</button></td>
+          </tr>
+
+        </tbody>
+      </table>
+    </div>
+
+    <!-- Biểu đồ -->
+    <div class="row mt-5">
+      <div class="col-md-6 mb-4">
+        <div class="card shadow-sm">
+          <div class="card-body">
+            <h5 class="card-title text-center font-weight-bold">💐 Các loại hoa bán chạy nhất</h5>
+            <canvas id="chartBestSelling"></canvas>
+          </div>
+        </div>
+      </div>
+      <div class="col-md-6 mb-4">
+        <div class="card shadow-sm">
+          <div class="card-body">
+            <h5 class="card-title text-center font-weight-bold">💰 Doanh thu theo tháng</h5>
+            <canvas id="chartRevenue"></canvas>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Thống kê nhỏ -->
+    <div class="row text-center">
+      <div class="col-md-3 mb-3">
+        <div class="stat-box">
+          <div class="stat-number">6.2%</div>
+          <div class="stat-label">Tỷ lệ chuyển đổi</div>
+          <small class="text-success">+0.5% so với tháng trước</small>
+        </div>
+      </div>
+      <div class="col-md-3 mb-3">
+        <div class="stat-box">
+          <div class="stat-number">1.250.000 VNĐ</div>
+          <div class="stat-label">Đơn hàng trung bình</div>
+          <small class="text-success">+4.1% so với tháng trước</small>
+        </div>
+      </div>
+      <div class="col-md-3 mb-3">
+        <div class="stat-box">
+          <div class="stat-number">1.4%</div>
+          <div class="stat-label">Tỷ lệ hoàn đơn</div>
+          <small class="text-danger">+0.2% so với tháng trước</small>
+        </div>
+      </div>
+      <div class="col-md-3 mb-3">
+        <div class="stat-box">
+          <div class="stat-number">18</div>
+          <div class="stat-label">Khách hàng mới</div>
+          <small class="text-success">+5 so với tháng trước</small>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<script>
+document.addEventListener('DOMContentLoaded', () => {
+  document.querySelectorAll('button.btn-info').forEach(btn => {
+    btn.addEventListener('click', (e) => {
+      const row = e.target.closest('tr');
+      // Lấy thông tin từ hàng được nhấn
+      const name = row.children[1].innerText;
+      const email = row.children[2].innerText;
+      const phone = row.children[3].innerText;
+      const orders = row.children[5].innerText;
+      const total = row.children[6].innerText;
+
+      // Gán dữ liệu vào modal
+      document.getElementById('userName').innerText = name;
+      document.getElementById('userEmail').innerText = email;
+      document.getElementById('userPhone').innerText = phone;
+      document.getElementById('userOrders').innerText = orders + " đơn hàng";
+      document.getElementById('userAddress').innerText = "TP. Hồ Chí Minh";
+      document.getElementById('userDate').innerText = "15/01/2024";
+
+      // Hiện modal
+      $('#userDetailModal').modal('show');
+    });
+  });
+});
+</script>
+
+
+
 
 
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
@@ -453,5 +611,85 @@
         document.getElementById('currentDate').textContent = currentDate;
       }
     </script>
+
+   <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+<script>
+const ctxBest = document.getElementById('chartBestSelling').getContext('2d');
+new Chart(ctxBest, {
+  type: 'bar',
+  data: {
+    labels: ['Hoa hồng đỏ', 'Hoa baby trắng', 'Hoa tulip vàng', 'Hoa hướng dương', 'Hoa lan hồ điệp', 'Hoa cẩm chướng', 'Hoa sen hồng', 'Hoa đồng tiền'],
+    datasets: [{
+      label: 'Số lượng bán ra (bó)',
+      data: [120, 95, 80, 75, 60, 50, 45, 40],
+      backgroundColor: '#F1948A'
+    }]
+  },
+  options: {
+    responsive: true,
+    scales: { y: { beginAtZero: true } }
+  }
+});
+
+const ctxRevenue = document.getElementById('chartRevenue').getContext('2d');
+new Chart(ctxRevenue, {
+  type: 'line',
+  data: {
+    labels: ['Tháng 1','Tháng 2','Tháng 3','Tháng 4','Tháng 5','Tháng 6','Tháng 7','Tháng 8','Tháng 9','Tháng 10','Tháng 11','Tháng 12'],
+    datasets: [{
+      label: 'Doanh thu (triệu VNĐ)',
+      data: [50, 65, 80, 90, 120, 150, 135, 160, 180, 190, 200, 210],
+      borderColor: '#C2185B',
+      backgroundColor: 'rgba(194,24,91,0.15)',
+      fill: true,
+      tension: 0.3
+    }]
+  },
+  options: {
+    responsive: true,
+    scales: { y: { beginAtZero: true } }
+  }
+});
+</script>
+
+<!-- Modal Chi tiết người dùng -->
+<div class="modal fade" id="userDetailModal" tabindex="-1" role="dialog" aria-labelledby="userDetailModalLabel" aria-hidden="true">
+  <div class="modal-dialog modal-dialog-centered" role="document">
+    <div class="modal-content" style="border-radius: 15px; overflow: hidden;">
+      <div class="modal-header" style="background: linear-gradient(135deg, #82B440, #6a9634); color: white;">
+        <h5 class="modal-title font-weight-bold">
+          <i class="fas fa-user-circle"></i> Chi tiết người dùng
+        </h5>
+        <button type="button" class="close text-white" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      
+      <div class="modal-body text-center p-4">
+        
+        
+        <div class="text-left mx-auto" style="max-width: 350px;">
+          <p><strong>Họ và tên:</strong> <span id="userName">Nguyễn Văn An</span></p>
+          <p><strong>Email:</strong> <span id="userEmail">nguyenvanan@email.com</span></p>
+          <p><strong>Số điện thoại:</strong> <span id="userPhone">0901234567</span></p>
+          <p><strong>Địa chỉ:</strong> <span id="userAddress">123 Nguyễn Huệ, Q1, TP.HCM</span></p>
+          <p><strong>Ngày đăng ký:</strong> <span id="userDate">15/1/2024</span></p>
+          <p><strong>Tổng đơn hàng:</strong> <span id="userOrders">15 đơn hàng</span></p>
+          <p><strong>Trạng thái:</strong>
+            <span class="badge badge-success p-2">
+              <i class="fas fa-check-circle"></i> Hoạt động
+            </span>
+          </p>
+        </div>
+      </div>
+      
+      <div class="modal-footer justify-content-center">
+        <button type="button" class="btn btn-secondary px-4" data-dismiss="modal">Đóng</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+
   </body>
 </html> 

@@ -1,0 +1,639 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+    <title>Quản lý sản phẩm - Flower Shop</title>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    
+    <link href="https://fonts.googleapis.com/css?family=Poppins:200,300,400,500,600,700,800&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/4.6.0/css/bootstrap.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
+    
+    <style>
+        body {
+            font-family: 'Poppins', sans-serif;
+            background-color: #f8f9fa;
+        }
+        
+        .header {
+            background: linear-gradient(135deg, #82B440 0%, #6a9634 100%);
+            color: white;
+            padding: 30px 0;
+            margin-bottom: 30px;
+            box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+        }
+        
+        .management-container {
+            max-width: 1400px;
+            margin: 0 auto;
+            padding: 20px;
+        }
+        
+        .btn-add-product {
+            background-color: #82B440;
+            color: white;
+            border: none;
+            padding: 12px 30px;
+            border-radius: 25px;
+            font-weight: 500;
+            transition: all 0.3s;
+        }
+        
+        .btn-add-product:hover {
+            background-color: #6a9634;
+            color: white;
+            transform: translateY(-2px);
+            box-shadow: 0 4px 8px rgba(130, 180, 64, 0.3);
+        }
+        
+        .product-card {
+            background: white;
+            border-radius: 15px;
+            padding: 20px;
+            margin-bottom: 20px;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.08);
+            transition: all 0.3s;
+        }
+        
+        .product-card:hover {
+            box-shadow: 0 5px 20px rgba(0,0,0,0.15);
+            transform: translateY(-3px);
+        }
+        
+        .product-image {
+            width: 100%;
+            height: 100px;
+            object-fit: cover;
+            border-radius: 10px;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+        }
+        
+        .product-code {
+            display: inline-block;
+            background-color: #e9ecef;
+            color: #495057;
+            padding: 4px 12px;
+            border-radius: 12px;
+            font-size: 0.8em;
+            font-weight: 600;
+            margin-bottom: 8px;
+        }
+        
+        .price-info {
+            background: #f8f9fa;
+            padding: 10px;
+            border-radius: 8px;
+            margin-top: 10px;
+            font-size: 0.9em;
+        }
+        
+        .price-row {
+            display: flex;
+            justify-content: space-between;
+            margin: 5px 0;
+        }
+        
+        .price-label {
+            color: #6c757d;
+            font-weight: 500;
+        }
+        
+        .price-value {
+            font-weight: 600;
+            color: #333;
+        }
+        
+        .profit-badge {
+            background-color: #28a745;
+            color: white;
+            padding: 3px 10px;
+            border-radius: 10px;
+            font-size: 0.85em;
+            font-weight: 600;
+        }
+        
+        .category-badge {
+            background-color: #17a2b8;
+            color: white;
+            padding: 5px 12px;
+            border-radius: 12px;
+            font-size: 0.85em;
+            margin-left: 10px;
+        }
+        
+        .action-buttons {
+            display: flex;
+            gap: 8px;
+            flex-wrap: nowrap;
+        }
+        
+        .btn-edit {
+            background-color: #ffc107;
+            color: white;
+            border: none;
+            padding: 8px 16px;
+            border-radius: 20px;
+            font-size: 0.9em;
+            white-space: nowrap;
+            flex: 1;
+            min-width: 70px;
+        }
+        
+        .btn-edit:hover {
+            background-color: #e0a800;
+            color: white;
+        }
+        
+        .modal-header {
+            background-color: #82B440;
+            color: white;
+            border-radius: 10px 10px 0 0;
+        }
+        
+        .modal-content {
+            border-radius: 10px;
+            border: none;
+        }
+        
+        .form-control:focus {
+            border-color: #82B440;
+            box-shadow: 0 0 0 0.2rem rgba(130, 180, 64, 0.25);
+        }
+        
+        .back-container {
+            display: flex;
+            justify-content: flex-start;
+            padding: 12px 20px;
+        }
+        
+        .btn-back {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            background: #ffffff;
+            color: #000000;
+            border: none;
+            border-radius: 8px;
+            padding: 10px 18px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.25s ease;
+            box-shadow: 0 3px 10px rgba(0,0,0,0.15);
+            text-decoration: none;
+        }
+        
+        .btn-back:hover {
+            background: #22c81d;
+            transform: translateY(-2px);
+            box-shadow: 0 6px 14px rgba(0,0,0,0.25);
+            color: white;
+        }
+        
+        .image-upload-container {
+            border: 2px dashed #82B440;
+            border-radius: 10px;
+            padding: 20px;
+            text-align: center;
+            cursor: pointer;
+            transition: all 0.3s;
+            background-color: #f8f9fa;
+        }
+        
+        .image-upload-container:hover {
+            background-color: #e9ecef;
+            border-color: #6a9634;
+        }
+        
+        .image-upload-container.dragover {
+            background-color: #d4edda;
+            border-color: #28a745;
+        }
+        
+        .image-preview {
+            max-width: 100%;
+            max-height: 200px;
+            margin-top: 10px;
+            border-radius: 8px;
+            display: none;
+        }
+        
+        .upload-icon {
+            font-size: 48px;
+            color: #82B440;
+            margin-bottom: 10px;
+        }
+        
+        .upload-text {
+            color: #6c757d;
+            margin-bottom: 5px;
+        }
+        
+        .search-box {
+            position: relative;
+            display: flex;
+            align-items: center;
+        }
+        
+        .search-box input {
+            border-radius: 25px;
+            padding: 12px 50px 12px 20px;
+            border: 2px solid #e0e0e0;
+            width: 100%;
+        }
+
+        .search-btn {
+            position: absolute;
+            right: 10px;
+            background: none;
+            border: none;
+            cursor: pointer;
+            color: #82B440;
+            font-size: 18px;
+            transition: color 0.2s;
+        }
+
+        .search-btn:hover {
+            color: #5c7f2d;
+        }
+        
+        .empty-state {
+            text-align: center;
+            padding: 60px 20px;
+            color: #999;
+        }
+        
+        .empty-state i {
+            font-size: 80px;
+            margin-bottom: 20px;
+        }
+        
+        .btn-settings {
+            background-color: #17a2b8;
+            color: white;
+            border: none;
+            padding: 12px 30px;
+            border-radius: 25px;
+            font-weight: 500;
+            transition: all 0.3s;
+            margin-left: 10px;
+        }
+        
+        .btn-settings:hover {
+            background-color: #138496;
+            color: white;
+            transform: translateY(-2px);
+            box-shadow: 0 4px 8px rgba(23, 162, 184, 0.3);
+        }
+        
+        .profit-settings-table {
+            width: 100%;
+            margin-top: 15px;
+        }
+        
+        .profit-settings-table th {
+            background-color: #82B440;
+            color: white;
+            padding: 12px;
+            text-align: left;
+        }
+        
+        .profit-settings-table td {
+            padding: 10px;
+            border-bottom: 1px solid #dee2e6;
+        }
+        
+        .profit-input {
+            width: 120px;
+            padding: 8px;
+            border: 1px solid #ced4da;
+            border-radius: 4px;
+            text-align: center;
+            font-weight: 600;
+        }
+    </style>
+</head>
+<body>
+    <div class="back-container">
+        <a href="atemp.html" class="btn-back">
+            <span>⬅</span>
+            <span>Quay lại trang chủ</span>
+        </a>
+    </div>
+    
+    <div class="header">
+        <div class="container">
+            <h1 class="mb-0"><i class="fas fa-boxes"></i> Quản lý sản phẩm</h1>
+        </div>
+    </div>
+
+    <div class="management-container">
+        <div class="d-flex justify-content-between align-items-center mb-4">
+            <div class="d-flex align-items-center">
+                <button class="btn btn-add-product" onclick="showAddModal()">
+                    <i class="fas fa-plus-circle"></i> Thêm sản phẩm mới
+                </button>
+                <button class="btn btn-settings" onclick="showProfitSettings()">
+                    <i class="fas fa-cog"></i> Cài đặt lợi nhuận
+                </button>
+            </div>
+            
+            <div class="search-box" style="flex: 1; max-width: 400px; margin-left: 20px;">
+                <input type="text" class="form-control" id="searchInput" placeholder="Tìm kiếm sản phẩm...">
+                <button id="searchButton" class="search-btn" aria-label="Tìm kiếm">
+                    <i class="fas fa-search"></i>
+                </button>
+            </div>
+        </div>
+
+        <div id="productList"></div>
+        
+        <div id="emptyState" class="empty-state" style="display: none;">
+            <i class="fas fa-box-open"></i>
+            <h3>Chưa có sản phẩm nào</h3>
+            <p>Hãy thêm sản phẩm đầu tiên cho cửa hàng của bạn!</p>
+        </div>
+    </div>
+
+    <div class="modal fade" id="productModal" tabindex="-1">
+        <div class="modal-dialog modal-lg">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="modalTitle">Thêm sản phẩm mới</h5>
+                    <button type="button" class="close text-white" data-dismiss="modal">
+                        <span>&times;</span>
+                    </button>
+                </div>
+                <div class="modal-body">
+                    <form id="productForm">
+                        <input type="hidden" id="productId">
+                        <div class="row">
+                            <div class="col-md-6">
+                                <div class="form-group">
+                                    <label>Mã sản phẩm *</label>
+                                    <input type="text" class="form-control" id="productCode" required placeholder="VD: SP001">
+                                </div>
+                            </div>
+                            <div class="col-md-6">
+                                <div class="form-group">
+                                    <label>Tên sản phẩm *</label>
+                                    <input type="text" class="form-control" id="productName" required>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-md-6">
+                                <div class="form-group">
+                                    <label>Loại hoa *</label>
+                                    <select class="form-control" id="productCategory" required onchange="updateProfitMargin()">
+                                        <option value="">-- Chọn loại hoa --</option>
+                                        <option value="Hoa hồng">Hoa hồng</option>
+                                        <option value="Hoa tulip">Hoa tulip</option>
+                                        <option value="Hoa lan">Hoa lan</option>
+                                        <option value="Hoa cúc">Hoa cúc</option>
+                                        <option value="Hoa ly">Hoa ly</option>
+                                        <option value="Hoa hướng dương">Hoa hướng dương</option>
+                                    </select>
+                                </div>
+                            </div>
+                            <div class="col-md-6">
+                                <div class="form-group">
+                                    <label>Giá vốn (VNĐ) *</label>
+                                    <input type="number" class="form-control" id="productCost" required min="0" oninput="calculateSalePrice()">
+                                </div>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-md-6">
+                                <div class="form-group">
+                                    <label>Tỉ lệ lợi nhuận (%) *</label>
+                                    <input type="number" class="form-control" id="productProfitMargin" required min="0" max="1000" step="0.1" oninput="calculateSalePrice()">
+                                    <small class="text-muted">Tự động lấy theo loại hoa hoặc nhập riêng</small>
+                                </div>
+                            </div>
+                            <div class="col-md-6">
+                                <div class="form-group">
+                                    <label>Giá bán (VNĐ) *</label>
+                                    <input type="number" class="form-control" id="productSalePrice" required min="0" readonly style="background-color: #e9ecef;">
+                                    <small class="text-muted">Tự động tính: Giá vốn + (Giá vốn × % lợi nhuận)</small>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label>Hình ảnh *</label>
+                            <div class="image-upload-container" id="imageUploadContainer" onclick="document.getElementById('productImageInput').click()">
+                                <i class="fas fa-cloud-upload-alt upload-icon"></i>
+                                <div class="upload-text">Nhấp để chọn ảnh hoặc kéo thả ảnh vào đây</div>
+                                <small class="text-muted">Hỗ trợ: JPG, PNG, GIF (Tối đa 5MB)</small>
+                                <img id="imagePreview" class="image-preview" alt="Preview">
+                            </div>
+                            <input type="file" id="productImageInput" accept="image/*" style="display: none;">
+                            <input type="hidden" id="productImage" required>
+                        </div>
+                        <div class="form-group">
+                            <label>Mô tả sản phẩm</label>
+                            <textarea class="form-control" id="productDescription" rows="3"></textarea>
+                        </div>
+                    </form>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Hủy</button>
+                    <button type="button" class="btn btn-add-product" onclick="saveProduct()">
+                        <i class="fas fa-save"></i> Lưu sản phẩm
+                    </button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="modal fade" id="profitSettingsModal" tabindex="-1">
+        <div class="modal-dialog modal-lg">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title"><i class="fas fa-cog"></i> Cài đặt tỉ lệ lợi nhuận theo loại hoa</h5>
+                    <button type="button" class="close text-white" data-dismiss="modal">
+                        <span>&times;</span>
+                    </button>
+                </div>
+                <div class="modal-body">
+                    <p class="text-muted">Thiết lập tỉ lệ lợi nhuận mặc định cho từng loại hoa. Bạn có thể điều chỉnh riêng cho từng sản phẩm khi thêm/sửa.</p>
+                    <table class="profit-settings-table table">
+                        <thead>
+                            <tr>
+                                <th>Loại hoa</th>
+                                <th>Tỉ lệ lợi nhuận mặc định (%)</th>
+                            </tr>
+                        </thead>
+                        <tbody id="profitSettingsBody"></tbody>
+                    </table>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Đóng</button>
+                    <button type="button" class="btn btn-add-product" onclick="saveProfitSettings()">
+                        <i class="fas fa-save"></i> Lưu cài đặt
+                    </button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/4.6.0/js/bootstrap.bundle.min.js"></script>
+    
+       <script>
+        let products = [
+            {id: 1, code: "SP001", name: "Hoa Hồng Đỏ", category: "Hoa hồng", cost: 80000, profitMargin: 50, salePrice: 120000, image: "https://images.unsplash.com/photo-1518709268805-4e9042af9f23?w=300", description: "Hoa hồng đỏ tươi, tượng trưng cho tình yêu", hidden: false},
+            {id: 2, code: "SP002", name: "Hoa Ly Trắng", category: "Hoa ly", cost: 100000, profitMargin: 40, salePrice: 140000, image: "https://images.unsplash.com/photo-1563291074-2bf8677ac0e5?w=300", description: "Hoa ly trắng tinh khôi", hidden: false},
+            {id: 3, code: "SP003", name: "Hoa Tulip Vàng", category: "Hoa tulip", cost: 60000, profitMargin: 60, salePrice: 96000, image: "https://images.unsplash.com/photo-1520763185298-1b434c919102?w=300", description: "Hoa tulip vàng rực rỡ", hidden: false}
+        ];
+         
+        let profitSettings = {"Hoa hồng": 50, "Hoa tulip": 60, "Hoa lan": 70, "Hoa cúc": 45, "Hoa ly": 40, "Hoa hướng dương": 55};
+        let editingId = null;
+
+        const imageUploadContainer = document.getElementById('imageUploadContainer');
+        const imageInput = document.getElementById('productImageInput');
+        const imagePreview = document.getElementById('imagePreview');
+        const productImageHidden = document.getElementById('productImage');
+
+        imageInput.addEventListener('change', handleImageSelect);
+        imageUploadContainer.addEventListener('dragover', (e) => { e.preventDefault(); imageUploadContainer.classList.add('dragover'); });
+        imageUploadContainer.addEventListener('dragleave', () => { imageUploadContainer.classList.remove('dragover'); });
+        imageUploadContainer.addEventListener('drop', (e) => { e.preventDefault(); imageUploadContainer.classList.remove('dragover'); const files = e.dataTransfer.files; if (files.length > 0) handleImageFile(files[0]); });
+
+        function handleImageSelect(e) { const file = e.target.files[0]; if (file) handleImageFile(file); }
+        
+        function handleImageFile(file) {
+            if (!file.type.startsWith('image/')) { alert('Vui lòng chọn file ảnh!'); return; }
+            if (file.size > 5 * 1024 * 1024) { alert('Kích thước ảnh không được vượt quá 5MB!'); return; }
+            const reader = new FileReader();
+            reader.onload = (e) => { imagePreview.src = e.target.result; imagePreview.style.display = 'block'; productImageHidden.value = e.target.result; };
+            reader.readAsDataURL(file);
+        }
+
+        function formatPrice(price) { return new Intl.NumberFormat('vi-VN', { style: 'currency', currency: 'VND' }).format(price); }
+
+        function renderProducts() {
+            const productList = document.getElementById('productList');
+            const emptyState = document.getElementById('emptyState');
+            if (products.length === 0) { productList.innerHTML = ''; emptyState.style.display = 'block'; return; }
+            emptyState.style.display = 'none';
+            let html = '';
+            products.forEach(product => {
+                const profit = product.salePrice - product.cost;
+                html += `<div class="product-card" data-product-id="${product.id}"><div class="row align-items-center"><div class="col-md-2 col-sm-3 text-center"><img src="${product.image}" alt="${product.name}" class="product-image" onerror="this.src='https://via.placeholder.com/120x120?text=No+Image'"></div><div class="col-md-6 col-sm-9"><div class="product-code"><i class="fas fa-barcode"></i> ${product.code}</div><h5 class="mb-1">${product.name}<span class="category-badge">${product.category}</span></h5><p class="text-muted mb-0 small">${product.description || 'Chưa có mô tả'}</p><div class="price-info"><div class="price-row"><span class="price-label">💰 Giá vốn:</span><span class="price-value">${formatPrice(product.cost)}</span></div><div class="price-row"><span class="price-label">📊 Lợi nhuận:</span><span class="price-value"><span class="profit-badge">${product.profitMargin}%</span> (+${formatPrice(profit)})</span></div><div class="price-row"><span class="price-label">💵 Giá bán:</span><span class="price-value" style="color: #82B440; font-size: 1.1em;">${formatPrice(product.salePrice)}</span></div></div></div><div class="col-md-4 col-sm-12 mt-3 mt-md-0"><div class="action-buttons"><button class="btn btn-edit" onclick="editProduct(${product.id})"><i class="fas fa-edit"></i> Sửa</button></div></div></div></div>`;
+            });
+            productList.innerHTML = html;
+        }
+
+        function showAddModal() {
+            editingId = null;
+            document.getElementById('modalTitle').textContent = 'Thêm sản phẩm mới';
+            document.getElementById('productForm').reset();
+            imagePreview.style.display = 'none';
+            imagePreview.src = '';
+            productImageHidden.value = '';
+            document.getElementById('productSalePrice').value = '';
+            $('#productModal').modal('show');
+        }
+
+        function updateProfitMargin() {
+            const category = document.getElementById('productCategory').value;
+            if (category && profitSettings[category]) {
+                document.getElementById('productProfitMargin').value = profitSettings[category];
+                calculateSalePrice();
+            }
+        }
+
+        function calculateSalePrice() {
+            const cost = parseFloat(document.getElementById('productCost').value) || 0;
+            const profitMargin = parseFloat(document.getElementById('productProfitMargin').value) || 0;
+            if (cost > 0 && profitMargin >= 0) {
+                const salePrice = cost + (cost * profitMargin / 100);
+                document.getElementById('productSalePrice').value = Math.round(salePrice);
+            } else {
+                document.getElementById('productSalePrice').value = '';
+            }
+        }
+
+        function editProduct(id) {
+            const product = products.find(p => p.id === id);
+            if (!product) return;
+            editingId = id;
+            document.getElementById('modalTitle').textContent = 'Chỉnh sửa sản phẩm';
+            document.getElementById('productId').value = product.id;
+            document.getElementById('productCode').value = product.code;
+            document.getElementById('productName').value = product.name;
+            document.getElementById('productCategory').value = product.category;
+            document.getElementById('productCost').value = product.cost;
+            document.getElementById('productProfitMargin').value = product.profitMargin;
+            document.getElementById('productSalePrice').value = product.salePrice;
+            document.getElementById('productDescription').value = product.description || '';
+            if (product.image) { imagePreview.src = product.image; imagePreview.style.display = 'block'; productImageHidden.value = product.image; }
+            $('#productModal').modal('show');
+        }
+
+        function saveProduct() {
+    const code = document.getElementById('productCode').value.trim();
+    const name = document.getElementById('productName').value.trim();
+    const category = document.getElementById('productCategory').value;
+    const cost = parseFloat(document.getElementById('productCost').value);
+    const profitMargin = parseFloat(document.getElementById('productProfitMargin').value);
+    const salePrice = parseFloat(document.getElementById('productSalePrice').value);
+    const image = document.getElementById('productImage').value.trim();
+    const description = document.getElementById('productDescription').value.trim();
+
+    if (!code || !name || !category || !cost || profitMargin < 0 || !salePrice || !image) {
+        alert('⚠️ Vui lòng điền đầy đủ thông tin bắt buộc!');
+        return;
+    }
+
+    // Không thay đổi dữ liệu thật — chỉ hiển thị thông báo
+    if (editingId) {
+        alert('✅ Bạn đã sửa xong sản phẩm ');
+    } else {
+        alert('✅ Bạn đã thêm sản phẩm mới ');
+    }
+
+    $('#productModal').modal('hide');
+    renderProducts(); // chỉ để hiển thị lại danh sách, không thay đổi gì
+}
+
+
+        document.getElementById("searchButton").addEventListener("click", handleSearch);
+        document.getElementById("searchInput").addEventListener("keypress", function(event) { if (event.key === "Enter") { event.preventDefault(); handleSearch(); } });
+
+        function handleSearch() {
+            const searchTerm = document.getElementById("searchInput").value.trim();
+            if (searchTerm === "") {
+                alert("Vui lòng nhập nội dung cần tìm kiếm!");
+            } else {
+                renderProducts();
+                alert(`Đã tìm thấy sản phẩm`);
+            }
+        }
+
+        function showProfitSettings() {
+            const tbody = document.getElementById('profitSettingsBody');
+            tbody.innerHTML = '';
+            for (const [category, margin] of Object.entries(profitSettings)) {
+                const tr = document.createElement('tr');
+                tr.innerHTML = `<td><strong>${category}</strong></td><td><input type="number" class="profit-input" data-category="${category}" value="${margin}" min="0" max="1000" step="0.1"><span style="margin-left: 5px;">%</span></td>`;
+                tbody.appendChild(tr);
+            }
+            $('#profitSettingsModal').modal('show');
+        }
+
+        function saveProfitSettings() {
+            const inputs = document.querySelectorAll('.profit-input');
+            inputs.forEach(input => {
+                const category = input.getAttribute('data-category');
+                const value = parseFloat(input.value) || 0;
+                profitSettings[category] = value;
+            });
+            alert('Đã lưu cài đặt tỉ lệ lợi nhuận thành công!');
+            $('#profitSettingsModal').modal('hide');
+        }
+
+        renderProducts();
+    </script> 
+</body>
+</html>
