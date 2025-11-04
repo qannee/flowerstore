@@ -581,10 +581,7 @@
     const image = document.getElementById('productImage').value.trim();
     const description = document.getElementById('productDescription').value.trim();
 
-    if (!code || !name || !category || !cost || profitMargin < 0 || !salePrice || !image) {
-        alert('⚠️ Vui lòng điền đầy đủ thông tin bắt buộc!');
-        return;
-    }
+    
 
     // Không thay đổi dữ liệu thật — chỉ hiển thị thông báo
     if (editingId) {
