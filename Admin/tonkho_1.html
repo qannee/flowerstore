@@ -71,6 +71,20 @@
     margin-bottom: 40px; 
   }
   
+  .search-info {
+    background: #e7f3ff;
+    border-left: 4px solid #2196F3;
+    padding: 15px;
+    margin-bottom: 20px;
+    border-radius: 6px;
+  }
+  
+  .search-info p {
+    color: #0d47a1;
+    margin: 5px 0;
+    font-weight: 500;
+  }
+  
   label {
     display: block;
     margin: 8px 0 4px;
@@ -163,103 +177,95 @@
   </header>
 
   <main>
-    
-      <table id="inventoryTable">
-        <thead>
-          <tr>
-            <th>Tên hoa</th>
-            <th>Loại</th>
-            <th>Số lượng tồn</th>
-            <th>Ngày tồn</th>
-            <th>Trạng thái</th>
-          </tr>
-        </thead>
-        <tbody>
-          <tr>
-            <td>🌹 Hoa Hồng Đỏ</td>
-            <td>Hoa hồng</td>
-            <td class="low-stock">5</td>
-            <td>07-02-2016</td>
-            <td><span style="color: red;">⚠️ Sắp hết</span></td>
-          </tr>
-          <tr>
-            <td>🌷 Hoa Tulip Vàng</td>
-            <td>Hoa tulip</td>
-            <td>12</td>
-            <td>15-07-2018</td>
-            <td><span style="color: green;">✓ Đủ hàng</span></td>
-          </tr>
-          <tr>
-            <td>🌸 Hoa Lan Hồ Điệp</td>
-            <td>Hoa lan</td>
-            <td class="low-stock">2</td>
-            <td>12-11-2020</td>
-            <td><span style="color: red;">⚠️ Sắp hết</span></td>
-          </tr>
-          <tr>
-            <td>🌼 Hoa Cúc Trắng</td>
-            <td>Hoa cúc</td>
-            <td>8</td>
-            <td>30-06-2011</td>
-            <td><span style="color: green;">✓ Đủ hàng</span></td>
-          </tr>
-          <tr>
-            <td>🌺 Hoa Hồng Trắng</td>
-            <td>Hoa hồng</td>
-            <td>15</td>
-            <td>15-07-2018</td>
-            <td><span style="color: green;">✓ Đủ hàng</span></td>
-          </tr>
-          <tr>
-            <td>🌻 Hoa Hướng Dương</td>
-            <td>Hoa hướng dương</td>
-            <td class="low-stock">3</td>
-            <td>05-01-2023</td>
-            <td><span style="color: red;">⚠️ Sắp hết</span></td>
-          </tr>
-          <tr>
-            <td>💐 Hoa Ly Trắng</td>
-            <td>Hoa ly</td>
-            <td>20</td>
-            <td>11-07-2018</td>
-            <td><span style="color: green;">✓ Đủ hàng</span></td>
-          </tr>
-          <tr>
-            <td>🌷 Hoa Tulip Đỏ</td>
-            <td>Hoa tulip</td>
-            <td>18</td>
-            <td>19-04-2010</td>
-            <td><span style="color: green;">✓ Đủ hàng</span></td>
-          </tr>
-          <tr>
-            <td>🌼 Hoa Cúc Vàng</td>
-            <td>Hoa cúc</td>
-            <td class="low-stock">1</td>
-            <td>02-12-2021</td>
-            <td><span style="color: red;">⚠️ Sắp hết</span></td>
-          </tr>
-          <tr>
-            <td>🌸 Hoa Lan Tím</td>
-            <td>Hoa lan</td>
-            <td>10</td>
-            <td>27-08-2015</td>
-            <td><span style="color: green;">✓ Đủ hàng</span></td>
-          </tr>
-        </tbody>
-      </table>
+    <div class="search-info">
+      <p><strong>📅 Khoảng thời gian:</strong> 01/01/2025 - 31/12/2025</p>
+      <p><strong>🌸 Loại hoa:</strong> thơm ngất lòng người</p>
+    </div>
 
-      <div class="warning-box">
-        <h3>⚠️ Cảnh báo tồn kho thấp (≤ 5 bông)</h3>
-        <ul>
-          <li><strong>Hoa Hồng Đỏ:</strong> Còn 5 bông - Cần nhập thêm</li>
-          <li><strong>Hoa Lan Hồ Điệp:</strong> Còn 2 bông - Cần nhập gấp</li>
-          <li><strong>Hoa Hướng Dương:</strong> Còn 3 bông - Cần nhập thêm</li>
-          <li><strong>Hoa Cúc Vàng:</strong> Còn 1 bông - Cần nhập gấp</li>
-        </ul>
-      </div>
-    </section>
+    <table id="inventoryTable">
+      <thead>
+        <tr>
+          <th>Tên hoa</th>
+          <th>Loại</th>
+          <th>Số lượng tồn</th>
+          <th>Trạng thái</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td>🌹 Hoa Hồng Đỏ</td>
+          <td>Hoa hồng</td>
+          <td class="low-stock">5</td>
+          <td><span style="color: red;">⚠️ Sắp hết</span></td>
+        </tr>
+        <tr>
+          <td>🌷 Hoa Tulip Vàng</td>
+          <td>Hoa tulip</td>
+          <td>12</td>
+          <td><span style="color: green;">✓ Đủ hàng</span></td>
+        </tr>
+        <tr>
+          <td>🌸 Hoa Lan Hồ Điệp</td>
+          <td>Hoa lan</td>
+          <td class="low-stock">2</td>
+          <td><span style="color: red;">⚠️ Sắp hết</span></td>
+        </tr>
+        <tr>
+          <td>🌼 Hoa Cúc Trắng</td>
+          <td>Hoa cúc</td>
+          <td>8</td>
+          <td><span style="color: green;">✓ Đủ hàng</span></td>
+        </tr>
+        <tr>
+          <td>🌺 Hoa Hồng Trắng</td>
+          <td>Hoa hồng</td>
+          <td>15</td>
+          <td><span style="color: green;">✓ Đủ hàng</span></td>
+        </tr>
+        <tr>
+          <td>🌻 Hoa Hướng Dương</td>
+          <td>Hoa hướng dương</td>
+          <td class="low-stock">3</td>
+          <td><span style="color: red;">⚠️ Sắp hết</span></td>
+        </tr>
+        <tr>
+          <td>💐 Hoa Ly Trắng</td>
+          <td>Hoa ly</td>
+          <td>20</td>
+          <td><span style="color: green;">✓ Đủ hàng</span></td>
+        </tr>
+        <tr>
+          <td>🌷 Hoa Tulip Đỏ</td>
+          <td>Hoa tulip</td>
+          <td>18</td>
+          <td><span style="color: green;">✓ Đủ hàng</span></td>
+        </tr>
+        <tr>
+          <td>🌼 Hoa Cúc Vàng</td>
+          <td>Hoa cúc</td>
+          <td class="low-stock">1</td>
+          <td><span style="color: red;">⚠️ Sắp hết</span></td>
+        </tr>
+        <tr>
+          <td>🌸 Hoa Lan Tím</td>
+          <td>Hoa lan</td>
+          <td>10</td>
+          <td><span style="color: green;">✓ Đủ hàng</span></td>
+        </tr>
+      </tbody>
+    </table>
+
+    <div class="warning-box">
+      <h3>⚠️ Cảnh báo tồn kho thấp (≤ 5 bông)</h3>
+      <ul>
+        <li><strong>Hoa Hồng Đỏ:</strong> Còn 5 bông - Cần nhập thêm</li>
+        <li><strong>Hoa Lan Hồ Điệp:</strong> Còn 2 bông - Cần nhập gấp</li>
+        <li><strong>Hoa Hướng Dương:</strong> Còn 3 bông - Cần nhập thêm</li>
+        <li><strong>Hoa Cúc Vàng:</strong> Còn 1 bông - Cần nhập gấp</li>
+      </ul>
+    </div>
   </main>
+
 
 </body>
 </html>
-
