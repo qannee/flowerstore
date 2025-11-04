@@ -623,51 +623,36 @@
             $('#productModal').modal('show');
         }
 
-        function saveProduct() {
-            const code = document.getElementById('productCode').value.trim();
-            const name = document.getElementById('productName').value.trim();
-            const image = document.getElementById('productImage').value.trim();
-            const description = document.getElementById('productDescription').value.trim();
-            
-            if (!code || !name || !image) {
-                alert('Vui lòng điền đầy đủ thông tin bắt buộc!');
-                return;
-            }
-            
-            const codeExists = products.some(p => p.code === code && p.id !== editingId);
-            if (codeExists) {
-                alert('Mã sản phẩm đã tồn tại! Vui lòng chọn mã khác.');
-                return;
-            }
-            
-            if (editingId) {
-                const index = products.findIndex(p => p.id === editingId);
-                products[index] = {
-                    ...products[index],
-                    code, name, image, description
-                };
-                alert('Cập nhật sản phẩm thành công!');
-            } else {
-                const newId = products.length > 0 ? Math.max(...products.map(p => p.id)) + 1 : 1;
-                products.push({
-                    id: newId,
-                    code, name, image, description,
-                    hidden: false
-                });
-                alert('Thêm sản phẩm mới thành công!');
-            }
-            
-            $('#productModal').modal('hide');
-            renderProducts();
-        }
+    function saveProduct() {
+    const code = document.getElementById('productCode').value.trim();
+    const name = document.getElementById('productName').value.trim();
+    const image = document.getElementById('productImage').value.trim();
+    const description = document.getElementById('productDescription').value.trim();
+    
+    
 
-        function deleteProduct(id) {
-            if (confirm('Bạn có chắc chắn muốn xóa sản phẩm này?')) {
-                products = products.filter(p => p.id !== id);
-                alert('Xóa sản phẩm thành công!');
-                renderProducts();
-            }
-        }
+    // ✅ Khi sửa sản phẩm
+    if (editingId) {
+        alert('✏️ Bạn đã sửa sản phẩm!\n');
+    } 
+    // ✅ Khi thêm sản phẩm mới
+    else {
+        alert('🌸 Bạn đã thêm sản phẩm mới!\n');
+    }
+
+    $('#productModal').modal('hide');
+    renderProducts();
+}
+
+function deleteProduct(id) {
+    const product = products.find(p => p.id === id);
+    if (!product) return;
+
+    if (confirm(`🗑️ Bạn có chắc muốn xóa sản phẩm "${product.name}" không?\n`)) {
+        alert('✅ Đã Xóa sản phẩm!\n');
+    }
+}
+
 
         function toggleProduct(id) {
             const product = products.find(p => p.id === id);

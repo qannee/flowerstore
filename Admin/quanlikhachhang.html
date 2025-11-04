@@ -631,7 +631,7 @@
             if (!user) return;
             
             if (confirm(`Bạn có chắc chắn muốn khóa tài khoản "${user.name}"?\n\nNgười dùng sẽ không thể đăng nhập sau khi bị khóa.`)) {
-                user.status = 'locked';
+                //user.status = 'locked';
                 alert(`🔒 Đã khóa tài khoản "${user.name}" thành công!`);
                 updateStats();
                 renderUsers();
@@ -643,7 +643,7 @@
             if (!user) return;
             
             if (confirm(`Bạn có chắc chắn muốn mở khóa tài khoản "${user.name}"?`)) {
-                user.status = 'active';
+                //user.status = 'active';
                 alert(`🔓 Đã mở khóa tài khoản "${user.name}" thành công!`);
                 updateStats();
                 renderUsers();
