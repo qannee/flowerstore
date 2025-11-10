@@ -1,300 +1,399 @@
-        body {
-            font-family: 'Poppins', sans-serif;
-            background-color: #f8f9fa;
-        }
-        
-        /* .header {
-            background: linear-gradient(135deg, #82B440 0%, #6a9634 100%);
-            color: white;
-            padding: 30px 0;
-            margin-bottom: 30px;
-            box-shadow: 0 4px 6px rgba(0,0,0,0.1);
-        } */
-        
-        .management-container {
-            max-width: 1400px;
-            margin: 0 auto;
-            padding: 20px;
-        }
-        
-        .btn-add-product {
-            background-color: #82B440;
-            color: white;
-            border: none;
-            padding: 12px 30px;
-            border-radius: 25px;
-            font-weight: 500;
-            transition: all 0.3s;
-        }
-        
-        .btn-add-product:hover {
-            background-color: #6a9634;
-            color: white;
-            transform: translateY(-2px);
-            box-shadow: 0 4px 8px rgba(130, 180, 64, 0.3);
-        }
-        
-        .product-card {
-            background: white;
-            border-radius: 15px;
-            padding: 20px;
-            margin-bottom: 20px;
-            box-shadow: 0 2px 10px rgba(0,0,0,0.08);
-            transition: all 0.3s;
-        }
-        
-        .product-card:hover {
-            box-shadow: 0 5px 20px rgba(0,0,0,0.15);
-            transform: translateY(-3px);
-        }
-        
-        .product-image {
-            width: 100%;
-            height: 100px;
-            object-fit: cover;
-            border-radius: 10px;
-            box-shadow: 0 2px 8px rgba(0,0,0,0.1);
-        }
-        
-        .product-code {
-            display: inline-block;
-            background-color: #e9ecef;
-            color: #495057;
-            padding: 4px 12px;
-            border-radius: 12px;
-            font-size: 0.8em;
-            font-weight: 600;
-            margin-bottom: 8px;
-        }
-        
-        .price-info {
-            background: #f8f9fa;
-            padding: 10px;
-            border-radius: 8px;
-            margin-top: 10px;
-            font-size: 0.9em;
-        }
-        
-        .price-row {
-            display: flex;
-            justify-content: space-between;
-            margin: 5px 0;
-        }
-        
-        .price-label {
-            color: #6c757d;
-            font-weight: 500;
-        }
-        
-        .price-value {
-            font-weight: 600;
-            color: #333;
-        }
-        
-        .profit-badge {
-            background-color: #28a745;
-            color: white;
-            padding: 3px 10px;
-            border-radius: 10px;
-            font-size: 0.85em;
-            font-weight: 600;
-        }
-        
-        .category-badge {
-            background-color: #17a2b8;
-            color: white;
-            padding: 5px 12px;
-            border-radius: 12px;
-            font-size: 0.85em;
-            margin-left: 10px;
-        }
-        
-        .action-buttons {
-            display: flex;
-            gap: 8px;
-            flex-wrap: nowrap;
-        }
-        
-        .btn-edit {
-            background-color: #ffc107;
-            color: white;
-            border: none;
-            padding: 8px 16px;
-            border-radius: 20px;
-            font-size: 0.9em;
-            white-space: nowrap;
-            flex: 1;
-            min-width: 70px;
-        }
-        
-        .btn-edit:hover {
-            background-color: #e0a800;
-            color: white;
-        }
-        
-        .modal-header {
-            background-color: #82B440;
-            color: white;
-            border-radius: 10px 10px 0 0;
-        }
-        
-        .modal-content {
-            border-radius: 10px;
-            border: none;
-        }
-        
-        .form-control:focus {
-            border-color: #82B440;
-            box-shadow: 0 0 0 0.2rem rgba(130, 180, 64, 0.25);
-        }
-        
-        .back-container {
-            display: flex;
-            justify-content: flex-start;
-            padding: 12px 20px;
-        }
-        
-        .btn-back {
-            display: inline-flex;
-            align-items: center;
-            gap: 8px;
-            background: #ffffff;
-            color: #000000;
-            border: none;
-            border-radius: 8px;
-            padding: 10px 18px;
-            font-weight: 600;
-            cursor: pointer;
-            transition: all 0.25s ease;
-            box-shadow: 0 3px 10px rgba(0,0,0,0.15);
-            text-decoration: none;
-        }
-        
-        .btn-back:hover {
-            background: #22c81d;
-            transform: translateY(-2px);
-            box-shadow: 0 6px 14px rgba(0,0,0,0.25);
-            color: white;
-        }
-        
-        .image-upload-container {
-            border: 2px dashed #82B440;
-            border-radius: 10px;
-            padding: 20px;
-            text-align: center;
-            cursor: pointer;
-            transition: all 0.3s;
-            background-color: #f8f9fa;
-        }
-        
-        .image-upload-container:hover {
-            background-color: #e9ecef;
-            border-color: #6a9634;
-        }
-        
-        .image-upload-container.dragover {
-            background-color: #d4edda;
-            border-color: #28a745;
-        }
-        
-        .image-preview {
-            max-width: 100%;
-            max-height: 200px;
-            margin-top: 10px;
-            border-radius: 8px;
-            display: none;
-        }
-        
-        .upload-icon {
-            font-size: 48px;
-            color: #82B440;
-            margin-bottom: 10px;
-        }
-        
-        .upload-text {
-            color: #6c757d;
-            margin-bottom: 5px;
-        }
-        
-        .search-box {
-            position: relative;
-            display: flex;
-            align-items: center;
-        }
-        
-        .search-box input {
-            border-radius: 25px;
-            padding: 12px 50px 12px 20px;
-            border: 2px solid #e0e0e0;
-            width: 100%;
-        }
+body {
+    font-family: 'Poppins', sans-serif;
+    background-color: #f8f9fa;
+    color: #000;
+}
 
-        .search-btn {
-            position: absolute;
-            right: 10px;
-            background: none;
-            border: none;
-            cursor: pointer;
-            color: #82B440;
-            font-size: 18px;
-            transition: color 0.2s;
-        }
+/* Container chính */
+.management-container {
+    max-width: 1400px;
+    margin: 0 auto;
+    padding: 20px;
+}
 
-        .search-btn:hover {
-            color: #5c7f2d;
-        }
-        
-        .empty-state {
-            text-align: center;
-            padding: 60px 20px;
-            color: #999;
-        }
-        
-        .empty-state i {
-            font-size: 80px;
-            margin-bottom: 20px;
-        }
-        
-        .btn-settings {
-            background-color: #17a2b8;
-            color: white;
-            border: none;
-            padding: 12px 30px;
-            border-radius: 25px;
-            font-weight: 500;
-            transition: all 0.3s;
-            margin-left: 10px;
-        }
-        
-        .btn-settings:hover {
-            background-color: #138496;
-            color: white;
-            transform: translateY(-2px);
-            box-shadow: 0 4px 8px rgba(23, 162, 184, 0.3);
-        }
-        
-        .profit-settings-table {
-            width: 100%;
-            margin-top: 15px;
-        }
-        
-        .profit-settings-table th {
-            background-color: #82B440;
-            color: white;
-            padding: 12px;
-            text-align: left;
-        }
-        
-        .profit-settings-table td {
-            padding: 10px;
-            border-bottom: 1px solid #dee2e6;
-        }
-        
-        .profit-input {
-            width: 120px;
-            padding: 8px;
-            border: 1px solid #ced4da;
-            border-radius: 4px;
-            text-align: center;
-            font-weight: 600;
-        }
+/* Nút thêm sản phẩm */
+.btn-add-product {
+    background-color: #82B440;
+    color: #000;
+    border: none;
+    padding: 12px 30px;
+    border-radius: 25px;
+    font-weight: 500;
+    transition: all 0.3s;
+}
+
+.btn-add-product:hover {
+    background-color: #6a9634;
+    color: #000;
+    transform: translateY(-2px);
+    box-shadow: 0 4px 8px rgba(130, 180, 64, 0.3);
+}
+
+/* Thẻ sản phẩm */
+.product-card {
+    background: white;
+    border-radius: 15px;
+    padding: 20px;
+    margin-bottom: 20px;
+    box-shadow: 0 2px 10px rgba(0,0,0,0.08);
+    transition: all 0.3s;
+    color: #000;
+}
+
+.product-card:hover {
+    box-shadow: 0 5px 20px rgba(0,0,0,0.15);
+    transform: translateY(-3px);
+}
+
+.product-image {
+    width: 100%;
+    height: 100px;
+    object-fit: cover;
+    border-radius: 10px;
+    box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+}
+
+/* Mã sản phẩm */
+.product-code {
+    display: inline-block;
+    background-color: #e9ecef;
+    color: #000;
+    padding: 4px 12px;
+    border-radius: 12px;
+    font-size: 0.8em;
+    font-weight: 600;
+    margin-bottom: 8px;
+}
+
+/* Thông tin giá */
+.price-info {
+    background: #f8f9fa;
+    padding: 10px;
+    border-radius: 8px;
+    margin-top: 10px;
+    font-size: 0.9em;
+    color: #000;
+}
+
+.price-row {
+    display: flex;
+    justify-content: space-between;
+    margin: 5px 0;
+}
+
+.price-label {
+    color: #000;
+    font-weight: 500;
+}
+
+.price-value {
+    font-weight: 600;
+    color: #000;
+}
+
+/* Badge lợi nhuận */
+.profit-badge {
+    background-color: #28a745;
+    color: #000;
+    padding: 3px 10px;
+    border-radius: 10px;
+    font-size: 0.85em;
+    font-weight: 600;
+}
+
+/* Badge loại */
+.category-badge {
+    background-color: #17a2b8;
+    color: #000;
+    padding: 5px 12px;
+    border-radius: 12px;
+    font-size: 0.85em;
+    margin-left: 10px;
+}
+
+/* Nút hành động */
+.action-buttons {
+    display: flex;
+    gap: 8px;
+    flex-wrap: nowrap;
+}
+
+.btn-edit {
+    background-color: #ffc107;
+    color: #000;
+    border: none;
+    padding: 8px 16px;
+    border-radius: 20px;
+    font-size: 0.9em;
+    white-space: nowrap;
+    flex: 1;
+    min-width: 70px;
+}
+
+.btn-edit:hover {
+    background-color: #e0a800;
+    color: #000;
+}
+
+/* Modal header */
+.modal-header {
+    background-color: #82B440;
+    color: #000;
+    border-radius: 10px 10px 0 0;
+}
+
+.modal-content {
+    border-radius: 10px;
+    border: none;
+    color: #000;
+}
+
+/* Focus input */
+.form-control:focus {
+    border-color: #82B440;
+    box-shadow: 0 0 0 0.2rem rgba(130, 180, 64, 0.25);
+    color: #000;
+}
+
+
+
+/* Upload ảnh */
+.image-upload-container {
+    border: 2px dashed #82B440;
+    border-radius: 10px;
+    padding: 20px;
+    text-align: center;
+    cursor: pointer;
+    transition: all 0.3s;
+    background-color: #f8f9fa;
+    color: #000;
+}
+
+.image-upload-container:hover {
+    background-color: #e9ecef;
+    border-color: #6a9634;
+}
+
+.image-upload-container.dragover {
+    background-color: #d4edda;
+    border-color: #28a745;
+}
+
+.image-preview {
+    max-width: 100%;
+    max-height: 200px;
+    margin-top: 10px;
+    border-radius: 8px;
+    display: none;
+}
+
+.upload-icon {
+    font-size: 48px;
+    color: #82B440;
+    margin-bottom: 10px;
+}
+
+.upload-text {
+    color: #000;
+    margin-bottom: 5px;
+}
+
+/* Ô tìm kiếm */
+.search-box {
+    position: relative;
+    display: flex;
+    align-items: center;
+}
+
+.search-box input {
+    border-radius: 25px;
+    padding: 12px 50px 12px 20px;
+    border: 2px solid #e0e0e0;
+    width: 100%;
+    color: #000;
+}
+
+.search-btn {
+    position: absolute;
+    right: 10px;
+    background: none;
+    border: none;
+    cursor: pointer;
+    color: #82B440;
+    font-size: 18px;
+    transition: color 0.2s;
+}
+
+.search-btn:hover {
+    color: #5c7f2d;
+}
+
+/* Trạng thái rỗng */
+.empty-state {
+    text-align: center;
+    padding: 60px 20px;
+    color: #000;
+}
+
+.empty-state i {
+    font-size: 80px;
+    margin-bottom: 20px;
+}
+
+/* Nút cài đặt */
+.btn-settings {
+    background-color: #17a2b8;
+    color: #000;
+    border: none;
+    padding: 12px 30px;
+    border-radius: 25px;
+    font-weight: 500;
+    transition: all 0.3s;
+    margin-left: 10px;
+}
+
+.btn-settings:hover {
+    background-color: #138496;
+    color: #000;
+    transform: translateY(-2px);
+    box-shadow: 0 4px 8px rgba(23, 162, 184, 0.3);
+}
+
+/* Modal cài đặt lợi nhuận */
+#profitSettingsModal .modal-body {
+    padding: 25px;
+    color: #000;
+}
+
+#profitSettingsModal .text-muted {
+    margin-bottom: 20px;
+    display: block;
+    color: #000;
+}
+
+.profit-settings-list {
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+}
+
+.profit-settings-item {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 15px 20px;
+    background-color: #f8f9fa;
+    border-radius: 8px;
+    transition: all 0.3s;
+    color: #000;
+}
+
+.profit-settings-item:hover {
+    background-color: #e9ecef;
+    transform: translateX(5px);
+}
+
+.profit-settings-item label {
+    font-weight: 500;
+    color: #000;
+    font-size: 1em;
+    margin: 0;
+}
+
+.profit-input-wrapper {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    color: #000;
+}
+
+.profit-input {
+    width: 100px;
+    padding: 8px 12px;
+    border: 2px solid #ced4da;
+    border-radius: 6px;
+    text-align: center;
+    font-weight: 600;
+    font-size: 0.95em;
+    transition: all 0.3s;
+    color: #000;
+}
+
+.profit-input:focus {
+    outline: none;
+    border-color: #82B440;
+    box-shadow: 0 0 0 0.2rem rgba(130, 180, 64, 0.25);
+    color: #000;
+}
+
+.profit-input-wrapper span {
+    font-weight: 600;
+    color: #000;
+    font-size: 1.1em;
+}
+
+.profit-settings-table {
+    width: 100%;
+    margin-top: 15px;
+    border-collapse: collapse;
+    table-layout: fixed; /* Giúp cột cân đều */
+}
+
+/* Tiêu đề bảng */
+.profit-settings-table th {
+    background-color: #82B440;
+    color: #fff;
+    padding: 10px 16px;
+    text-align: left;
+    font-weight: 600;
+    border: none;
+}
+
+/* Hàng dữ liệu */
+.profit-settings-table td {
+    padding: 14px 16px;
+    border-bottom: 1px solid #dee2e6;
+    vertical-align: middle;
+    color: #000;
+}
+
+/* Cột đầu tiên – Loại hoa */
+.profit-settings-table th:first-child,
+.profit-settings-table td:first-child {
+    width: 60%;
+    text-align: left;
+}
+
+/* Cột thứ hai – Tỉ lệ lợi nhuận */
+.profit-settings-table th:nth-child(2),
+.profit-settings-table td:nth-child(2) {
+    width: 40%;
+    text-align: center;
+}
+
+/* Ô input trong bảng */
+.profit-settings-table input[type="number"],
+.profit-settings-table input[type="text"] {
+    width: 70px;
+    text-align: center;
+    border: 2px solid #ced4da;
+    border-radius: 6px;
+    padding: 6px 8px;
+    font-weight: 600;
+    color: #000;
+    transition: all 0.3s;
+}
+
+.profit-settings-table input[type="number"]:focus,
+.profit-settings-table input[type="text"]:focus {
+    border-color: #82B440;
+    box-shadow: 0 0 0 0.2rem rgba(130, 180, 64, 0.25);
+    outline: none;
+}
+
+/* Dấu % */
+.profit-settings-table td span {
+    margin-left: 6px;
+    font-weight: 600;
+    color: #000;
+}

@@ -19,7 +19,7 @@
     padding: 15px 20px;
   } */
 
-  .btn-back {
+.btn-back {
     display: inline-flex;
     align-items: center;
     gap: 8px;

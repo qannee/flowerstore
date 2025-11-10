@@ -285,9 +285,12 @@
             box-shadow: 0 4px 8px rgba(23, 162, 184, 0.3);
         }
         
+        /* ========== STYLE MỚI CHO BẢNG CÀI ĐẶT LỢI NHUẬN ========== */
         .profit-settings-table {
             width: 100%;
             margin-top: 15px;
+            border-collapse: separate;
+            border-spacing: 0;
         }
         
         .profit-settings-table th {
@@ -295,10 +298,27 @@
             color: white;
             padding: 12px;
             text-align: left;
+            border: none;
+        }
+        
+        /* Cột đầu tiên */
+        .profit-settings-table th:first-child {
+            width: 40%;
+        }
+        
+        /* Cột thứ hai */
+        .profit-settings-table th:nth-child(2) {
+            width: 30%;
+        }
+        
+        /* Cột thứ ba - chứa các nút */
+        .profit-settings-table th:last-child {
+            width: 30%;
+            text-align: right;
         }
         
         .profit-settings-table td {
-            padding: 10px;
+            padding: 10px 12px;
             border-bottom: 1px solid #dee2e6;
         }
         
@@ -309,6 +329,35 @@
             border-radius: 4px;
             text-align: center;
             font-weight: 600;
+        }
+        
+        /* Style cho các nút trong header của bảng */
+        .header-buttons {
+            display: flex;
+            gap: 10px;
+            justify-content: flex-end;
+        }
+        
+        .header-buttons .btn {
+            padding: 8px 20px;
+            border-radius: 20px;
+            font-size: 0.9em;
+            border: none;
+            cursor: pointer;
+            transition: all 0.3s;
+        }
+        
+        .header-buttons .btn-secondary {
+            background-color: #6c757d;
+            color: white;
+        }
+        
+        .header-buttons .btn-secondary:hover {
+            background-color: #5a6268;
+        }
+        
+        .header-buttons .btn-add-product {
+            padding: 8px 20px;
         }
     </style>
 </head>

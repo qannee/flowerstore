@@ -1,4 +1,4 @@
-    const orders = [
+const orders = [
       {
         id: 'DH001',
         customer: { name: 'Quách A', phone: '0901 234 567', address: '123 Trần Hưng Đạo, Q1, TP.HCM' },
@@ -108,20 +108,31 @@
       });
     }
 
-    function updateStatus(orderId, newStatus) {
-      const order = orders.find(o => o.id === orderId);
-      if (order) {
-        const oldStatus = order.status;
-        order.status = newStatus;
-        
-        // Cập nhật màu của select ngay lập tức
-        const selectElement = event.target;
-        selectElement.style.color = getStatusColor(newStatus);
-        
-        // Hiển thị thông báo
-        showToast(`Đã cập nhật tình trạng đơn hàng ${orderId} từ "${getStatusText(oldStatus)}" sang "${getStatusText(newStatus)}"`);
-      }
-    }
+    function updateStatus(orderId, newStatus, event) {
+  const order = orders.find(o => o.id === orderId);
+  if (!order) return;
+
+  const oldStatus = order.status;
+  if (oldStatus === newStatus) return; // Không cần xác nhận nếu không thay đổi
+
+  // Hiển thị hộp thoại xác nhận
+  const confirmChange = confirm(`Bạn có chắc muốn thay đổi tình trạng đơn hàng ${orderId} 
+từ "${getStatusText(oldStatus)}" sang "${getStatusText(newStatus)}"?`);
+
+  if (!confirmChange) {
+    // Nếu hủy, khôi phục lại lựa chọn ban đầu
+    event.target.value = oldStatus;
+    return;
+  }
+
+  // Cập nhật trạng thái đơn hàng
+  order.status = newStatus;
+  event.target.style.color = getStatusColor(newStatus);
+
+  // Thông báo thành công
+  showToast(`✅ Đã cập nhật tình trạng đơn hàng ${orderId} từ "${getStatusText(oldStatus)}" sang "${getStatusText(newStatus)}"`);
+}
+
 
     function getStatusText(status) {
       const map = {
@@ -215,4 +226,4 @@
 
     window.onload = () => {
       loadOrders(orders);
-    };  
+    };
