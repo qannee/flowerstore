@@ -1,0 +1,331 @@
+        /* body {
+            font-family: 'Poppins', sans-serif;
+            background-color: #f8f9fa;
+        }
+        
+        .header {
+            background: linear-gradient(135deg, #82B440 0%, #6a9634 100%);
+            color: white;
+            padding: 30px 0;
+            margin-bottom: 30px;
+            box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+        } */
+        
+        .management-container {
+            max-width: 1400px;
+            margin: 0 auto;
+            padding: 20px;
+        }
+        
+        .btn-add-product {
+            background-color: #82B440;
+            color: white;
+            border: none;
+            padding: 12px 30px;
+            border-radius: 25px;
+            font-weight: 500;
+            transition: all 0.3s;
+        }
+        
+        .btn-add-product:hover {
+            background-color: #6a9634;
+            color: white;
+            transform: translateY(-2px);
+            box-shadow: 0 4px 8px rgba(130, 180, 64, 0.3);
+        }
+        
+        .product-card {
+            background: white;
+            border-radius: 15px;
+            padding: 20px;
+            margin-bottom: 20px;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.08);
+            transition: all 0.3s;
+        }
+        
+        .product-card:hover {
+            box-shadow: 0 5px 20px rgba(0,0,0,0.15);
+            transform: translateY(-3px);
+        }
+        
+        .product-card.hidden-product {
+            opacity: 0.5;
+            background: #f5f5f5;
+        }
+        
+        .product-image {
+            width: 100%;
+            height: 100px;
+            object-fit: cover;
+            border-radius: 10px;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+        }
+        
+        .product-code {
+            display: inline-block;
+            background-color: #e9ecef;
+            color: #495057;
+            padding: 4px 12px;
+            border-radius: 12px;
+            font-size: 0.8em;
+            font-weight: 600;
+            margin-bottom: 8px;
+        }
+        
+        .action-buttons {
+            display: flex;
+            gap: 8px;
+            flex-wrap: nowrap;
+        }
+        
+        .btn-edit {
+            background-color: #ffc107;
+            color: white;
+            border: none;
+            padding: 8px 16px;
+            border-radius: 20px;
+            font-size: 0.9em;
+            white-space: nowrap;
+            flex: 1;
+            min-width: 70px;
+        }
+        
+        .btn-edit:hover {
+            background-color: #e0a800;
+            color: white;
+        }
+        
+        .btn-delete {
+            background-color: #dc3545;
+            color: white;
+            border: none;
+            padding: 8px 16px;
+            border-radius: 20px;
+            font-size: 0.9em;
+            white-space: nowrap;
+            flex: 1;
+            min-width: 70px;
+        }
+        
+        .btn-delete:hover {
+            background-color: #c82333;
+            color: white;
+        }
+        
+        .btn-toggle {
+            background-color: #6c757d;
+            color: white;
+            border: none;
+            padding: 8px 16px;
+            border-radius: 20px;
+            font-size: 0.9em;
+            white-space: nowrap;
+            flex: 1;
+            min-width: 70px;
+        }
+        
+        .btn-toggle:hover {
+            background-color: #5a6268;
+            color: white;
+        }
+        
+        .btn-toggle.hidden {
+            background-color: #28a745;
+        }
+        
+        .btn-toggle.hidden:hover {
+            background-color: #218838;
+        }
+        
+        .modal-header {
+            background-color: #82B440;
+            color: white;
+            border-radius: 10px 10px 0 0;
+        }
+        
+        .modal-content {
+            border-radius: 10px;
+            border: none;
+        }
+        
+        .form-control:focus {
+            border-color: #82B440;
+            box-shadow: 0 0 0 0.2rem rgba(130, 180, 64, 0.25);
+        }
+        
+        .badge-discount {
+            background-color: #dc3545;
+            color: white;
+            padding: 5px 10px;
+            border-radius: 15px;
+            font-size: 12px;
+        }
+        
+        .badge-hidden {
+            background-color: #6c757d;
+            color: white;
+            padding: 5px 10px;
+            border-radius: 15px;
+            font-size: 12px;
+            margin-left: 10px;
+        }
+        
+        .price-original {
+            text-decoration: line-through;
+            color: #999;
+            margin-right: 10px;
+        }
+        
+        .price-sale {
+            color: #82B440;
+            font-weight: bold;
+            font-size: 1.2em;
+        }
+        
+        .search-box {
+            margin-bottom: 20px;
+            position: relative;
+        }
+        
+        .search-box input {
+            border-radius: 25px;
+            padding: 12px 50px 12px 20px;
+            border: 2px solid #e0e0e0;
+            width: 100%;
+        }
+        .search-box {
+    position: relative;
+    display: flex;
+    align-items: center;
+}
+
+.search-btn {
+    position: absolute;
+    right: 10px;
+    background: none;
+    border: none;
+    cursor: pointer;
+    color: #82B440;
+    font-size: 18px;
+    transition: color 0.2s;
+}
+
+.search-btn:hover {
+    color: #5c7f2d;
+}
+
+        .search-icon {
+            position: absolute;
+            right: 20px;
+            top: 50%;
+            transform: translateY(-50%);
+            color: #82B440;
+            font-size: 18px;
+            pointer-events: none;
+        }
+        
+        .empty-state {
+            text-align: center;
+            padding: 60px 20px;
+            color: #999;
+        }
+        
+        .empty-state i {
+            font-size: 80px;
+            margin-bottom: 20px;
+        }
+        
+        .filter-buttons {
+            margin-bottom: 20px;
+        }
+        
+        .filter-btn {
+            padding: 8px 20px;
+            border-radius: 20px;
+            border: 2px solid #82B440;
+            background: white;
+            color: #82B440;
+            margin-right: 10px;
+            transition: all 0.3s;
+        }
+        
+        .filter-btn:hover, .filter-btn.active {
+            background: #82B440;
+            color: white;
+        }
+        .back-container {
+            display: flex;
+            justify-content: flex-start;
+            padding: 12px 20px;
+        }
+        
+        .btn-back {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            background: #ffffff;
+            color: #000000;
+            border: none;
+            border-radius: 8px;
+            padding: 10px 18px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.25s ease;
+            box-shadow: 0 3px 10px rgba(0,0,0,0.15);
+            text-decoration: none;
+        }
+        
+        .btn-back:hover {
+            background: #22c81d;
+            transform: translateY(-2px);
+            box-shadow: 0 6px 14px rgba(0,0,0,0.25);
+            color: white;
+        }
+        
+        /* Toast Notification Styles */
+        .toast-container {
+            position: fixed;
+            top: 80px;
+            right: 20px;
+            z-index: 9999;
+        }
+        
+        /* Image Upload Styles */
+        .image-upload-container {
+            border: 2px dashed #82B440;
+            border-radius: 10px;
+            padding: 20px;
+            text-align: center;
+            cursor: pointer;
+            transition: all 0.3s;
+            background-color: #f8f9fa;
+        }
+        
+        .image-upload-container:hover {
+            background-color: #e9ecef;
+            border-color: #6a9634;
+        }
+        
+        .image-upload-container.dragover {
+            background-color: #d4edda;
+            border-color: #28a745;
+        }
+        
+        .image-preview {
+            max-width: 100%;
+            max-height: 200px;
+            margin-top: 10px;
+            border-radius: 8px;
+            display: none;
+        }
+        
+        .upload-icon {
+            font-size: 48px;
+            color: #82B440;
+            margin-bottom: 10px;
+        }
+        
+        .upload-text {
+            color: #6c757d;
+            margin-bottom: 5px;
+        }

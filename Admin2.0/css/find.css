@@ -1,0 +1,158 @@
+/* body {
+  font-family: Arial, sans-serif;
+  background: #f4f6f8;
+  margin: 0;
+  padding: 40px;
+} */
+
+/* Thanh tìm kiếm */
+.search-box {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  background: transparent;
+  padding: 10px;
+  justify-content: center;
+}
+
+.search-box input {
+  padding: 8px 14px;
+  width: 260px;
+  border: 1px solid #ccc;
+  border-radius: 25px;
+  font-size: 16px;
+  outline: none;
+  background: #fff;
+  transition: 0.3s;
+}
+
+.search-box input:focus {
+  border-color: #888;
+  box-shadow: 0 0 5px rgba(0,0,0,0.2);
+}
+
+.icon-btn {
+  background: none;
+  border: none;
+  color: #000;
+  font-size: 20px;
+  cursor: pointer;
+  transition: 0.3s;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+}
+
+.icon-btn:hover {
+  background: rgba(0, 0, 0, 0.08);
+  transform: scale(1.05);
+}
+
+/* Overlay và popup */
+.overlay {
+  display: none;
+  position: fixed;
+  inset: 0;
+  background: rgba(0,0,0,0.4);
+  z-index: 20;
+  align-items: center;
+  justify-content: center;
+}
+
+.filter-popup {
+  background: #fff;
+  border-radius: 12px;
+  padding: 25px 30px;
+  width: 420px;
+  max-width: 90%;
+  box-shadow: 0 8px 20px rgba(0,0,0,0.2);
+  animation: fadeIn 0.25s ease-in-out;
+}
+
+@keyframes fadeIn {
+  from {opacity: 0; transform: translateY(-10px);}
+  to {opacity: 1; transform: translateY(0);}
+}
+
+.filter-popup h3 {
+  text-align: center;
+  margin-top: 0;
+  font-size: 20px;
+}
+
+.filter-section {
+  margin-bottom: 18px;
+}
+
+.filter-section label {
+  display: block;
+  font-weight: bold;
+  margin-bottom: 8px;
+}
+
+.filter-options {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+}
+
+.filter-btn {
+  flex: 1 1 45%;
+  text-align: center;
+  padding: 12px 0;
+  border: 1px solid #ccc;
+  border-radius: 8px;
+  background: #f9f9f9;
+  cursor: pointer;
+  transition: 0.3s;
+  font-size: 15px;
+}
+
+.filter-btn:hover {
+  background: #e8e8e8;
+}
+
+.filter-btn.active {
+  background: #007bff;
+  color: white;
+  border-color: #007bff;
+}
+
+.filter-buttons {
+  display: flex;
+  justify-content: space-between;
+  margin-top: 20px;
+  gap: 10px;
+}
+
+.filter-buttons button,
+.filter-buttons a {
+  flex: 1;
+  padding: 10px;
+  border: none;
+  border-radius: 8px;
+  font-size: 16px;
+  color: white;
+  cursor: pointer;
+  text-align: center;
+  text-decoration: none;
+  display: inline-block;
+  transition: 0.3s;
+}
+
+.apply-btn {
+  background-color: #007bff;
+}
+.apply-btn:hover {
+  background-color: #0056b3;
+}
+
+.cancel-btn {
+  background-color: #dc3545;
+}
+.cancel-btn:hover {
+  background-color: #b52a37;
+}
