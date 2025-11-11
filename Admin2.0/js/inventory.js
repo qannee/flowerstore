@@ -1,49 +1,42 @@
-    // Class quản lý tìm kiếm
-    class SearchManager {
-      constructor() {
-        this.initializeDefaults();
-      }
 
-      initializeDefaults() {
-        const today = new Date();
-        const startOfYear = new Date(today.getFullYear(), 0, 1);
-        
-        document.getElementById('startDate').valueAsDate = startOfYear;
-        document.getElementById('endDate').valueAsDate = today;
-      }
-
-      getSearchParams() {
-        return {
-          startDate: document.getElementById('startDate').value,
-          endDate: document.getElementById('endDate').value,
-          flowerType: document.getElementById('flowerType').value
-        };
-      }
-
-      saveSearchParams() {
-        const params = this.getSearchParams();
-        sessionStorage.setItem('inventorySearchParams', JSON.stringify(params));
-      }
-
-      redirectToResults() {
-        this.saveSearchParams();
-        window.location.href = 'inventory_search.html';
-      }
+  class SearchManager {
+    constructor() {
+      this.initializeDefaults();
     }
 
-    const searchManager = new SearchManager();
-
-    function searchInventory() {
-      searchManager.redirectToResults();
+    initializeDefaults() {
+      const today = new Date();
+      document.getElementById('searchDate').valueAsDate = today;
     }
 
-    function redirectToNhapHang() {
-      window.location.href = 'tonkho_2.html';
+    getSearchParams() {
+      return {
+        date: document.getElementById('searchDate').value,
+        flowerType: document.getElementById('flowerType').value
+      };
     }
 
-    // Xử lý phím Enter
-    document.addEventListener('keypress', function(e) {
-      if (e.key === 'Enter') {
-        searchInventory();
-      }
-    });
+    saveSearchParams() {
+      const params = this.getSearchParams();
+      sessionStorage.setItem('inventorySearchParams', JSON.stringify(params));
+    }
+
+    redirectToResults() {
+      this.saveSearchParams();
+      window.location.href = 'inventory_search.html';
+    }
+  }
+
+  const searchManager = new SearchManager();
+
+  function searchInventory() {
+    searchManager.redirectToResults();
+  }
+
+  // Nhấn Enter cũng tìm kiếm
+  document.addEventListener('keypress', function(e) {
+    if (e.key === 'Enter') {
+      searchInventory();
+    }
+  });
+
