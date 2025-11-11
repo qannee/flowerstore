@@ -29,7 +29,7 @@
     <link rel="stylesheet" href="css/style.css">
 	<link rel="stylesheet" href="css/find.css">
 	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
-	<meta name="viewport" content="width = device-width", initial-scale=1.0>
+	
   </head>
   <body class="goto-here">
 		<div class="py-1 bg-primary">
@@ -55,14 +55,14 @@
     </div>
     <nav class="navbar navbar-expand-lg navbar-dark ftco_navbar bg-dark ftco-navbar-light" id="ftco-navbar">
 	    <div class="container">
-	      	<a class="navbar-brand" href="index.html">chohoasach.com</a>
+	      	<a class="navbar-brand" href="dadangnhap.html">ChoHoaSach.com</a>
 	      	<button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#ftco-nav" aria-controls="ftco-nav" aria-expanded="false" aria-label="Toggle navigation">
-	        	<span class="oi oi-menu"></span> Mua sắm
-	      	</button>
-				<!--Nút tìm kiếm-->
+	        	<span class="oi oi-menu"></span> Menu
+	     	</button>
+					<!--Nút tìm kiếm-->
 			<div class="search-box">
   				<input type="text" placeholder="Tìm kiếm sản phẩm...">
-				<a href="#" class="icon-btn"><i class="fa-solid fa-search"></i></a>
+				<a href="find.html" class="icon-btn"><i class="fa-solid fa-search"></i></a>
   				<button class="icon-btn" id="filterBtn"><i class="fa-solid fa-filter"></i></button>
 			</div>
 
@@ -111,27 +111,28 @@
 	<!--Kết thúc nút tìm kiếm-->
 	      	<div class="collapse navbar-collapse" id="ftco-nav">
 	        <ul class="navbar-nav ml-auto">
-	          	<li class="nav-item"><a href="index.html" class="nav-link">Trang chủ</a></li>
-	          	<li class="nav-item active dropdown">
-              	<a class="nav-link dropdown-toggle" href="#" id="dropdown04" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Mua sắm</a>
-              	<div class="dropdown-menu" aria-labelledby="dropdown04">
-              	<a class="dropdown-item" href="shop.html">Mua sắm</a>
-                <!-- <a class="dropdown-item" href="p_rose.html">Sản phẩm</a> -->
-                <a class="dropdown-item" href="dangky.html">Giỏ hàng</a>
-                <a class="dropdown-item" href="dangky.html">Thanh toán</a>
-              	</div>
-            	</li>
-	          	<li class="nav-item"><a href="about.html" class="nav-link">Giới thiệu</a></li>
-			<li class="nav-item active dropdown">
-              <a class="nav-link dropdown-toggle" href="#" id="dropdownAccount" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+	        <li class="nav-item active"><a href="dadangnhap.html" class="nav-link">Trang chủ</a></li>
+	        <li class="nav-item dropdown">
+            <a class="nav-link dropdown-toggle" href="#" id="dropdown04" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Mua sắm</a>
+            <div class="dropdown-menu" aria-labelledby="dropdown04">
+            	<a class="dropdown-item" href="shopdn.html">Mua sắm</a>
+                <a class="dropdown-item" href="cartdn.html">Giỏ hàng</a>
+                <a class="dropdown-item" href="checkoutdn.html">Thanh toán</a>
+            </div>
+            </li>
+	        <li class="nav-item"><a href="aboutdn.html" class="nav-link">Giới thiệu</a></li>
+			<li class="nav-item dropdown">
+               	<a class="nav-link dropdown-toggle" href="#" id="dropdownAccount" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
         			<span class="icon-user"></span> Tài khoản
      			</a>
-              	<div class="dropdown-menu" aria-labelledby="dropdown04">
-                <a class="dropdown-item" href="dangky.html">Đăng ký</a>
-                <a class="dropdown-item" href="dangnhap.html">Đăng nhập</a>
-              	</div>
-            	</li>
-	          	<li class="nav-item cta cta-colored"><a href="dangky.html" class="nav-link"><span class="icon-shopping_cart"></span>[0]</a></li>
+     			<div class="dropdown-menu dropdown-menu-right" aria-labelledby="dropdownAccount">
+				<div class="dropdown-divider"></div>
+					<a class="dropdown-item" href="thongtin.html">Thông tin cá nhân</a>
+     			  	<a class="dropdown-item" href="lichsumuahang.html">Đơn hàng của tôi</a>
+  	  			    <a class="dropdown-item" href="index.html">Đăng xuất</a>
+      			</div>
+    		</li>
+	        <li class="nav-item cta cta-colored"><a href="cartdn.html" class="nav-link"><span class="icon-shopping_cart"></span>[0]</a></li>
 	        </ul>
 	      	</div>
 	    </div>
@@ -154,22 +155,23 @@
     		<!-- <div class="row justify-content-center">
     			<div class="col-md-10 mb-5 text-center">
 					<ul class="product-category">
+						<form action="shopdn.html" method="GET" class="advanced-search-form" autocomplete="off"></form>
     					<li><a href="#" class="active">Tất cả sản phẩm</a></li>
-						<li><a href="shop_cate1.html">Hoa tết</a></li>
-    					<li><a href="shop_cate2.html">Hoa trang trí</a></li>
-    					<li><a href="shop_cate3.html">J97</a></li>
+						<li><a href="shopdn_cate1.html">Hoa tết</a></li>
+    					<li><a href="shopdn_cate2.html">Hoa trang trí</a></li>
+    					<li><a href="shopdn_cate3.html">J97</a></li>
     				</ul>
     			</div>
     		</div> -->
     		<div class="row">
     			<div class="col-md-6 col-lg-3 ftco-animate">
     				<div class="product">
-    					<a href="p_rose.html" class="img-prod"><img class="img-fluid" src="images/product-1.jpg" alt="Colorlib Template">
+    					<a href="product-rose.html" class="img-prod"><img class="img-fluid" src="images/product-1.jpg" alt="Colorlib Template">
     						<span class="status">60%</span>
     						<div class="overlay"></div>
     					</a>
     					<div class="text py-3 pb-4 px-3 text-center">
-    						<h3><a href="p_rose.html">Hoa hồng</a></h3>
+    						<h3><a href="product-rose.html">Hoa hồng</a></h3>
     						<div class="d-flex">
     							<div class="pricing">
 		    						<p class="price"><span class="mr-2 price-dc">250.000đ</span><span class="price-sale">150.000đ</span></p>
@@ -177,10 +179,10 @@
 	    					</div>
 	    					<div class="bottom-area d-flex px-3">
 	    						<div class="m-auto d-flex">
-	    							<a href="p_rose.html" class="add-to-cart d-flex justify-content-center align-items-center text-center">
+	    							<a href="product-rose.html" class="add-to-cart d-flex justify-content-center align-items-center text-center">
 	    								<span><i class="ion-ios-menu"></i></span>
 	    							</a>
-	    							<a href="#" class="buy-now d-flex justify-content-center align-items-center mx-1">
+	    							<a href="product-rose.html" class="buy-now d-flex justify-content-center align-items-center mx-1">
 	    								<span><i class="ion-ios-cart"></i></span>
 	    							</a>
 	    							<a href="#" class="heart d-flex justify-content-center align-items-center ">
@@ -193,11 +195,11 @@
     			</div>
     			<div class="col-md-6 col-lg-3 ftco-animate">
     				<div class="product">
-    					<a href="p_lilies.html" class="img-prod"><img class="img-fluid" src="images/product-2.jpg" alt="Colorlib Template">
+    					<a href="product-lilies.html" class="img-prod"><img class="img-fluid" src="images/product-2.jpg" alt="Colorlib Template">
     						<div class="overlay"></div>
     					</a>
     					<div class="text py-3 pb-4 px-3 text-center">
-    						<h3><a href="p_lilies.html">Hoa ly</a></h3>
+    						<h3><a href="product-lilies.html">Hoa ly</a></h3>
     						<div class="d-flex">
     							<div class="pricing">
 		    						<p class="price"><span>270.000đ</span></p>
@@ -205,7 +207,7 @@
 	    					</div>
     						<div class="bottom-area d-flex px-3">
 	    						<div class="m-auto d-flex">
-	    							<a href="p_lilies.html" class="add-to-cart d-flex justify-content-center align-items-center text-center">
+	    							<a href="product-lilies.html" class="add-to-cart d-flex justify-content-center align-items-center text-center">
 	    								<span><i class="ion-ios-menu"></i></span>
 	    							</a>
 	    							<a href="#" class="buy-now d-flex justify-content-center align-items-center mx-1">
@@ -221,11 +223,11 @@
     			</div>
     			<div class="col-md-6 col-lg-3 ftco-animate">
     				<div class="product">
-    					<a href="p_apricot.html" class="img-prod"><img class="img-fluid" src="images/product-3.jpg" alt="Colorlib Template">
+    					<a href="product-apricot.html" class="img-prod"><img class="img-fluid" src="images/product-3.jpg" alt="Colorlib Template">
 	    					<div class="overlay"></div>
 	    				</a>
     					<div class="text py-3 pb-4 px-3 text-center">
-    						<h3><a href="p_apricot.html">Hoa mai</a></h3>
+    						<h3><a href="product-apricot.html">Hoa mai</a></h3>
     						<div class="d-flex">
     							<div class="pricing">
 		    						<p class="price"><span>12.000.000đ</span></p>
@@ -233,7 +235,7 @@
 	    					</div>
     						<div class="bottom-area d-flex px-3">
 	    						<div class="m-auto d-flex">
-	    							<a href="p_apricot.html" class="add-to-cart d-flex justify-content-center align-items-center text-center">
+	    							<a href="product-apricot.html" class="add-to-cart d-flex justify-content-center align-items-center text-center">
 	    								<span><i class="ion-ios-menu"></i></span>
 	    							</a>
 	    							<a href="#" class="buy-now d-flex justify-content-center align-items-center mx-1">
@@ -249,11 +251,11 @@
     			</div>
     			<div class="col-md-6 col-lg-3 ftco-animate">
     				<div class="product">
-    					<a href="p_tulip.html" class="img-prod"><img class="img-fluid" src="images/product-4.jpg" alt="Colorlib Template">
+    					<a href="product-tulip.html" class="img-prod"><img class="img-fluid" src="images/product-4.jpg" alt="Colorlib Template">
     						<div class="overlay"></div>
     					</a>
     					<div class="text py-3 pb-4 px-3 text-center">
-    						<h3><a href="p_tulip.html">Hoa tulip</a></h3>
+    						<h3><a href="product-tulip.html">Hoa tulip</a></h3>
     						<div class="d-flex">
     							<div class="pricing">
 		    						<p class="price"><span>350.000đ</span></p>
@@ -261,7 +263,7 @@
 	    					</div>
     						<div class="bottom-area d-flex px-3">
 	    						<div class="m-auto d-flex">
-	    							<a href="p_tulip.html" class="add-to-cart d-flex justify-content-center align-items-center text-center">
+	    							<a href="product-tulip.html" class="add-to-cart d-flex justify-content-center align-items-center text-center">
 	    								<span><i class="ion-ios-menu"></i></span>
 	    							</a>
 	    							<a href="#" class="buy-now d-flex justify-content-center align-items-center mx-1">
@@ -279,12 +281,12 @@
 
     			<div class="col-md-6 col-lg-3 ftco-animate">
     				<div class="product">
-    					<a href="p_orchids.html" class="img-prod"><img class="img-fluid" src="images/product-5.jpg" alt="Colorlib Template">
+    					<a href="product-orchids.html" class="img-prod"><img class="img-fluid" src="images/product-5.jpg" alt="Colorlib Template">
     						<span class="status">55%</span>
     						<div class="overlay"></div>
     					</a>
     					<div class="text py-3 pb-4 px-3 text-center">
-    						<h3><a href="p_orchids.html">Hoa lan</a></h3>
+    						<h3><a href="product-orchids.html">Hoa lan</a></h3>
     						<div class="d-flex">
     							<div class="pricing">
 		    						<p class="price"><span class="mr-2 price-dc">1.000.000đ</span><span class="price-sale">550.000đ</span></p>
@@ -292,7 +294,7 @@
 	    					</div>
 	    					<div class="bottom-area d-flex px-3">
 	    						<div class="m-auto d-flex">
-	    							<a href="p_orchids.html" class="add-to-cart d-flex justify-content-center align-items-center text-center">
+	    							<a href="product-orchids.html" class="add-to-cart d-flex justify-content-center align-items-center text-center">
 	    								<span><i class="ion-ios-menu"></i></span>
 	    							</a>
 	    							<a href="#" class="buy-now d-flex justify-content-center align-items-center mx-1">
@@ -308,11 +310,11 @@
     			</div>
     			<div class="col-md-6 col-lg-3 ftco-animate">
     				<div class="product">
-    					<a href="p_peach.html" class="img-prod"><img class="img-fluid" src="images/product-6.jpg" alt="Colorlib Template">
+    					<a href="product-peach.html" class="img-prod"><img class="img-fluid" src="images/product-6.jpg" alt="Colorlib Template">
     						<div class="overlay"></div>
     					</a>
     					<div class="text py-3 pb-4 px-3 text-center">
-    						<h3><a href="p_peach.html">Hoa đào</a></h3>
+    						<h3><a href="product-peach.html">Hoa đào</a></h3>
     						<div class="d-flex">
     							<div class="pricing">
 		    						<p class="price"><span>900.000đ</span></p>
@@ -320,7 +322,7 @@
 	    					</div>
     						<div class="bottom-area d-flex px-3">
 	    						<div class="m-auto d-flex">
-	    							<a href="p_peach.html" class="add-to-cart d-flex justify-content-center align-items-center text-center">
+	    							<a href="product-peach.html" class="add-to-cart d-flex justify-content-center align-items-center text-center">
 	    								<span><i class="ion-ios-menu"></i></span>
 	    							</a>
 	    							<a href="#" class="buy-now d-flex justify-content-center align-items-center mx-1">
@@ -336,11 +338,11 @@
     			</div>
     			<div class="col-md-6 col-lg-3 ftco-animate">
     				<div class="product">
-    					<a href="p_chrysanthemum.html" class="img-prod"><img class="img-fluid" src="images/product-7.jpg" alt="Colorlib Template">
+    					<a href="product-chrysanthemum.html" class="img-prod"><img class="img-fluid" src="images/product-7.jpg" alt="Colorlib Template">
 	    					<div class="overlay"></div>
 	    				</a>
     					<div class="text py-3 pb-4 px-3 text-center">
-    						<h3><a href="p_chrysanthemum.html">Hoa cúc</a></h3>
+    						<h3><a href="product-chrysanthemum.html">Hoa cúc</a></h3>
     						<div class="d-flex">
     							<div class="pricing">
 		    						<p class="price"><span>210.000đ</span></p>
@@ -348,7 +350,7 @@
 	    					</div>
     						<div class="bottom-area d-flex px-3">
 	    						<div class="m-auto d-flex">
-	    							<a href="p_chrysanthemum.html" class="add-to-cart d-flex justify-content-center align-items-center text-center">
+	    							<a href="product-chrysanthemum.html" class="add-to-cart d-flex justify-content-center align-items-center text-center">
 	    								<span><i class="ion-ios-menu"></i></span>
 	    							</a>
 	    							<a href="#" class="buy-now d-flex justify-content-center align-items-center mx-1">
@@ -364,11 +366,11 @@
     			</div>
     			<div class="col-md-6 col-lg-3 ftco-animate">
     				<div class="product">
-    					<a href="p_water lily.html" class="img-prod"><img class="img-fluid" src="images/product-8.jpg" alt="Colorlib Template">
+    					<a href="product-water lily.html" class="img-prod"><img class="img-fluid" src="images/product-8.jpg" alt="Colorlib Template">
     						<div class="overlay"></div>
     					</a>
     					<div class="text py-3 pb-4 px-3 text-center">
-    						<h3><a href="p_water lily.html">Hoa súng</a></h3>
+    						<h3><a href="product-water lily.html">Hoa súng</a></h3>
     						<div class="d-flex">
     							<div class="pricing">
 		    						<p class="price"><span>170.000đ</span></p>
@@ -376,7 +378,7 @@
 	    					</div>
     						<div class="bottom-area d-flex px-3">
 	    						<div class="m-auto d-flex">
-	    							<a href="p_water lily.html" class="add-to-cart d-flex justify-content-center align-items-center text-center">
+	    							<a href="product-water lily.html" class="add-to-cart d-flex justify-content-center align-items-center text-center">
 	    								<span><i class="ion-ios-menu"></i></span>
 	    							</a>
 	    							<a href="#" class="buy-now d-flex justify-content-center align-items-center mx-1">
@@ -393,12 +395,12 @@
 
     			<div class="col-md-6 col-lg-3 ftco-animate">
     				<div class="product">
-    					<a href="p_lily.html" class="img-prod"><img class="img-fluid" src="images/product-9.jpg" alt="Colorlib Template">
+    					<a href="product-lily.html" class="img-prod"><img class="img-fluid" src="images/product-9.jpg" alt="Colorlib Template">
     						<span class="status">45%</span>
     						<div class="overlay"></div>
     					</a>
     					<div class="text py-3 pb-4 px-3 text-center">
-    						<h3><a href="p_lily.html">Hoa huệ</a></h3>
+    						<h3><a href="product-lily.html">Hoa huệ</a></h3>
     						<div class="d-flex">
     							<div class="pricing">
 		    						<p class="price"><span class="mr-2 price-dc">750.000đ</span><span class="price-sale">337.500đ</span></p>
@@ -406,7 +408,7 @@
 	    					</div>
 	    					<div class="bottom-area d-flex px-3">
 	    						<div class="m-auto d-flex">
-	    							<a href="p_lily.html" class="add-to-cart d-flex justify-content-center align-items-center text-center">
+	    							<a href="product-lily.html" class="add-to-cart d-flex justify-content-center align-items-center text-center">
 	    								<span><i class="ion-ios-menu"></i></span>
 	    							</a>
 	    							<a href="#" class="buy-now d-flex justify-content-center align-items-center mx-1">
@@ -422,11 +424,11 @@
     			</div>
     			<div class="col-md-6 col-lg-3 ftco-animate">
     				<div class="product">
-    					<a href="p_peony.html" class="img-prod"><img class="img-fluid" src="images/product-10.jpg" alt="Colorlib Template">
+    					<a href="product-peony.html" class="img-prod"><img class="img-fluid" src="images/product-10.jpg" alt="Colorlib Template">
     						<div class="overlay"></div>
     					</a>
     					<div class="text py-3 pb-4 px-3 text-center">
-    						<h3><a href="p_peony.html">Hoa mẫu đơn</a></h3>
+    						<h3><a href="product-peony.html">Hoa mẫu đơn</a></h3>
     						<div class="d-flex">
     							<div class="pricing">
 		    						<p class="price"><span>430.000đ</span></p>
@@ -434,7 +436,7 @@
 	    					</div>
     						<div class="bottom-area d-flex px-3">
 	    						<div class="m-auto d-flex">
-	    							<a href="p_peony.html" class="add-to-cart d-flex justify-content-center align-items-center text-center">
+	    							<a href="product-peony.html" class="add-to-cart d-flex justify-content-center align-items-center text-center">
 	    								<span><i class="ion-ios-menu"></i></span>
 	    							</a>
 	    							<a href="#" class="buy-now d-flex justify-content-center align-items-center mx-1">
@@ -450,11 +452,11 @@
     			</div>
     			<div class="col-md-6 col-lg-3 ftco-animate">
     				<div class="product">
-    					<a href="p_wild_orchids.html" class="img-prod"><img class="img-fluid" src="images/product-11.jpg" alt="Colorlib Template">
+    					<a href="product-wild_orchids.html" class="img-prod"><img class="img-fluid" src="images/product-11.jpg" alt="Colorlib Template">
 	    					<div class="overlay"></div>
 	    				</a>
     					<div class="text py-3 pb-4 px-3 text-center">
-    						<h3><a href="p_wild_orchids.html">Hoa phong lan</a></h3>
+    						<h3><a href="product-wild_orchids.html">Hoa phong lan</a></h3>
     						<div class="d-flex">
     							<div class="pricing">
 		    						<p class="price"><span>365.000đ</span></p>
@@ -462,7 +464,7 @@
 	    					</div>
     						<div class="bottom-area d-flex px-3">
 	    						<div class="m-auto d-flex">
-	    							<a href="p_wild_orchids.html" class="add-to-cart d-flex justify-content-center align-items-center text-center">
+	    							<a href="product-wild_orchids.html" class="add-to-cart d-flex justify-content-center align-items-center text-center">
 	    								<span><i class="ion-ios-menu"></i></span>
 	    							</a>
 	    							<a href="#" class="buy-now d-flex justify-content-center align-items-center mx-1">
@@ -478,11 +480,11 @@
     			</div>
     			<div class="col-md-6 col-lg-3 ftco-animate">
     				<div class="product">
-    					<a href="p_j97.html" class="img-prod"><img class="img-fluid" src="images/product-12.jpg" alt="Colorlib Template">
+    					<a href="product-j97.html" class="img-prod"><img class="img-fluid" src="images/product-12.jpg" alt="Colorlib Template">
     						<div class="overlay"></div>
     					</a>
     					<div class="text py-3 pb-4 px-3 text-center">
-    						<h3><a href="p_j97.html">Hoa hải đường</a></h3>
+    						<h3><a href="product-j97.html">Hoa hải đường</a></h3>
     						<div class="d-flex">
     							<div class="pricing">
 		    						<p class="price"><span>5.000.000đ</span></p>
@@ -490,7 +492,7 @@
 	    					</div>
     						<div class="bottom-area d-flex px-3">
 	    						<div class="m-auto d-flex">
-	    							<a href="p_j97.html" class="add-to-cart d-flex justify-content-center align-items-center text-center">
+	    							<a href="product-j97.html" class="add-to-cart d-flex justify-content-center align-items-center text-center">
 	    								<span><i class="ion-ios-menu"></i></span>
 	    							</a>
 	    							<a href="#" class="buy-now d-flex justify-content-center align-items-center mx-1">
@@ -510,9 +512,9 @@
             		<div class="block-27">
               			<ul>
                 			<li><a href="#">&lt;</a></li>
-                			<li class="active"><span>1</span></li>
-                			<li><a href="find2.html">2</a></li>
-                			<li><a href="#">3</a></li>
+                			<li class="find_dn.html"><span>1</span></li>
+                			<li><a href="find_dn2.html">2</a></li>
+                				<li class="active"><span>3</span></li>
                 			<li><a href="#">4</a></li>
                 			<li><a href="#">5</a></li>
                 			<li><a href="#">&gt;</a></li>
@@ -637,7 +639,6 @@
   <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBVWaKrjvy3MaE7SQ74_uJiULgl1JY0H2s&sensor=false"></script>
   <script src="js/google-map.js"></script>
   <script src="js/main.js"></script>
-  <script src="js/price.js"></script>  
-  <script src="js/find.js"></script>
+    <script src="js/find.js"></script>
   </body>
 </html>
