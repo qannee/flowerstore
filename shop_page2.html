@@ -59,56 +59,65 @@
 	      	<button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#ftco-nav" aria-controls="ftco-nav" aria-expanded="false" aria-label="Toggle navigation">
 	        	<span class="oi oi-menu"></span> Mua sắm
 	      	</button>
-				<!--Nút tìm kiếm-->
+			<!-- Nút tìm kiếm ngoài -->
 			<div class="search-box">
-  				<input type="text" placeholder="Tìm kiếm sản phẩm...">
-				<a href="find.html" class="icon-btn"><i class="fa-solid fa-search"></i></a>
-  				<button class="icon-btn" id="filterBtn"><i class="fa-solid fa-filter"></i></button>
+			<input type="text" placeholder="Tìm kiếm sản phẩm...">
+			<a href="find.html" class="icon-btn"><i class="fa-solid fa-search"></i></a>
+			<button class="icon-btn" id="filterBtn"><i class="fa-solid fa-filter"></i></button>
 			</div>
 
+			<!-- Popup bộ lọc -->
 			<div class="overlay" id="overlay">
-  				<div class="filter-popup">
-    				<h3>Bộ lọc sản phẩm</h3>
+				<div class="filter-popup">
+					
+					<h3>Tìm kiếm nâng cao</h3>
 
-    <!-- Danh mục -->
-    <div class="filter-section">
-      <label>Danh mục</label>
-      <div class="filter-options">
-        <div class="filter-btn">Hoa tươi</div>
-        <div class="filter-btn">Hoa khô</div>
-        <div class="filter-btn">Phụ kiện</div>
-        <div class="filter-btn">Trang trí</div>
-      </div>
-    </div>
+					<!-- Thanh tìm kiếm trong popup -->
+					<div class="popup-search">
+						<input type="text" id="popupSearchInput" placeholder="Nhập từ khóa tìm kiếm...">
+						<button class="icon-btn" id="popupSearchBtn">
+							<i class="fa-solid fa-search"></i>
+						</button>
+					</div>
 
-    <!-- Khoảng giá (bây giờ là nút chọn) -->
-    <div class="filter-section">
-      <label>Khoảng giá (VNĐ)</label>
-      <div class="filter-options">
-        <div class="filter-btn">Dưới 200K</div>
-        <div class="filter-btn">200K - 500K</div>
-        <div class="filter-btn">500K - 1 triệu</div>
-        <div class="filter-btn">Trên 1 triệu</div>
-      </div>
-    </div>
 
-    <!-- Trạng thái -->
-    <div class="filter-section">
-      <label>Trạng thái</label>
-      <div class="filter-options">
-        <div class="filter-btn">Còn hàng</div>
-        <div class="filter-btn">Hết hàng</div>
-      </div>
-    </div>
 
-    <!-- Nút áp dụng / hủy -->
-    <div class="filter-buttons">
-      <button class="cancel-btn" id="cancelBtn">Hủy</button>
-      <a href="find.html" class="apply-btn">Áp dụng</a>
-    </div>
-  </div>
-</div>
-	<!--Kết thúc nút tìm kiếm-->
+					<div class="filter-section">
+						<label>Danh mục</label>
+						<div class="filter-options">
+							<div class="filter-btn">Hoa tươi</div>
+							<div class="filter-btn">Hoa khô</div>
+							<div class="filter-btn">Phụ kiện</div>
+							<div class="filter-btn">Trang trí</div>
+						</div>
+					</div>
+
+					<div class="filter-section">
+					<label>Khoảng giá (VNĐ)</label>
+						<div class="filter-options">
+							<div class="filter-btn">Dưới 200K</div>
+							<div class="filter-btn">200K - 500K</div>
+							<div class="filter-btn">500K - 1 triệu</div>
+							<div class="filter-btn">Trên 1 triệu</div>
+						</div>
+					</div>
+
+					<div class="filter-section">
+						<label>Trạng thái</label>
+						<div class="filter-options">
+							<div class="filter-btn">Còn hàng</div>
+							<div class="filter-btn">Hết hàng</div>
+						</div>
+					</div>
+
+					<div class="filter-buttons">
+						<button class="cancel-btn" id="cancelBtn">Hủy</button>
+						<a href="find.html" class="apply-btn">Áp dụng</a>
+					</div>
+
+				</div>
+			</div>
+			<!-- Kết thúc tìm kiếm -->
 	      	<div class="collapse navbar-collapse" id="ftco-nav">
 	        <ul class="navbar-nav ml-auto">
 	          	<li class="nav-item"><a href="index.html" class="nav-link">Trang chủ</a></li>
@@ -264,7 +273,7 @@
 	    							<a href="p_tulip.html" class="add-to-cart d-flex justify-content-center align-items-center text-center">
 	    								<span><i class="ion-ios-menu"></i></span>
 	    							</a>
-	    							<a href="#" class="buy-now d-flex justify-content-center align-items-center mx-1">
+	    							<a href="dangnhap.html" class="buy-now d-flex justify-content-center align-items-center mx-1">
 	    								<span><i class="ion-ios-cart"></i></span>
 	    							</a>
 	    							<a href="#" class="heart d-flex justify-content-center align-items-center ">
@@ -295,7 +304,7 @@
 	    							<a href="p_orchids.html" class="add-to-cart d-flex justify-content-center align-items-center text-center">
 	    								<span><i class="ion-ios-menu"></i></span>
 	    							</a>
-	    							<a href="#" class="buy-now d-flex justify-content-center align-items-center mx-1">
+	    							<a href="dangnhap.html" class="buy-now d-flex justify-content-center align-items-center mx-1">
 	    								<span><i class="ion-ios-cart"></i></span>
 	    							</a>
 	    							<a href="#" class="heart d-flex justify-content-center align-items-center ">
@@ -323,7 +332,7 @@
 	    							<a href="p_peach.html" class="add-to-cart d-flex justify-content-center align-items-center text-center">
 	    								<span><i class="ion-ios-menu"></i></span>
 	    							</a>
-	    							<a href="#" class="buy-now d-flex justify-content-center align-items-center mx-1">
+	    							<a href="dangnhap.html" class="buy-now d-flex justify-content-center align-items-center mx-1">
 	    								<span><i class="ion-ios-cart"></i></span>
 	    							</a>
 	    							<a href="#" class="heart d-flex justify-content-center align-items-center ">
@@ -351,7 +360,7 @@
 	    							<a href="p_chrysanthemum.html" class="add-to-cart d-flex justify-content-center align-items-center text-center">
 	    								<span><i class="ion-ios-menu"></i></span>
 	    							</a>
-	    							<a href="#" class="buy-now d-flex justify-content-center align-items-center mx-1">
+	    							<a href="dangnhap.html" class="buy-now d-flex justify-content-center align-items-center mx-1">
 	    								<span><i class="ion-ios-cart"></i></span>
 	    							</a>
 	    							<a href="#" class="heart d-flex justify-content-center align-items-center ">
@@ -379,7 +388,7 @@
 	    							<a href="p_water lily.html" class="add-to-cart d-flex justify-content-center align-items-center text-center">
 	    								<span><i class="ion-ios-menu"></i></span>
 	    							</a>
-	    							<a href="#" class="buy-now d-flex justify-content-center align-items-center mx-1">
+	    							<a href="dangnhap.html" class="buy-now d-flex justify-content-center align-items-center mx-1">
 	    								<span><i class="ion-ios-cart"></i></span>
 	    							</a>
 	    							<a href="#" class="heart d-flex justify-content-center align-items-center ">
@@ -409,7 +418,7 @@
 	    							<a href="p_lily.html" class="add-to-cart d-flex justify-content-center align-items-center text-center">
 	    								<span><i class="ion-ios-menu"></i></span>
 	    							</a>
-	    							<a href="#" class="buy-now d-flex justify-content-center align-items-center mx-1">
+	    							<a href="dangnhap.html" class="buy-now d-flex justify-content-center align-items-center mx-1">
 	    								<span><i class="ion-ios-cart"></i></span>
 	    							</a>
 	    							<a href="#" class="heart d-flex justify-content-center align-items-center ">
@@ -437,7 +446,7 @@
 	    							<a href="p_peony.html" class="add-to-cart d-flex justify-content-center align-items-center text-center">
 	    								<span><i class="ion-ios-menu"></i></span>
 	    							</a>
-	    							<a href="#" class="buy-now d-flex justify-content-center align-items-center mx-1">
+	    							<a href="dangnhap.html" class="buy-now d-flex justify-content-center align-items-center mx-1">
 	    								<span><i class="ion-ios-cart"></i></span>
 	    							</a>
 	    							<a href="#" class="heart d-flex justify-content-center align-items-center ">
@@ -465,7 +474,7 @@
 	    							<a href="p_wild_orchids.html" class="add-to-cart d-flex justify-content-center align-items-center text-center">
 	    								<span><i class="ion-ios-menu"></i></span>
 	    							</a>
-	    							<a href="#" class="buy-now d-flex justify-content-center align-items-center mx-1">
+	    							<a href="dangnhap.html" class="buy-now d-flex justify-content-center align-items-center mx-1">
 	    								<span><i class="ion-ios-cart"></i></span>
 	    							</a>
 	    							<a href="#" class="heart d-flex justify-content-center align-items-center ">
@@ -493,7 +502,7 @@
 	    							<a href="p_j97.html" class="add-to-cart d-flex justify-content-center align-items-center text-center">
 	    								<span><i class="ion-ios-menu"></i></span>
 	    							</a>
-	    							<a href="#" class="buy-now d-flex justify-content-center align-items-center mx-1">
+	    							<a href="dangnhap.html" class="buy-now d-flex justify-content-center align-items-center mx-1">
 	    								<span><i class="ion-ios-cart"></i></span>
 	    							</a>
 	    							<a href="#" class="heart d-flex justify-content-center align-items-center ">
