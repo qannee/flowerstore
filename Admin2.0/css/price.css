@@ -397,3 +397,10 @@ body {
     font-weight: 600;
     color: #000;
 }
+.locked-field {
+    background-color: #e9ecef !important; /* nền xám mờ */
+    pointer-events: none; /* không thể click/chỉnh */
+    opacity: 0.7; /* mờ hơn để dễ nhận biết */
+}
+
+

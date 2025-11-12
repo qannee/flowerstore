@@ -88,21 +88,18 @@
       	</div>
     </div>
 
-    <div class="management-container">
+   <div class="management-container">
         <div class="d-flex justify-content-between align-items-center mb-4">
             <div class="d-flex align-items-center" style="gap: 15px;">
                 <button class="btn btn-add-product" onclick="showAddModal()">
                     <i class="fas fa-plus-circle"></i> Thêm sản phẩm mới
                 </button>
-                <select class="form-control" id="flowerTypeSelect" style="width: 200px; border-radius: 25px; padding: 10px 15px; height: auto; line-height: normal;">
-                    <option value="">-- Chọn loại hoa --</option>
-                    <option value="Hoa hồng">Hoa hồng</option>
-                    <option value="Hoa tulip">Hoa tulip</option>
-                    <option value="Hoa lan">Hoa lan</option>
-                    <option value="Hoa cúc">Hoa cúc</option>
-                    <option value="Hoa ly">Hoa ly</option>
-                    <option value="Hoa hướng dương">Hoa đào</option>
-                </select>
+                <!-- Nút chọn loại hoa -->
+<button class="btn btn-secondary" onclick="openFlowerTypeModal()" style="border-radius: 25px; padding: 10px 20px;">
+    <i class="fas fa-list"></i> Phân theo loại hoa
+</button>
+
+
             </div>
             <div class="search-box" style="flex: 1; max-width: 400px; margin-left: 20px;">
   <input type="text" class="form-control" id="searchInput" placeholder="Tìm kiếm sản phẩm...">
@@ -149,6 +146,29 @@
                                 </div>
                             </div>
                         </div>
+
+                    <div class="row">
+                        <div class="col-md-6">
+                                <div class="form-group">
+                                    <label>Màu hoa *</label>
+                                    <select class="form-control" id="flowerTypeSelect" style="width: 200px; border-radius: 25px; padding: 10px 15px; height: auto; line-height: normal;">
+                    <option value=""> Chọn màu hoa </option>
+                    <option value="Hoa hồng">Đỏ</option>
+                    <option value="Hoa tulip">Vàng</option>
+                    <option value="Hoa lan">Tím</option>
+                    <option value="Hoa cúc">Trắng</option>
+                </select>
+                                </div>
+                            </div>
+                            <div class="col-md-6">
+    <div class="form-group">
+        <label>số lượng *</label>
+        <input type="number" class="form-control" id="productQuantity" required min="1" step="1">
+    </div>
+</div>
+
+                        
+                        </div>
                         
                         <div class="form-group">
                             <label>Hình ảnh *</label>
@@ -178,6 +198,62 @@
         </div>
     </div>
 
+<!-- Modal Chọn loại hoa -->
+<div class="modal fade" id="flowerTypeModal" tabindex="-1">
+  <div class="modal-dialog modal-lg">
+    <div class="modal-content">
+      <div class="modal-header bg-success text-white">
+        <h5 class="modal-title">Phân loại hoa</h5>
+        <button type="button" class="close text-white" data-dismiss="modal">
+          <span>&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+        <table class="table table-bordered table-hover">
+          <thead class="thead-light">
+            <tr>
+              <th>Loại hoa</th>
+              <th>Số lượng</th>
+              <th>Thao tác</th>
+            </tr>
+          </thead>
+          <tbody id="flowerTypeTable"></tbody>
+        </table>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- Modal sửa loại hoa -->
+<div class="modal fade" id="editFlowerTypeModal" tabindex="-1">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header bg-warning text-white">
+        <h5 class="modal-title">Sửa loại hoa</h5>
+        <button type="button" class="close text-white" data-dismiss="modal">
+          <span>&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+        <form id="editFlowerTypeForm">
+          <input type="hidden" id="editFlowerTypeId">
+          <div class="form-group">
+            <label>Tên loại hoa</label>
+            <input type="text" class="form-control" id="editFlowerTypeName" required>
+          </div>
+          <div class="form-group">
+            <label>Số lượng hoa</label>
+            <input type="number" class="form-control" id="editFlowerQuantity" min="0" required>
+          </div>
+        </form>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-dismiss="modal">Hủy</button>
+        <button type="button" class="btn btn-success" onclick="saveFlowerTypeEdit()">Lưu thay đổi</button>
+      </div>
+    </div>
+  </div>
+</div>
 
     <footer class="ftco-footer ftco-section">
       <div class="container">

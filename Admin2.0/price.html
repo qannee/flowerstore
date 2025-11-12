@@ -94,13 +94,21 @@
     <div class="management-container">
         <div class="d-flex justify-content-between align-items-center mb-4">
             <div class="d-flex align-items-center">
-                <button class="btn btn-add-product" onclick="showAddModal()">
-                    <i class="fas fa-plus-circle"></i> Thêm sản phẩm mới
-                </button>
-                 <button class="btn btn-settings" onclick="showProfitSettings()">
-                    <i class="fas fa-cog"></i> Cài đặt lợi nhuận
-                </button> 
-            </div>
+    <button class="btn btn-add-product" onclick="showAddModal()">
+        <i class="fas fa-plus-circle"></i> Thêm sản phẩm mới
+    </button>
+
+    <button class="btn btn-settings" onclick="showProfitSettings()">
+        <i class="fas fa-cog"></i> Lợi nhuận theo sản phẩm
+    </button>
+
+    <!-- ✅ Nút phân loại giá mới -->
+   <button class="btn btn-settings" onclick="openCategoryProfitModal()">
+  <i class="fas fa-filter"></i> Lợi nhuận theo loại
+</button>
+
+</div>
+
             
             <div class="search-box" style="flex: 1; max-width: 400px; margin-left: 20px;">
                 <input type="text" class="form-control" id="searchInput" placeholder="Tìm kiếm sản phẩm...">
@@ -210,7 +218,7 @@
         </div>
     </div>
 
-   <div class="modal fade" id="profitSettingsModal" tabindex="-1">
+    <div class="modal fade" id="profitSettingsModal" tabindex="-1">
         <div class="modal-dialog modal-lg">
             <div class="modal-content">
                 <div class="modal-header">
@@ -239,6 +247,43 @@
             </div>
         </div>
     </div>
+
+    <!-- 🔶 Modal: Lợi nhuận theo loại hoa (độc lập) -->
+<div class="modal fade" id="categoryProfitModal" tabindex="-1" aria-labelledby="categoryProfitLabel" aria-hidden="true">
+  <div class="modal-dialog modal-lg">
+    <div class="modal-content">
+      <div class="modal-header bg-success text-white">
+        <h5 class="modal-title" id="categoryProfitLabel">
+          <i class="fas fa-percentage"></i> Lợi nhuận theo loại hoa
+        </h5>
+        <button type="button" class="close text-white" data-dismiss="modal">
+          <span>&times;</span>
+        </button>
+      </div>
+
+      <div class="modal-body">
+        <table class=" table-bordered table-hover text-center align-middle w-75 mx-auto">
+          <thead class="thead-light">
+            <tr>
+              <th>ID</th>
+              <th>Loại hoa</th>
+              <th>Số lượng</th>
+              <th>Tỉ lệ lợi nhuận (%)</th>
+            </tr>
+          </thead>
+          <tbody id="categoryProfitBody"></tbody>
+        </table>
+      </div>
+
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-dismiss="modal">Đóng</button>
+        <button type="button" class="btn btn-add-product" onclick="saveCategoryProfits()">
+          <i class="fas fa-save"></i> Lưu thay đổi
+        </button>
+      </div>
+    </div>
+  </div>
+</div>
 
     <footer class="ftco-footer ftco-section">
       <div class="container">

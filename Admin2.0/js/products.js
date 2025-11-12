@@ -1,4 +1,4 @@
-        let products = [
+let products = [
             {
                 id: 1,
                 code: "SP001",
@@ -161,7 +161,8 @@
             document.getElementById('productCode').value = product.code;
             document.getElementById('productName').value = product.name;
             document.getElementById('productDescription').value = product.description || '';
-            
+            document.getElementById('flowerTypeSelect').value = product.color || '';
+        document.getElementById('productQuantity').value = product.defaultQuantity || 1;
             if (product.image) {
                 imagePreview.src = product.image;
                 imagePreview.style.display = 'block';
@@ -175,7 +176,8 @@
     const code = document.getElementById('productCode').value.trim();
     const name = document.getElementById('productName').value.trim();
     const image = document.getElementById('productImage').value.trim();
-    const description = document.getElementById('productDescription').value.trim();
+    const description = document.getElementById('productDescription').value.trim(); 
+    
     
     
 
@@ -256,3 +258,85 @@ function deleteProduct(id) {
         }
 
         renderProducts();
+
+        
+
+        
+let flowerTypes = [
+  { id: 1, name: "Hoa J97",quantity: 120, hidden: false },
+    { id: 2, name: "Hoa lễ",quantity: 20, hidden: false },
+    { id: 3, name: "Hoa trang trí",quantity: 30, hidden: false },
+    { id: 4, name: "Hoa tết",quantity: 77, hidden: false },
+    { id: 5, name: "Hoa cúng",quantity: 33, hidden: false }
+];
+function openFlowerTypeModal() {
+  renderFlowerTypeTable();
+  $('#flowerTypeModal').modal('show');
+}
+
+function renderFlowerTypeTable() {
+  const tbody = document.getElementById('flowerTypeTable');
+  tbody.innerHTML = '';
+  flowerTypes.forEach(type => {
+    const hiddenClass = type.hidden ? 'text-muted' : '';
+    const hiddenLabel = type.hidden ? '<span class="badge badge-secondary">Ẩn</span>' : '';
+    tbody.innerHTML += `
+      <tr class="${hiddenClass}">
+        <td>${type.name} ${hiddenLabel}</td>
+        <td>${type.quantity}</td>
+        <td>
+          <button class="btn btn-sm btn-warning" onclick="editFlowerType(${type.id})"><i class="fas fa-edit"></i> Sửa</button>
+          <button class="btn btn-sm btn-danger" onclick="deleteFlowerType(${type.id})"><i class="fas fa-trash"></i> Xóa</button>
+          <button class="btn btn-sm btn-secondary" onclick="toggleFlowerType(${type.id})">
+            <i class="fas fa-eye${type.hidden ? '' : '-slash'}"></i> ${type.hidden ? 'Hiện' : 'Ẩn'}
+          </button>
+        </td>
+      </tr>
+    `;
+  });
+}
+
+function editFlowerType(id) {
+  const type = flowerTypes.find(t => t.id === id);
+  if (!type) return;
+  document.getElementById('editFlowerTypeId').value = type.id;
+  document.getElementById('editFlowerTypeName').value = type.name;
+  document.getElementById('editFlowerQuantity').value = type.quantity;
+  $('#editFlowerTypeModal').modal('show');
+}
+
+function saveFlowerTypeEdit() {
+  const id = parseInt(document.getElementById('editFlowerTypeId').value);
+  const name = document.getElementById('editFlowerTypeName').value.trim();
+  const quantity = parseInt(document.getElementById('editFlowerQuantity').value);
+  /*if (!name || isNaN(quantity)) {
+    alert("Vui lòng nhập đầy đủ thông tin!");
+    return;
+  }*/
+  const type = flowerTypes.find(t => t.id === id);
+  if (type) {
+    //type.name = name;
+    //type.quantity = quantity;
+    alert("✅ Đã lưu thay đổi loại hoa!");
+  }
+  $('#editFlowerTypeModal').modal('hide');
+  renderFlowerTypeTable();
+}
+
+function deleteFlowerType(id) {
+  const type = flowerTypes.find(t => t.id === id);
+  if (!type) return;
+  if (confirm(`Bạn có chắc muốn xóa "${type.name}"?`)) {
+    //flowerTypes = flowerTypes.filter(t => t.id !== id);
+    alert("🗑️ Đã xóa loại hoa!");
+    renderFlowerTypeTable();
+  }
+}
+
+function toggleFlowerType(id) {
+  const type = flowerTypes.find(t => t.id === id);
+  if (type) {
+    type.hidden = !type.hidden;
+    renderFlowerTypeTable();
+  }
+}
