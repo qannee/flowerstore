@@ -1,0 +1,116 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Xem phiếu nhập hàng</title>
+<style>
+    body {
+        font-family: "Segoe UI", Arial, sans-serif;
+        background: #f4f6f9;
+        padding: 40px;
+    }
+    .container {
+        max-width: 900px;
+        margin: auto;
+        background: white;
+        padding: 30px 40px;
+        border-radius: 10px;
+        box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+    }
+    h2 {
+        text-align: center;
+        margin-bottom: 25px;
+        font-size: 26px;
+        color: #222;
+    }
+    .info {
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        gap: 15px;
+        margin-bottom: 25px;
+    }
+    .info div {
+        font-size: 16px;
+        background: #f8f9fa;
+        padding: 10px 15px;
+        border-radius: 6px;
+    }
+    table {
+        width: 100%;
+        border-collapse: collapse;
+        margin-top: 10px;
+        font-size: 15px;
+    }
+    th, td {
+        border: 1px solid #ddd;
+        padding: 8px;
+        text-align: center;
+    }
+    th {
+        background: #f0f0f0;
+        font-weight: 600;
+    }
+    .btn-group {
+        text-align: center;
+        margin-top: 30px;
+    }
+    .btn {
+        display: inline-block;
+        border: none;
+        border-radius: 6px;
+        font-size: 16px;
+        cursor: pointer;
+        padding: 12px 25px;
+        font-weight: 600;
+        color: white;
+        margin: 0 10px;
+        text-decoration: none;
+        transition: 0.2s ease;
+    }
+    .edit-btn { background: #ffc107; color: #000; }
+    .confirm-btn { background: #28a745; }
+    .edit-btn:hover, .confirm-btn:hover { opacity: 0.9; }
+</style>
+</head>
+<body>
+
+<div class="container">
+    <h2>📋 Phiếu nhập hàng PN0006</h2>
+
+    <div class="info">
+        <div><b>Ngày nhập:</b> 13/11/2025</div>
+        <div><b>Nhà cung cấp:</b> Công ty ABC</div>
+        <div><b>Người tạo phiếu:</b> Nguyễn Quốc An</div>
+        <div><b>Tổng sản phẩm:</b> 3</div>
+    </div>
+
+    <table>
+        <thead>
+            <tr>
+                <th>Tên sản phẩm</th>
+                <th>Số lượng</th>
+                <th>Đơn giá</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr><td>Hoa Hồng Đỏ</td><td>10</td><td>25,000 ₫</td></tr>
+            <tr><td>Hoa Ly Trắng</td><td>5</td><td>30,000 ₫</td></tr>
+            <tr><td>Hoa Cẩm Chướng</td><td>8</td><td>20,000 ₫</td></tr>
+        </tbody>
+    </table>
+
+    <div class="btn-group">
+        <a href="purchase_add.html" class="btn edit-btn">Sửa phiếu</a>
+        <a href="purchase.html" class="btn confirm-btn" onclick="confirmReceipt()">Xác nhận</a>
+    </div>
+</div>
+
+<script>
+function confirmReceipt() {
+    alert("✅ Phiếu nhập đã được xác nhận thành công!");
+}
+</script>
+
+</body>
+</html>

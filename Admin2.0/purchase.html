@@ -28,10 +28,7 @@
     <link rel="stylesheet" href="css/icomoon.css">
     <link rel="stylesheet" href="css/style.css">
 
-	<link rel="stylesheet" href="css/products.css">
-  <link href="https://fonts.googleapis.com/css?family=Poppins:200,300,400,500,600,700,800&display=swap" rel="stylesheet">
-  <!-- <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/4.6.0/css/bootstrap.min.css"> -->
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
+	<link rel="stylesheet" href="css/purchase.css">
 </head>
 <body class="goto-here">
 	<div class="py-1 bg-primary">
@@ -88,178 +85,80 @@
       	<div class="container">
         	<div class="row no-gutters slider-text align-items-center justify-content-center">
           		<div class="col-md-9 ftco-animate text-center">
-            		<h1 class="mb-0 bread">Quản lý sản phẩm</h1>
+            		<h1 class="mb-0 bread">Quản lý nhập hàng</h1>
           		</div>
         	</div>
       	</div>
     </div>
 
-   <div class="management-container">
-        <div class="d-flex justify-content-between align-items-center mb-4">
-            <div class="d-flex align-items-center" style="gap: 15px;">
-                <button class="btn btn-add-product" onclick="showAddModal()">
-                    <i class="fas fa-plus-circle"></i> Thêm sản phẩm mới
-                </button>
-                <!-- Nút chọn loại hoa -->
-<button class="btn btn-secondary" onclick="openFlowerTypeModal()" style="border-radius: 25px; padding: 10px 20px;">
-    <i class="fas fa-list"></i> Phân theo loại hoa
-</button>
+    <div class="nh_container">
+        <div class="list-box">
+            <h2>
+                📋 Danh sách phiếu nhập trước đó
+                <a href="purchase_add.html" class="add-btn">+ Nhập hàng</a>
+            </h2>
 
-
-            </div>
-            <div class="search-box" style="flex: 1; max-width: 400px; margin-left: 20px;">
-  <input type="text" class="form-control" id="searchInput" placeholder="Tìm kiếm sản phẩm...">
-  <button id="searchButton" class="search-btn" aria-label="Tìm kiếm">
-    <i class="fas fa-search"></i>
-  </button>
-</div>
-
-        </div>
-
-        <div id="productList"></div>
-        
-        <div id="emptyState" class="empty-state" style="display: none;">
-            <i class="fas fa-box-open"></i>
-            <h3>Chưa có sản phẩm nào</h3>
-            <p>Hãy thêm sản phẩm đầu tiên cho cửa hàng của bạn!</p>
-        </div>
-    </div>
-
-    <!-- Modal Thêm/Sửa Sản phẩm -->
-    <div class="modal fade" id="productModal" tabindex="-1">
-        <div class="modal-dialog modal-lg">
-            <div class="modal-content">
-                <div class="modal-header">
-                    <h5 class="modal-title" id="modalTitle">Thêm sản phẩm mới</h5>
-                    <button type="button" class="close text-white" data-dismiss="modal">
-                        <span>&times;</span>
-                    </button>
-                </div>
-                <div class="modal-body">
-                    <form id="productForm">
-                        <input type="hidden" id="productId">
-                        <div class="row">
-                            <div class="col-md-6">
-                                <div class="form-group">
-                                    <label>Mã sản phẩm *</label>
-                                    <input type="text" class="form-control" id="productCode" required placeholder="VD: SP001">
-                                </div>
-                            </div>
-                            <div class="col-md-6">
-                                <div class="form-group">
-                                    <label>Tên sản phẩm *</label>
-                                    <input type="text" class="form-control" id="productName" required>
-                                </div>
-                            </div>
-                        </div>
-
-                    <div class="row">
-                        <div class="col-md-6">
-                                <div class="form-group">
-                                    <label>Màu hoa *</label>
-                                    <select class="form-control" id="flowerTypeSelect" style="width: 200px; border-radius: 25px; padding: 10px 15px; height: auto; line-height: normal;">
-                    <option value=""> Chọn màu hoa </option>
-                    <option value="Hoa hồng">Đỏ</option>
-                    <option value="Hoa tulip">Vàng</option>
-                    <option value="Hoa lan">Tím</option>
-                    <option value="Hoa cúc">Trắng</option>
-                </select>
-                                </div>
-                            </div>
-                            <div class="col-md-6">
-    <div class="form-group">
-        <label>số lượng *</label>
-        <input type="number" class="form-control" id="productQuantity" required min="1" step="1">
-    </div>
-</div>
-
-                        
-                        </div>
-                        
-                        <div class="form-group">
-                            <label>Hình ảnh *</label>
-                            <div class="image-upload-container" id="imageUploadContainer" onclick="document.getElementById('productImageInput').click()">
-                                <i class="fas fa-cloud-upload-alt upload-icon"></i>
-                                <div class="upload-text">Nhấp để chọn ảnh hoặc kéo thả ảnh vào đây</div>
-                                <small class="text-muted">Hỗ trợ: JPG, PNG, GIF (Tối đa 5MB)</small>
-                                <img id="imagePreview" class="image-preview" alt="Preview">
-                            </div>
-                            <input type="file" id="productImageInput" accept="image/*" style="display: none;">
-                            <input type="hidden" id="productImage" required>
-                        </div>
-                        
-                        <div class="form-group">
-                            <label>Mô tả sản phẩm</label>
-                            <textarea class="form-control" id="productDescription" rows="3"></textarea>
-                        </div>
-                    </form>
-                </div>
-                <div class="modal-footer">
-                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Hủy</button>
-                    <button type="button" class="btn btn-add-product" onclick="saveProduct()">
-                        <i class="fas fa-save"></i> Lưu sản phẩm
-                    </button>
-                </div>
-            </div>
+            <table>
+                <tr>
+                    <th>Mã phiếu</th>
+                    <th>Ngày nhập</th>
+                    <th>Nhà cung cấp</th>
+                    <th>Người tạo</th>
+                    <th>Trạng thái</th>
+                    <th>Chi tiết</th>
+                </tr>
+                <tr>
+                    <td>PN001</td>
+                    <td>10/11/2025</td>
+                    <td>Công ty ABC</td>
+                    <td>Vũ Đình Trọng Thắng</td>
+                    <td>Hoàn tất</td>
+                    <td><a href="purchase_info.html" class="view-btn">Xem</a></td>
+                </tr>
+                <tr>
+                    <td>PN002</td>
+                    <td>11/11/2025</td>
+                    <td>SK Telecom</td>
+                    <td>Cristiano Penlado</td>
+                    <td>Hoàn tất</td>
+                    <td><a href="purchase_info.html" class="view-btn">Xem</a></td>
+                </tr>
+                <tr>
+                    <td>PN003</td>
+                    <td>11/11/2025</td>
+                    <td>SK Telecom</td>
+                    <td>Mohaned Sati</td>
+                    <td>Đang xử lý</td>
+                    <td><a href="purchase_info.html" class="view-btn">Xem</a></td>
+                </tr>
+                <tr>
+                    <td>PN004</td>
+                    <td>11/11/2025</td>
+                    <td>SK Telecom</td>
+                    <td>Ricaldo Milos</td>
+                    <td>Đang xử lý</td>
+                    <td><a href="purchase_info.html" class="view-btn">Xem</a></td>
+                </tr>
+                <tr>
+                    <td>PN005</td>
+                    <td>11/11/2025</td>
+                    <td>SK Telecom</td>
+                    <td>Nguyễn Công Phượng</td>
+                    <td>Đang xử lý</td>
+                    <td><a href="purchase_info.html" class="view-btn">Xem</a></td>
+                </tr>
+                <tr>
+                    <td>PN006</td>
+                    <td>11/11/2025</td>
+                    <td>SK Telecom</td>
+                    <td>Nguyễn Quốc An</td>
+                    <td>Đang xử lý</td>
+                    <td><a href="purchase_info.html" class="view-btn">Xem</a></td>
+                </tr>
+            </table>
         </div>
     </div>
 
-<!-- Modal Chọn loại hoa -->
-<div class="modal fade" id="flowerTypeModal" tabindex="-1">
-  <div class="modal-dialog modal-lg">
-    <div class="modal-content">
-      <div class="modal-header bg-success text-white">
-        <h5 class="modal-title">Phân loại hoa</h5>
-        <button type="button" class="close text-white" data-dismiss="modal">
-          <span>&times;</span>
-        </button>
-      </div>
-      <div class="modal-body">
-        <table class="table table-bordered table-hover">
-          <thead class="thead-light">
-            <tr>
-              <th>Loại hoa</th>
-              <th>Số lượng</th>
-              <th>Thao tác</th>
-            </tr>
-          </thead>
-          <tbody id="flowerTypeTable"></tbody>
-        </table>
-      </div>
-    </div>
-  </div>
-</div>
-
-<!-- Modal sửa loại hoa -->
-<div class="modal fade" id="editFlowerTypeModal" tabindex="-1">
-  <div class="modal-dialog">
-    <div class="modal-content">
-      <div class="modal-header bg-warning text-white">
-        <h5 class="modal-title">Sửa loại hoa</h5>
-        <button type="button" class="close text-white" data-dismiss="modal">
-          <span>&times;</span>
-        </button>
-      </div>
-      <div class="modal-body">
-        <form id="editFlowerTypeForm">
-          <input type="hidden" id="editFlowerTypeId">
-          <div class="form-group">
-            <label>Tên loại hoa</label>
-            <input type="text" class="form-control" id="editFlowerTypeName" required>
-          </div>
-          <div class="form-group">
-            <label>Số lượng hoa</label>
-            <input type="number" class="form-control" id="editFlowerQuantity" min="0" required>
-          </div>
-        </form>
-      </div>
-      <div class="modal-footer">
-        <button type="button" class="btn btn-secondary" data-dismiss="modal">Hủy</button>
-        <button type="button" class="btn btn-success" onclick="saveFlowerTypeEdit()">Lưu thay đổi</button>
-      </div>
-    </div>
-  </div>
-</div>
 
     <footer class="ftco-footer ftco-section">
       <div class="container">
@@ -357,7 +256,6 @@
   <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBVWaKrjvy3MaE7SQ74_uJiULgl1JY0H2s&sensor=false"></script>
   <script src="js/google-map.js"></script>
   <script src="js/main.js"></script>
-  <script src="js/products.js"></script>  
 
 </body>
 </html>

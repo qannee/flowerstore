@@ -1,0 +1,140 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Chi tiết phiếu nhập</title>
+
+<style>
+    body {
+        font-family: Arial, sans-serif;
+        background: #f5f6fa;
+        padding: 20px;
+    }
+    .container {
+        max-width: 900px;
+        margin: auto;
+        background: #fff;
+        padding: 20px;
+        border-radius: 8px;
+        box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+    }
+    h2 { text-align: center; margin-bottom: 20px; }
+    .info-grid {
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        gap: 10px 20px;
+        margin-bottom: 20px;
+    }
+    .info-grid div span {
+        font-weight: bold;
+    }
+
+    table {
+        width: 100%;
+        border-collapse: collapse;
+        margin-top: 10px;
+    }
+    table th, table td {
+        border: 1px solid #ddd;
+        padding: 10px;
+        text-align: center;
+    }
+    table th { background: #f0f0f0; }
+
+    .total-box {
+        margin-top: 15px;
+        font-size: 18px;
+        text-align: right;
+        font-weight: bold;
+    }
+
+    .btn-group {
+        margin-top: 25px;
+        display: flex;
+        justify-content: space-between;
+    }
+    button {
+        padding: 12px 20px;
+        border: none;
+        border-radius: 6px;
+        font-size: 16px;
+        cursor: pointer;
+        min-width: 120px;
+    }
+    .back-btn { background: #6c757d; color: #fff; }
+    .print-btn { background: #007bff; color: #fff; }
+    button:hover { opacity: 0.9; }
+
+    @media print {
+        .btn-group { display: none; }
+        body { background: #fff; }
+        .container { box-shadow: none; }
+    }
+</style>
+</head>
+<body>
+
+<div class="container">
+    <h2>Chi tiết phiếu nhập</h2>
+
+    <!-- THÔNG TIN PHIẾU -->
+    <div class="info-grid">
+        <div><span>Mã phiếu:</span> PN001</div>
+        <div><span>Ngày nhập:</span> 10/11/2025</div>
+        <div><span>Nhà cung cấp:</span> Công ty ABC</div>
+        <div><span>Người tạo:</span> Nguyễn Văn A</div>
+        <div><span>Kho nhập:</span> Kho chính</div>
+        <div><span>Trạng thái:</span> Hoàn tất</div>
+    </div>
+
+    <!-- DANH SÁCH SẢN PHẨM -->
+    <h3>Danh sách sản phẩm</h3>
+    <table>
+        <tr>
+            <th>STT</th>
+            <th>Tên sản phẩm</th>
+            <th>Số lượng</th>
+            <th>Giá nhập</th>
+            <th>Thành tiền</th>
+        </tr>
+        <tr>
+            <td>1</td>
+            <td>Hoa mai</td>
+            <td>10</td>
+            <td>250,000</td>
+            <td>2,500,000</td>
+        </tr>
+        <tr>
+            <td>2</td>
+            <td>Hoa đào</td>
+            <td>5</td>
+            <td>450,000</td>
+            <td>2,250,000</td>
+        </tr>
+        <tr>
+            <td>3</td>
+            <td>Hoa hướng dương</td>
+            <td>3</td>
+            <td>900,000</td>
+            <td>2,700,000</td>
+        </tr>
+    </table>
+
+    <div class="total-box">
+        Tổng tiền: 7,450,000 VNĐ
+    </div>
+
+    <div style="margin-top:15px;">
+        <span style="font-weight:bold;">Ghi chú:</span> Hàng nhập đầy đủ, nguyên seal.
+    </div>
+
+    <!-- NÚT -->
+    <div class="btn-group">
+        <button class="back-btn" onclick="history.back()">← Quay lại</button>
+        <button class="print-btn" onclick="window.print()">🖨 In phiếu</button>
+    </div>
+</div>
+
+</body>
+</html>
