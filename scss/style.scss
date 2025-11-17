@@ -2492,17 +2492,7 @@ textarea.form-control {
     stroke-dashoffset: -136px;
   }
 }
-.black-box {
-    background-color: #000; /* nền đen */
-    color: #fff; /* chữ màu trắng để dễ đọc */
-    padding: 20px; /* khoảng cách bên trong */
-    border-radius: 8px; /* bo góc mềm mại */
+.form-control {
+    border: 2px solid #000 !important;
 }
-.black-box .form-control {
-    background-color: #111; /* nền input tối hơn */
-    color: #fff; /* chữ input màu trắng */
-    border: 1px solid #fff; /* viền input màu trắng */
-}
-.black-box label {
-    color: #fff; /* chữ label màu trắng */
-}
+
