@@ -58,56 +58,65 @@
 	      	<button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#ftco-nav" aria-controls="ftco-nav" aria-expanded="false" aria-label="Toggle navigation">
 	        	<span class="oi oi-menu"></span> Menu
 	     	</button>
-			<!--Nút tìm kiếm-->
+			<!-- Nút tìm kiếm ngoài -->
 			<div class="search-box">
-  				<input type="text" placeholder="Tìm kiếm sản phẩm...">
-				<a href="find_dn.html" class="icon-btn"><i class="fa-solid fa-search"></i></a>
-  				<button class="icon-btn" id="filterBtn"><i class="fa-solid fa-filter"></i></button>
+			<input type="text" placeholder="Tìm kiếm sản phẩm...">
+			<a href="find_dn.html" class="icon-btn"><i class="fa-solid fa-search"></i></a>
+			<button class="icon-btn" id="filterBtn"><i class="fa-solid fa-filter"></i></button>
 			</div>
 
+			<!-- Popup bộ lọc -->
 			<div class="overlay" id="overlay">
-  				<div class="filter-popup">
-    				<h3>Bộ lọc sản phẩm</h3>
+				<div class="filter-popup">
+					
+					<h3>Tìm kiếm nâng cao</h3>
 
-    				<!-- Danh mục -->
-    				<div class="filter-section">
-      					<label>Danh mục</label>
-      					<div class="filter-options">
-        					<div class="filter-btn">Hoa tươi</div>
-        					<div class="filter-btn">Hoa khô</div>
-        					<div class="filter-btn">Phụ kiện</div>
-        					<div class="filter-btn">Trang trí</div>
-      					</div>
-    				</div>
+					<!-- Thanh tìm kiếm trong popup -->
+					<div class="popup-search">
+						<input type="text" id="popupSearchInput" placeholder="Nhập từ khóa tìm kiếm...">
+						<button class="icon-btn" id="popupSearchBtn">
+							<i class="fa-solid fa-search"></i>
+						</button>
+					</div>
 
-    				<!-- Khoảng giá (bây giờ là nút chọn) -->
-    				<div class="filter-section">
-      					<label>Khoảng giá (VNĐ)</label>
-      					<div class="filter-options">
-        					<div class="filter-btn">Dưới 200K</div>
-        					<div class="filter-btn">200K - 500K</div>
-        					<div class="filter-btn">500K - 1 triệu</div>
-        					<div class="filter-btn">Trên 1 triệu</div>
-      					</div>
-    				</div>
 
-    				<!-- Trạng thái -->
-    				<div class="filter-section">
-      					<label>Trạng thái</label>
-      					<div class="filter-options">
-        					<div class="filter-btn">Còn hàng</div>
-       						<div class="filter-btn">Hết hàng</div>
-      					</div>
-    				</div>
 
-    				<!-- Nút áp dụng / hủy -->
-    				<div class="filter-buttons">
-      					<button class="cancel-btn" id="cancelBtn">Hủy</button>
-      					<a href="find_dn.html" class="apply-btn">Áp dụng</a>
-    				</div>
-  				</div>
+					<div class="filter-section">
+						<label>Danh mục</label>
+						<div class="filter-options">
+							<div class="filter-btn">Hoa tươi</div>
+							<div class="filter-btn">Hoa khô</div>
+							<div class="filter-btn">Phụ kiện</div>
+							<div class="filter-btn">Trang trí</div>
+						</div>
+					</div>
+
+					<div class="filter-section">
+					<label>Khoảng giá (VNĐ)</label>
+						<div class="filter-options">
+							<div class="filter-btn">Dưới 200K</div>
+							<div class="filter-btn">200K - 500K</div>
+							<div class="filter-btn">500K - 1 triệu</div>
+							<div class="filter-btn">Trên 1 triệu</div>
+						</div>
+					</div>
+
+					<div class="filter-section">
+						<label>Trạng thái</label>
+						<div class="filter-options">
+							<div class="filter-btn">Còn hàng</div>
+							<div class="filter-btn">Hết hàng</div>
+						</div>
+					</div>
+
+					<div class="filter-buttons">
+						<button class="cancel-btn" id="cancelBtn">Hủy</button>
+						<a href="find_dn.html" class="apply-btn">Áp dụng</a>
+					</div>
+
+				</div>
 			</div>
-			<!--Kết thúc nút tìm kiếm-->
+			<!-- Kết thúc tìm kiếm -->
 	      	<div class="collapse navbar-collapse" id="ftco-nav">
 	        <ul class="navbar-nav ml-auto">
 	        <li class="nav-item active"><a href="dadangnhap.html" class="nav-link">Trang chủ</a></li>
@@ -242,13 +251,13 @@
     	</div>
     </section>
 		
-		<section class="ftco-section testimony-section">
+    <section class="ftco-section testimony-section">
       <div class="container">
         <div class="row justify-content-center mb-5 pb-3">
           <div class="col-md-7 heading-section ftco-animate text-center">
-          	<span class="subheading">Testimony</span>
-            <h2 class="mb-4">Our satisfied customer says</h2>
-            <p>Far far away, behind the word mountains, far from the countries Vokalia and Consonantia, there live the blind texts. Separated they live in</p>
+          	<span class="subheading">Lời đánh giá</span>
+            <h2 class="mb-4">Từ những vị khách hàng</h2>
+            <p>Cảm thấy hài lòng với những sản phẩm của chúng tôi</p>
           </div>
         </div>
         <div class="row ftco-animate">
@@ -262,9 +271,9 @@
                     </span>
                   </div>
                   <div class="text text-center">
-                    <p class="mb-5 pl-4 line">Far far away, behind the word mountains, far from the countries Vokalia and Consonantia, there live the blind texts.</p>
-                    <p class="name">Garreth Smith</p>
-                    <span class="position">Marketing Manager</span>
+                    <p class="mb-5 pl-4 line">Khi ngồi thưởng thức vườn hoa tuyệt đẹp của CHOHOASACH ta đây lại 1 lần cảm nhận được hương vị quê nhà.</p>
+                    <p class="name">Sain Tone Emvippy</p>
+                    <span class="position">Bá Tước</span>
                   </div>
                 </div>
               </div>
@@ -276,9 +285,9 @@
                     </span>
                   </div>
                   <div class="text text-center">
-                    <p class="mb-5 pl-4 line">Far far away, behind the word mountains, far from the countries Vokalia and Consonantia, there live the blind texts.</p>
-                    <p class="name">Garreth Smith</p>
-                    <span class="position">Interface Designer</span>
+                    <p class="mb-5 pl-4 line">là 1 trong những tiệm hoa tôi yêu thích nhất đặc biệt là dịch vụ ở đây rất xuất sắc vì thế tôi thường mua để gửi tặng các chiến sĩ đã hi sinh. </p>
+                    <p class="name"> Vladimir Putin</p>
+                    <span class="position">HATNHAN Designer</span>
                   </div>
                 </div>
               </div>
@@ -290,37 +299,37 @@
                     </span>
                   </div>
                   <div class="text text-center">
-                    <p class="mb-5 pl-4 line">Far far away, behind the word mountains, far from the countries Vokalia and Consonantia, there live the blind texts.</p>
-                    <p class="name">Garreth Smith</p>
-                    <span class="position">UI Designer</span>
+                    <p class="mb-5 pl-4 line">Để tô điểm cho con đường vinh quang của tôi không thể thiếu những thất bại, bài học .Vì vậy tôi muốn hoa ở CHOHOASACH tô điểm cho vẽ đẹp ấy. .</p>
+                    <p class="name">T1 FAKER</p>
+                    <span class="position">Professional gamer</span>
                   </div>
                 </div>
               </div>
               <div class="item">
                 <div class="testimony-wrap p-4 pb-5">
-                  <div class="user-img mb-5" style="background-image: url(images/person_1.jpg)">
+                  <div class="user-img mb-5" style="background-image: url(images/person_4.jpg)">
                     <span class="quote d-flex align-items-center justify-content-center">
                       <i class="icon-quote-left"></i>
                     </span>
                   </div>
                   <div class="text text-center">
-                    <p class="mb-5 pl-4 line">Far far away, behind the word mountains, far from the countries Vokalia and Consonantia, there live the blind texts.</p>
-                    <p class="name">Garreth Smith</p>
-                    <span class="position">Web Developer</span>
+                    <p class="mb-5 pl-4 line">Hoa o day rat tot, toi luon tin tuong CHOHOASACH.COM, lan toi khi toi vo dich WORLDCUP cung se la ngay toi bao tron tiem nay.</p>
+                    <p class="name">Cristiano Ronaldo</p>
+                    <span class="position">Dê phó</span>
                   </div>
                 </div>
               </div>
               <div class="item">
                 <div class="testimony-wrap p-4 pb-5">
-                  <div class="user-img mb-5" style="background-image: url(images/person_1.jpg)">
+                  <div class="user-img mb-5" style="background-image: url(images/person_5.jpg)">
                     <span class="quote d-flex align-items-center justify-content-center">
                       <i class="icon-quote-left"></i>
                     </span>
                   </div>
                   <div class="text text-center">
-                    <p class="mb-5 pl-4 line">Far far away, behind the word mountains, far from the countries Vokalia and Consonantia, there live the blind texts.</p>
-                    <p class="name">Garreth Smith</p>
-                    <span class="position">System Analyst</span>
+                    <p class="mb-5 pl-4 line">Với tư cách là cầu thủ và đầu bếp chuyên nghiệp, sự nghiệp đảo cánh rán gà của tôi không thể thiếu sự tô điểm của những bông hoa từ CHOHOASACH.COM.</p>
+                    <p class="name">KongFung</p>
+                    <span class="position">Master Chef</span>
                   </div>
                 </div>
               </div>
@@ -329,7 +338,7 @@
         </div>
       </div>
     </section>
-
+    
     <section class="ftco-section bg-light">
 			<div class="container">
 				<div class="row no-gutters ftco-services">
