@@ -1,0 +1,695 @@
+<!DOCTYPE html>
+<html lang="vi">
+  <head>
+    <title>Flower Shop - Cửa hàng hoa sạch số 1 SGU</title>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    
+    <link href="https://fonts.googleapis.com/css?family=Poppins:200,300,400,500,600,700,800&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css?family=Lora:400,400i,700,700i&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css?family=Amatic+SC:400,700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/4.6.0/css/bootstrap.min.css">
+    
+    <style>
+      body {
+        font-family: 'Poppins', sans-serif;
+        margin: 0;
+        padding: 0;
+      }
+      
+      .bg-primary {
+        background-color: #82B440 !important;
+      }
+      
+      .bg-dark {
+        background-color: #000000 !important;
+      }
+      
+      .ftco_navbar {
+        padding: 1rem 0;
+      }
+      
+      .navbar-brand {
+        font-size: 24px;
+        font-weight: 700;
+        color: #82B440 !important;
+      }
+      
+      .navbar-nav .nav-link {
+        color: white !important;
+        padding: 0.5rem 1.5rem !important;
+        font-weight: 500;
+        transition: all 0.3s;
+      }
+      
+      .navbar-nav .nav-link:hover {
+        color: #82B440 !important;
+      }
+      
+      .navbar-nav .nav-item.active .nav-link {
+        color: #82B440 !important;
+      }
+      
+      /* Styles cho user menu */
+      .user-menu {
+        position: relative;
+        display: inline-block;
+      }
+      
+      .user-avatar {
+        width: 40px;
+        height: 40px;
+        border-radius: 50%;
+        object-fit: cover;
+        border: 2px solid #82B440;
+        cursor: pointer;
+        transition: all 0.3s;
+      }
+      
+      .user-avatar:hover {
+        transform: scale(1.1);
+        box-shadow: 0 0 10px rgba(130, 180, 64, 0.5);
+      }
+      
+      .user-info {
+        display: inline-block;
+        margin-right: 15px;
+        color: white;
+        cursor: pointer;
+      }
+      
+      .user-name {
+        font-weight: 600;
+        font-size: 14px;
+      }
+      
+      .user-role {
+        font-size: 11px;
+        opacity: 0.8;
+      }
+      
+      .dropdown-menu-user {
+        display: none;
+        position: absolute;
+        top: 100%;
+        right: 0;
+        background: white;
+        min-width: 220px;
+        box-shadow: 0 4px 15px rgba(0,0,0,0.2);
+        border-radius: 10px;
+        margin-top: 10px;
+        z-index: 1000;
+        overflow: hidden;
+      }
+      
+      .dropdown-menu-user.show {
+        display: block;
+        animation: slideDown 0.3s ease;
+      }
+      
+      @keyframes slideDown {
+        from {
+          opacity: 0;
+          transform: translateY(-10px);
+        }
+        to {
+          opacity: 1;
+          transform: translateY(0);
+        }
+      }
+      
+      .dropdown-menu-user a {
+        display: block;
+        padding: 12px 20px;
+        color: #333;
+        text-decoration: none;
+        transition: all 0.3s;
+        border-bottom: 1px solid #f0f0f0;
+      }
+      
+      .dropdown-menu-user a:hover {
+        background: #f8f9fa;
+        padding-left: 25px;
+      }
+      
+      .dropdown-menu-user a i {
+        margin-right: 10px;
+        width: 20px;
+        color: #82B440;
+      }
+      
+      .dropdown-menu-user a.logout {
+        color: #dc3545;
+        border-bottom: none;
+      }
+      
+      .dropdown-menu-user a.logout i {
+        color: #dc3545;
+      }
+      
+      /* Admin Management Panel */
+      .admin-panel {
+        background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+        padding: 60px 0;
+        margin: 40px 0;
+      }
+      
+      .admin-card {
+        background: white;
+        border-radius: 20px;
+        padding: 40px 30px;
+        text-align: center;
+        transition: all 0.4s;
+        height: 100%;
+        box-shadow: 0 5px 20px rgba(0,0,0,0.1);
+        position: relative;
+        overflow: hidden;
+      }
+      
+      .admin-card::before {
+        content: '';
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 5px;
+        background: linear-gradient(90deg, #82B440, #667eea);
+        transform: scaleX(0);
+        transition: transform 0.4s;
+      }
+      
+      .admin-card:hover::before {
+        transform: scaleX(1);
+      }
+      
+      .admin-card:hover {
+        transform: translateY(-10px);
+        box-shadow: 0 15px 40px rgba(0,0,0,0.2);
+      }
+      
+      .admin-icon {
+        font-size: 60px;
+        margin-bottom: 20px;
+        background: linear-gradient(135deg, #82B440, #667eea);
+        -webkit-background-clip: text;
+        -webkit-text-fill-color: transparent;
+        background-clip: text;
+      }
+      
+      .admin-card h3 {
+        color: #333;
+        font-weight: 600;
+        margin-bottom: 15px;
+        font-size: 24px;
+      }
+      
+      .admin-card p {
+        color: #666;
+        margin-bottom: 25px;
+        font-size: 14px;
+      }
+      
+      .admin-card .btn {
+        background: linear-gradient(135deg, #82B440, #6a9634);
+        color: white;
+        border: none;
+        padding: 12px 30px;
+        border-radius: 25px;
+        font-weight: 500;
+        transition: all 0.3s;
+        text-decoration: none;
+        display: inline-block;
+      }
+      
+      .admin-card .btn:hover {
+        transform: scale(1.05);
+        box-shadow: 0 5px 15px rgba(130, 180, 64, 0.4);
+        color: white;
+      }
+      
+      .section-title {
+        text-align: center;
+        margin-bottom: 50px;
+      }
+      
+      .section-title h2 {
+        color: white;
+        font-size: 36px;
+        font-weight: 700;
+        margin-bottom: 10px;
+      }
+      
+      .section-title p {
+        color: rgba(255,255,255,0.9);
+        font-size: 16px;
+      }
+      
+      /* Welcome Banner */
+      .welcome-banner {
+        background: linear-gradient(135deg, #82B440 0%, #6a9634 100%);
+        color: white;
+        padding: 30px;
+        border-radius: 15px;
+        margin-bottom: 30px;
+        box-shadow: 0 5px 20px rgba(0,0,0,0.1);
+      }
+      
+      .welcome-banner h2 {
+        font-size: 28px;
+        margin-bottom: 10px;
+      }
+      
+      .welcome-banner p {
+        font-size: 16px;
+        opacity: 0.95;
+        margin-bottom: 0;
+      }
+      
+      /* Quick Stats */
+      .quick-stats {
+        margin-bottom: 40px;
+      }
+      
+      .stat-box {
+        background: white;
+        padding: 25px;
+        border-radius: 15px;
+        box-shadow: 0 3px 10px rgba(0,0,0,0.1);
+        text-align: center;
+        transition: all 0.3s;
+      }
+      
+      .stat-box:hover {
+        transform: translateY(-5px);
+        box-shadow: 0 5px 20px rgba(0,0,0,0.15);
+      }
+      
+      .stat-number {
+        font-size: 32px;
+        font-weight: bold;
+        color: #82B440;
+        margin-bottom: 5px;
+      }
+      
+      .stat-label {
+        color: #666;
+        font-size: 14px;
+      }
+      
+      .ftco-section {
+        padding: 3rem 0;
+      }
+      
+      .icon {
+        width: 40px;
+        height: 40px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+      }
+      
+      .topper {
+        color: white;
+        font-size: 13px;
+      }
+      
+      .text {
+        color: white;
+      }
+      
+      .py-1 {
+        padding: 0.5rem 0;
+      }
+    </style>
+  </head>
+  <body class="goto-here">
+    <div class="py-1 bg-primary">
+      <div class="container">
+        <div class="row no-gutters d-flex align-items-start align-items-center px-md-0">
+          <div class="col-lg-12 d-block">
+            <div class="row d-flex">
+              <div class="col-md pr-4 d-flex topper align-items-center">
+                <div class="icon mr-2 d-flex justify-content-center align-items-center"><span>📞</span></div>
+                <span class="text">+ 84 336 36 36 36</span>
+              </div>
+              <div class="col-md pr-4 d-flex topper align-items-center">
+                <div class="icon mr-2 d-flex justify-content-center align-items-center"><span>✉️</span></div>
+                <span class="text">chohoasach@lmao.com</span>
+              </div>
+              <div class="col-md-5 pr-4 d-flex topper align-items-center text-lg-right">
+                <span class="text">Cung cấp tất cả các loại hoa từ a đến z</span>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    
+    <nav class="navbar navbar-expand-lg navbar-dark ftco_navbar bg-dark ftco-navbar-light" id="ftco-navbar">
+      <div class="container">
+        <a class="navbar-brand" href="atemp.html">ChoHoaSach.com</a>
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#ftco-nav" aria-controls="ftco-nav" aria-expanded="false" aria-label="Toggle navigation">
+          <span>☰</span> Menu
+        </button>
+
+        <div class="collapse navbar-collapse" id="ftco-nav">
+          <ul class="navbar-nav ml-auto">
+            <li class="nav-item"><a href="quanlikhachhang.html" class="nav-link"><i class="fas fa-users"></i> Khách hàng</a></li>
+            <li class="nav-item"><a href="quanlidonhang.html" class="nav-link"><i class="fas fa-clipboard-list"></i> Đơn hàng</a></li>
+            <li class="nav-item"><a href="quanlisanpham.html" class="nav-link"><i class="fas fa-boxes"></i> Sản phẩm</a></li>
+            <li class="nav-item"><a href="quanligiaban.html" class="nav-link"><i class="fas fa-boxes"></i> Giá bán</a></li>
+            <!-- User Menu -->
+            <li class="nav-item user-menu">
+              <div class="d-flex align-items-center" onclick="toggleUserMenu()">
+                <div class="user-info text-right">
+                  <div class="user-name">Admin User</div>
+                  <div class="user-role">Quản trị viên</div>
+                </div>
+                <img src="https://i.pravatar.cc/150?img=68" alt="User Avatar" class="user-avatar">
+              </div>
+              <div class="dropdown-menu-user" id="userDropdown">
+                <!--<a href="#profile"><i class="fas fa-user"></i> Thông tin cá nhân</a>
+                <a href="#orders"><i class="fas fa-shopping-bag"></i> Đơn hàng của tôi</a>
+                <a href="#settings"><i class="fas fa-cog"></i> Cài đặt</a> -->
+                <a href="index.html" class="logout"><i class="fas fa-sign-out-alt"></i> Đăng xuất</a>
+              </div>
+            </li>
+          </ul>
+        </div>
+      </div>
+    </nav>
+
+    <!-- Welcome Banner -->
+    <section class="ftco-section" style="padding-top: 3rem;">
+      <div class="container">
+        <div class="welcome-banner">
+          <div class="row align-items-center">
+            <div class="col-md-8">
+              <h2><i class="fas fa-hand-sparkles"></i> Chào mừng trở lại, Admin User!</h2>
+              <p>Hệ thống quản lý cửa hàng hoa ChoHoaSach.com đang hoạt động tốt. Chúc bạn một ngày làm việc hiệu quả!</p>
+            </div>
+            <div class="col-md-4 text-right">
+              <i class="fas fa-calendar-day" style="font-size: 16px;"></i>
+              <span id="currentDate"></span>
+            </div>
+          </div>
+        </div>
+
+        <!-- Quick Stats -->
+        <div class="quick-stats">
+          <div class="row">
+            <div class="col-md-3 mb-3">
+              <div class="stat-box">
+                <div class="stat-number">156</div>
+                <div class="stat-label"><i class="fas fa-boxes"></i> Sản phẩm</div>
+              </div>
+            </div>
+            <div class="col-md-3 mb-3">
+              <div class="stat-box">
+                <div class="stat-number">423</div>
+                <div class="stat-label"><i class="fas fa-shopping-cart"></i> Đơn hàng</div>
+              </div>
+            </div>
+            <div class="col-md-3 mb-3">
+              <div class="stat-box">
+                <div class="stat-number">1,247</div>
+                <div class="stat-label"><i class="fas fa-users"></i> Khách hàng</div>
+              </div>
+            </div>
+            <div class="col-md-3 mb-3">
+              <div class="stat-box">
+                <div class="stat-number">₫28M</div>
+                <div class="stat-label"><i class="fas fa-chart-line"></i> Doanh thu tháng</div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    
+<!-- Thống kê -->
+<section class="ftco-section" style="background:#f8f9fa;">
+  <div class="container">
+    <h4 class="text-center mb-4 font-weight-bold">🌸 Thống kê 5 khách hàng có giá trị mua hoa cao nhất</h4>
+    <div class="table-responsive">
+      <table class="table table-bordered text-center bg-white shadow-sm">
+        <thead class="thead-light">
+          <tr>
+            <th>STT</th>
+            <th>TÊN KHÁCH HÀNG</th>
+            <th>EMAIL</th>
+            <th>SỐ ĐIỆN THOẠI</th>
+            <th>VAI TRÒ</th>
+            <th>SỐ ĐƠN HÀNG</th>
+            <th>TỔNG TIỀN</th>
+            <th>CHI TIẾT</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td>1</td>
+            <td>Nguyễn Thị Hoa</td>
+            <td>hoa.nguyen@example.com</td>
+            <td>0987654321</td>
+            <td><span class="badge badge-primary">VIP</span></td>
+            <td>20</td>
+            <td>32.500.000 VNĐ</td>
+            <td><button class="btn btn-sm btn-info">Xem chi tiết</button></td>
+          </tr>
+          <tr>
+            <td>2</td>
+            <td>Trần Văn Hùng</td>
+            <td>hung.tran@example.com</td>
+            <td>0909090909</td>
+            <td><span class="badge badge-success">Khách hàng</span></td>
+            <td>15</td>
+            <td>25.000.000 VNĐ</td>
+            <td><button class="btn btn-sm btn-info">Xem chi tiết</button></td>
+          </tr>
+          <tr>
+            <td>3</td>
+            <td>Lê Thị Mai</td>
+            <td>mai.le@example.com</td>
+            <td>0911222333</td>
+            <td><span class="badge badge-success">Khách hàng</span></td>
+            <td>10</td>
+            <td>18.000.000 VNĐ</td>
+            <td><button class="btn btn-sm btn-info">Xem chi tiết</button></td>
+          </tr>
+          <tr>
+            <td>4</td>
+            <td>Phạm Hoàng Nam</td>
+            <td>nam.pham@example.com</td>
+            <td>0944444444</td>
+            <td><span class="badge badge-success">Khách hàng</span></td>
+            <td>8</td>
+            <td>12.400.000 VNĐ</td>
+            <td><button class="btn btn-sm btn-info">Xem chi tiết</button></td>
+          </tr>
+          <tr>
+            <td>5</td>
+            <td>Đỗ Thanh Lan</td>
+            <td>lan.do@example.com</td>
+            <td>0933333333</td>
+            <td><span class="badge badge-success">Khách hàng</span></td>
+            <td>5</td>
+            <td>8.700.000 VNĐ</td>
+            <td><button class="btn btn-sm btn-info">Xem chi tiết</button></td>
+          </tr>
+
+        </tbody>
+      </table>
+    </div>
+
+    <!-- Biểu đồ -->
+    <div class="row mt-5">
+      <div class="col-md-6 mb-4">
+        <div class="card shadow-sm">
+          <div class="card-body">
+            <h5 class="card-title text-center font-weight-bold">💐 Các loại hoa bán chạy nhất</h5>
+            <canvas id="chartBestSelling"></canvas>
+          </div>
+        </div>
+      </div>
+      <div class="col-md-6 mb-4">
+        <div class="card shadow-sm">
+          <div class="card-body">
+            <h5 class="card-title text-center font-weight-bold">💰 Doanh thu theo tháng</h5>
+            <canvas id="chartRevenue"></canvas>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Thống kê nhỏ -->
+    <div class="row text-center">
+      <div class="col-md-3 mb-3">
+        <div class="stat-box">
+          <div class="stat-number">6.2%</div>
+          <div class="stat-label">Tỷ lệ chuyển đổi</div>
+          <small class="text-success">+0.5% so với tháng trước</small>
+        </div>
+      </div>
+      <div class="col-md-3 mb-3">
+        <div class="stat-box">
+          <div class="stat-number">1.250.000 VNĐ</div>
+          <div class="stat-label">Đơn hàng trung bình</div>
+          <small class="text-success">+4.1% so với tháng trước</small>
+        </div>
+      </div>
+      <div class="col-md-3 mb-3">
+        <div class="stat-box">
+          <div class="stat-number">1.4%</div>
+          <div class="stat-label">Tỷ lệ hoàn đơn</div>
+          <small class="text-danger">+0.2% so với tháng trước</small>
+        </div>
+      </div>
+      <div class="col-md-3 mb-3">
+        <div class="stat-box">
+          <div class="stat-number">18</div>
+          <div class="stat-label">Khách hàng mới</div>
+          <small class="text-success">+5 so với tháng trước</small>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<script>
+document.addEventListener('DOMContentLoaded', () => {
+  document.querySelectorAll('button.btn-info').forEach(btn => {
+    btn.addEventListener('click', (e) => {
+      const row = e.target.closest('tr');
+      // Lấy thông tin từ hàng được nhấn
+      const name = row.children[1].innerText;
+      const email = row.children[2].innerText;
+      const phone = row.children[3].innerText;
+      const orders = row.children[5].innerText;
+      const total = row.children[6].innerText;
+
+      // Gán dữ liệu vào modal
+      document.getElementById('userName').innerText = name;
+      document.getElementById('userEmail').innerText = email;
+      document.getElementById('userPhone').innerText = phone;
+      document.getElementById('userOrders').innerText = orders + " đơn hàng";
+      document.getElementById('userAddress').innerText = "TP. Hồ Chí Minh";
+      document.getElementById('userDate').innerText = "15/01/2024";
+
+      // Hiện modal
+      $('#userDetailModal').modal('show');
+    });
+  });
+});
+</script>
+
+
+
+
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/4.6.0/js/bootstrap.bundle.min.js"></script>
+    <script>
+      function toggleUserMenu() {
+        const dropdown = document.getElementById('userDropdown');
+        dropdown.classList.toggle('show');
+      }
+      
+      // Close dropdown when clicking outside
+      window.addEventListener('click', function(e) {
+        if (!e.target.closest('.user-menu')) {
+          const dropdown = document.getElementById('userDropdown');
+          dropdown.classList.remove('show');
+        }
+      });
+      
+      // Display current date
+      const dateOptions = { weekday: 'long', year: 'numeric', month: 'long', day: 'numeric' };
+      const currentDate = new Date().toLocaleDateString('vi-VN', dateOptions);
+      if (document.getElementById('currentDate')) {
+        document.getElementById('currentDate').textContent = currentDate;
+      }
+    </script>
+
+   <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+<script>
+const ctxBest = document.getElementById('chartBestSelling').getContext('2d');
+new Chart(ctxBest, {
+  type: 'bar',
+  data: {
+    labels: ['Hoa hồng đỏ', 'Hoa baby trắng', 'Hoa tulip vàng', 'Hoa hướng dương', 'Hoa lan hồ điệp', 'Hoa cẩm chướng', 'Hoa sen hồng', 'Hoa đồng tiền'],
+    datasets: [{
+      label: 'Số lượng bán ra (bó)',
+      data: [120, 95, 80, 75, 60, 50, 45, 40],
+      backgroundColor: '#F1948A'
+    }]
+  },
+  options: {
+    responsive: true,
+    scales: { y: { beginAtZero: true } }
+  }
+});
+
+const ctxRevenue = document.getElementById('chartRevenue').getContext('2d');
+new Chart(ctxRevenue, {
+  type: 'line',
+  data: {
+    labels: ['Tháng 1','Tháng 2','Tháng 3','Tháng 4','Tháng 5','Tháng 6','Tháng 7','Tháng 8','Tháng 9','Tháng 10','Tháng 11','Tháng 12'],
+    datasets: [{
+      label: 'Doanh thu (triệu VNĐ)',
+      data: [50, 65, 80, 90, 120, 150, 135, 160, 180, 190, 200, 210],
+      borderColor: '#C2185B',
+      backgroundColor: 'rgba(194,24,91,0.15)',
+      fill: true,
+      tension: 0.3
+    }]
+  },
+  options: {
+    responsive: true,
+    scales: { y: { beginAtZero: true } }
+  }
+});
+</script>
+
+<!-- Modal Chi tiết người dùng -->
+<div class="modal fade" id="userDetailModal" tabindex="-1" role="dialog" aria-labelledby="userDetailModalLabel" aria-hidden="true">
+  <div class="modal-dialog modal-dialog-centered" role="document">
+    <div class="modal-content" style="border-radius: 15px; overflow: hidden;">
+      <div class="modal-header" style="background: linear-gradient(135deg, #82B440, #6a9634); color: white;">
+        <h5 class="modal-title font-weight-bold">
+          <i class="fas fa-user-circle"></i> Chi tiết người dùng
+        </h5>
+        <button type="button" class="close text-white" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      
+      <div class="modal-body text-center p-4">
+        
+        
+        <div class="text-left mx-auto" style="max-width: 350px;">
+          <p><strong>Họ và tên:</strong> <span id="userName">Nguyễn Văn An</span></p>
+          <p><strong>Email:</strong> <span id="userEmail">nguyenvanan@email.com</span></p>
+          <p><strong>Số điện thoại:</strong> <span id="userPhone">0901234567</span></p>
+          <p><strong>Địa chỉ:</strong> <span id="userAddress">123 Nguyễn Huệ, Q1, TP.HCM</span></p>
+          <p><strong>Ngày đăng ký:</strong> <span id="userDate">15/1/2024</span></p>
+          <p><strong>Tổng đơn hàng:</strong> <span id="userOrders">15 đơn hàng</span></p>
+          <p><strong>Trạng thái:</strong>
+            <span class="badge badge-success p-2">
+              <i class="fas fa-check-circle"></i> Hoạt động
+            </span>
+          </p>
+        </div>
+      </div>
+      
+      <div class="modal-footer justify-content-center">
+        <button type="button" class="btn btn-secondary px-4" data-dismiss="modal">Đóng</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+
+  </body>
+</html> 

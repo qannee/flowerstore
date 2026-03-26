@@ -1,0 +1,821 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Quản lý phiếu nhập hàng - Flower Shop</title>
+    <link href="https://fonts.googleapis.com/css?family=Poppins:200,300,400,500,600,700,800&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/4.6.0/css/bootstrap.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
+    
+    <style>
+        /* ==================== STYLE TỔNG QUAN ==================== */
+        body {
+            font-family: 'Poppins', sans-serif;
+            background-color: #f8f9fa;
+        }
+        
+        .header {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            padding: 30px 0;
+            margin-bottom: 30px;
+            box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+        }
+        
+        .management-container {
+            max-width: 1400px;
+            margin: 0 auto;
+            padding: 20px;
+        }
+        
+        /* ==================== NÚT QUAY LẠI ==================== */
+        .back-container {
+            display: flex;
+            justify-content: flex-start;
+            padding: 12px 20px;
+        }
+        
+        .btn-back {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            background: #ffffff;
+            color: #000000;
+            border: none;
+            border-radius: 8px;
+            padding: 10px 18px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.25s ease;
+            box-shadow: 0 3px 10px rgba(0,0,0,0.15);
+            text-decoration: none;
+        }
+        
+        .btn-back:hover {
+            background: #667eea;
+            transform: translateY(-2px);
+            box-shadow: 0 6px 14px rgba(0,0,0,0.25);
+            color: white;
+        }
+        
+        /* ==================== NÚT THÊM PHIẾU ==================== */
+        .btn-add-receipt {
+            background-color: #667eea;
+            color: white;
+            border: none;
+            padding: 12px 30px;
+            border-radius: 25px;
+            font-weight: 500;
+            transition: all 0.3s;
+        }
+        
+        .btn-add-receipt:hover {
+            background-color: #764ba2;
+            color: white;
+            transform: translateY(-2px);
+            box-shadow: 0 4px 8px rgba(102, 126, 234, 0.3);
+        }
+        
+        /* ==================== THẺ PHIẾU NHẬP ==================== */
+        .receipt-card {
+            background: white;
+            border-radius: 15px;
+            padding: 20px;
+            margin-bottom: 20px;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.08);
+            transition: all 0.3s;
+        }
+        
+        .receipt-card:hover {
+box-shadow: 0 5px 20px rgba(0,0,0,0.15);
+            transform: translateY(-3px);
+        }
+        
+        .receipt-code {
+            display: inline-block;
+            background-color: #e9ecef;
+            color: #495057;
+            padding: 4px 12px;
+            border-radius: 12px;
+            font-size: 0.9em;
+            font-weight: 600;
+            margin-bottom: 8px;
+        }
+        
+        /* ==================== TRẠNG THÁI PHIẾU ==================== */
+        .status-badge {
+            padding: 5px 15px;
+            border-radius: 15px;
+            font-size: 0.85em;
+            font-weight: 600;
+        }
+        
+        .status-draft {
+            background-color: #ffc107;
+            color: #856404;
+        }
+        
+        .status-completed {
+            background-color: #28a745;
+            color: white;
+        }
+        
+        /* ==================== THÔNG TIN PHIẾU ==================== */
+        .receipt-info {
+            background: #f8f9fa;
+            padding: 15px;
+            border-radius: 8px;
+            margin-top: 10px;
+        }
+        
+        .receipt-row {
+            display: flex;
+            justify-content: space-between;
+            margin: 8px 0;
+            padding: 5px 0;
+            border-bottom: 1px solid #dee2e6;
+        }
+        
+        .receipt-row:last-child {
+            border-bottom: none;
+            font-weight: 600;
+            font-size: 1.1em;
+            color: #667eea;
+        }
+        
+        .receipt-label {
+            color: #6c757d;
+            font-weight: 500;
+        }
+        
+        .receipt-value {
+            font-weight: 600;
+            color: #333;
+        }
+        
+        /* ==================== NÚT HÀNH ĐỘNG ==================== */
+        .action-buttons {
+            display: flex;
+            gap: 8px;
+            flex-wrap: wrap;
+        }
+        
+        .btn-edit {
+            background-color: #ffc107;
+            color: white;
+            border: none;
+            padding: 8px 16px;
+            border-radius: 20px;
+            font-size: 0.9em;
+            white-space: nowrap;
+        }
+        
+        .btn-edit:hover {
+            background-color: #e0a800;
+            color: white;
+        }
+        
+        .btn-complete {
+            background-color: #28a745;
+            color: white;
+            border: none;
+            padding: 8px 16px;
+            border-radius: 20px;
+            font-size: 0.9em;
+            white-space: nowrap;
+        }
+        
+        .btn-complete:hover {
+            background-color: #218838;
+            color: white;
+        }
+        
+        .btn-view {
+            background-color: #17a2b8;
+            color: white;
+            border: none;
+            padding: 8px 16px;
+            border-radius: 20px;
+            font-size: 0.9em;
+            white-space: nowrap;
+        }
+        
+        .btn-view:hover {
+background-color: #138496;
+            color: white;
+        }
+        
+        /* ==================== MODAL ==================== */
+        .modal-header {
+            background-color: #667eea;
+            color: white;
+            border-radius: 10px 10px 0 0;
+        }
+        
+        .modal-content {
+            border-radius: 10px;
+            border: none;
+        }
+        
+        .form-control:focus {
+            border-color: #667eea;
+            box-shadow: 0 0 0 0.2rem rgba(102, 126, 234, 0.25);
+        }
+        
+        /* ==================== BẢNG SẢN PHẨM TRONG PHIẾU ==================== */
+        .product-table {
+            width: 100%;
+            margin-top: 15px;
+        }
+        
+        .product-table th {
+            background-color: #667eea;
+            color: white;
+            padding: 10px;
+            text-align: left;
+        }
+        
+        .product-table td {
+            padding: 10px;
+            border-bottom: 1px solid #dee2e6;
+        }
+        
+        .product-table input {
+            width: 100%;
+            padding: 5px;
+        }
+        
+        .btn-remove {
+            background-color: #dc3545;
+            color: white;
+            border: none;
+            padding: 5px 10px;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+        
+        .btn-remove:hover {
+            background-color: #c82333;
+        }
+        
+        .btn-add-product {
+            background-color: #28a745;
+            color: white;
+            border: none;
+            padding: 8px 16px;
+            border-radius: 20px;
+            margin-top: 10px;
+        }
+        
+        .btn-add-product:hover {
+            background-color: #218838;
+        }
+        
+        /* ==================== TÌM KIẾM ==================== */
+        .search-box {
+            position: relative;
+            display: flex;
+            align-items: center;
+        }
+        
+        .search-box input {
+            border-radius: 25px;
+            padding: 12px 50px 12px 20px;
+            border: 2px solid #e0e0e0;
+            width: 100%;
+        }
+
+        .search-btn {
+            position: absolute;
+            right: 10px;
+            background: none;
+            border: none;
+            cursor: pointer;
+            color: #667eea;
+            font-size: 18px;
+            transition: color 0.2s;
+        }
+
+        .search-btn:hover {
+            color: #764ba2;
+        }
+        
+        /* ==================== TRẠNG THÁI TRỐNG ==================== */
+        .empty-state {
+            text-align: center;
+            padding: 60px 20px;
+            color: #999;
+        }
+        
+        .empty-state i {
+            font-size: 80px;
+            margin-bottom: 20px;
+        }
+        
+        /* ==================== TỔNG TIỀN ==================== */
+        .total-amount {
+            background-color: #f8f9fa;
+            padding: 15px;
+border-radius: 8px;
+            margin-top: 15px;
+            text-align: right;
+            font-size: 1.2em;
+            font-weight: 600;
+            color: #667eea;
+        }
+    </style>
+</head>
+<body>
+    <!-- NÚT QUAY LẠI -->
+    <div class="back-container">
+        <a href="atemp.html" class="btn-back">
+            <span>⬅</span>
+            <span>Quay lại trang chủ</span>
+        </a>
+    </div>
+    
+    <!-- HEADER -->
+    <div class="header">
+        <div class="container">
+            <h1 class="mb-0"><i class="fas fa-file-import"></i> Quản lý phiếu nhập hàng</h1>
+            <small style="opacity: 0.9;"><i class="fas fa-save"></i> Dữ liệu được lưu tự động</small>
+        </div>
+    </div>
+
+    <!-- NỘI DUNG CHÍNH -->
+    <div class="management-container">
+        <div class="d-flex justify-content-between align-items-center mb-4">
+            <div>
+                <button class="btn btn-add-receipt" onclick="showAddModal()">
+                    <i class="fas fa-plus-circle"></i> Tạo phiếu nhập mới
+                </button>
+                <button class="btn btn-secondary ml-2" onclick="resetAllData()" style="border-radius: 25px;">
+                    <i class="fas fa-trash-restore"></i> Xóa tất cả
+                </button>
+            </div>
+            
+            <!-- TÌM KIẾM -->
+            <div class="search-box" style="flex: 1; max-width: 400px; margin-left: 20px;">
+                <input type="text" class="form-control" id="searchInput" placeholder="Tìm kiếm theo mã phiếu, ngày...">
+                <button id="searchButton" class="search-btn" aria-label="Tìm kiếm">
+                    <i class="fas fa-search"></i>
+                </button>
+            </div>
+        </div>
+
+        <!-- DANH SÁCH PHIẾU NHẬP -->
+        <div id="receiptList"></div>
+        
+        <!-- TRẠNG THÁI TRỐNG -->
+        <div id="emptyState" class="empty-state" style="display: none;">
+            <i class="fas fa-file-invoice"></i>
+            <h3>Chưa có phiếu nhập nào</h3>
+            <p>Hãy tạo phiếu nhập đầu tiên!</p>
+        </div>
+    </div>
+
+    <!-- MODAL THÊM/SỬA PHIẾU NHẬP -->
+    <div class="modal fade" id="receiptModal" tabindex="-1">
+        <div class="modal-dialog modal-xl">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="modalTitle">Tạo phiếu nhập mới</h5>
+                    <button type="button" class="close text-white" data-dismiss="modal">
+                        <span>&times;</span>
+                    </button>
+                </div>
+                <div class="modal-body">
+                    <form id="receiptForm">
+                        <input type="hidden" id="receiptId">
+                        
+                        <!-- THÔNG TIN PHIẾU -->
+                        <div class="row">
+                            <div class="col-md-6">
+<div class="form-group">
+                                    <label>Mã phiếu nhập *</label>
+                                    <input type="text" class="form-control" id="receiptCode" required placeholder="VD: PN001" readonly>
+                                </div>
+                            </div>
+                            <div class="col-md-6">
+                                <div class="form-group">
+                                    <label>Ngày nhập *</label>
+                                    <input type="date" class="form-control" id="receiptDate" required>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <div class="form-group">
+                            <label>Ghi chú</label>
+                            <textarea class="form-control" id="receiptNote" rows="2"></textarea>
+                        </div>
+                        
+                        <hr>
+                        
+                        <!-- BẢNG SẢN PHẨM -->
+                        <h6><i class="fas fa-box"></i> Danh sách sản phẩm</h6>
+                        <table class="product-table table">
+                            <thead>
+                                <tr>
+                                    <th style="width: 30%;">Tên sản phẩm</th>
+                                    <th style="width: 20%;">Đơn vị</th>
+                                    <th style="width: 15%;">Số lượng</th>
+                                    <th style="width: 20%;">Giá nhập (VNĐ)</th>
+                                    <th style="width: 10%;">Thành tiền</th>
+                                    <th style="width: 5%;"></th>
+                                </tr>
+                            </thead>
+                            <tbody id="productTableBody">
+                                <!-- Dữ liệu sẽ được thêm bằng JavaScript -->
+                            </tbody>
+                        </table>
+                        
+                        <button type="button" class="btn btn-add-product" onclick="addProductRow()">
+                            <i class="fas fa-plus"></i> Thêm sản phẩm
+                        </button>
+                        
+                        <!-- TỔNG TIỀN -->
+                        <div class="total-amount">
+                            Tổng tiền: <span id="totalAmount">0đ</span>
+                        </div>
+                    </form>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Hủy</button>
+                    <button type="button" class="btn btn-add-receipt" onclick="saveReceipt()">
+                        <i class="fas fa-save"></i> Lưu phiếu
+                    </button>
+                </div>
+            </div>
+        </div>
+    </div>
+<!-- MODAL XEM CHI TIẾT -->
+    <div class="modal fade" id="viewModal" tabindex="-1">
+        <div class="modal-dialog modal-lg">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title"><i class="fas fa-file-alt"></i> Chi tiết phiếu nhập</h5>
+                    <button type="button" class="close text-white" data-dismiss="modal">
+                        <span>&times;</span>
+                    </button>
+                </div>
+                <div class="modal-body" id="viewModalBody">
+                    <!-- Nội dung sẽ được load bằng JavaScript -->
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Đóng</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/4.6.0/js/bootstrap.bundle.min.js"></script>
+    
+<script>
+    // ==================== DỮ LIỆU PHIẾU NHẬP ====================
+    let receipts = [];
+    let editingId = null;
+    let nextReceiptNumber = 1;
+
+    // ==================== LƯU DỮ LIỆU VÀO STORAGE ====================
+    async function saveToStorage() {
+        try {
+            await window.storage.set('receipts-data', JSON.stringify({
+                receipts: receipts,
+                nextReceiptNumber: nextReceiptNumber
+            }));
+            console.log('✅ Đã lưu dữ liệu');
+        } catch (error) {
+            console.error('❌ Lỗi khi lưu:', error);
+        }
+    }
+
+    // ==================== TẢI DỮ LIỆU TỪ STORAGE ====================
+    async function loadFromStorage() {
+        try {
+            const result = await window.storage.get('receipts-data');
+            if (result && result.value) {
+                const data = JSON.parse(result.value);
+                receipts = data.receipts || [];
+                nextReceiptNumber = data.nextReceiptNumber || 1;
+            } else {
+                // Dữ liệu mẫu nếu chưa có
+                receipts = [
+                    {
+                        id: 1,
+                        code: "PN001",
+                        date: "2025-01-15",
+                        note: "Nhập hàng đầu tháng",
+                        status: "completed",
+                        products: [
+                            { name: "Hoa Hồng Đỏ", unit: "Bó", quantity: 50, price: 80000, total: 4000000 },
+                            { name: "Hoa Ly Trắng", unit: "Bó", quantity: 30, price: 100000, total: 3000000 }
+                        ],
+                        totalAmount: 7000000
+                    },
+                    {
+                        id: 2,
+                        code: "PN002",
+                        date: "2025-01-20",
+                        note: "Nhập bổ sung",
+                        status: "draft",
+                        products: [
+                            { name: "Hoa Tulip Vàng", unit: "Bó", quantity: 40, price: 60000, total: 2400000 }
+                        ],
+                        totalAmount: 2400000
+                    }
+                ];
+                nextReceiptNumber = 3;
+                await saveToStorage();
+            }
+        } catch (error) {
+            console.error('❌ Lỗi khi tải dữ liệu:', error);
+        }
+    }
+
+    // ==================== ĐỊNH DẠNG TIỀN ====================
+    function formatPrice(price) {
+        return new Intl.NumberFormat('vi-VN', { style: 'currency', currency: 'VND' }).format(price);
+    }
+
+    // ==================== HIỂN THỊ DANH SÁCH PHIẾU NHẬP ====================
+    function renderReceipts() {
+        const receiptList = document.getElementById('receiptList');
+        const emptyState = document.getElementById('emptyState');
+
+        if (receipts.length === 0) {
+            receiptList.innerHTML = '';
+            emptyState.style.display = 'block';
+return;
+        }
+
+        emptyState.style.display = 'none';
+        let html = '';
+
+        receipts.forEach(receipt => {
+            const statusClass = receipt.status === 'completed' ? 'status-completed' : 'status-draft';
+            const statusText = receipt.status === 'completed' ? 'Đã hoàn thành' : 'Đang soạn';
+
+            html += `
+                <div class="receipt-card" data-receipt-id="${receipt.id}">
+                    <div class="row align-items-center">
+                        <div class="col-md-8">
+                            <div class="receipt-code"><i class="fas fa-file-invoice"></i> ${receipt.code}</div>
+                            <h5 class="mb-1">
+                                Phiếu nhập ngày ${formatDate(receipt.date)}
+                                <span class="status-badge ${statusClass}">${statusText}</span>
+                            </h5>
+                            <p class="text-muted mb-0 small">${receipt.note || 'Không có ghi chú'}</p>
+                            <div class="receipt-info mt-2">
+                                <div class="receipt-row">
+                                    <span class="receipt-label">Số loại sản phẩm:</span>
+                                    <span class="receipt-value">${receipt.products.length} loại</span>
+                                </div>
+                                <div class="receipt-row">
+                                    <span class="receipt-label">Tổng số lượng:</span>
+                                    <span class="receipt-value">${getTotalQuantity(receipt.products)} sản phẩm</span>
+                                </div>
+                                <div class="receipt-row">
+                                    <span class="receipt-label">💰 Tổng tiền:</span>
+                                    <span class="receipt-value">${formatPrice(receipt.totalAmount)}</span>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-md-4">
+                            <div class="action-buttons">
+                                <button class="btn btn-view" onclick="viewReceipt(${receipt.id})">
+                                    <i class="fas fa-eye"></i> Xem chi tiết
+                                </button>
+                                ${receipt.status === 'draft' ? `
+                                    <button class="btn btn-edit" onclick="editReceipt(${receipt.id})">
+                                        <i class="fas fa-edit"></i> Sửa
+                                    </button>
+                                    <button class="btn btn-complete" onclick="completeReceipt(${receipt.id})">
+                                        <i class="fas fa-check"></i> Hoàn thành
+                                    </button>
+                                ` : `
+                                    <button class="btn btn-secondary" disabled>
+<i class="fas fa-lock"></i> Đã hoàn thành
+                                    </button>
+                                `}
+                                <button class="btn btn-danger" onclick="deleteReceipt(${receipt.id})">
+                                    <i class="fas fa-trash"></i> Xóa
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            `;
+        });
+
+        receiptList.innerHTML = html;
+    }
+
+    // ==================== HÀM HỖ TRỢ ====================
+    function getTotalQuantity(products) {
+        return products.reduce((sum, p) => sum + p.quantity, 0);
+    }
+
+    function formatDate(dateString) {
+        const date = new Date(dateString);
+        return date.toLocaleDateString('vi-VN');
+    }
+
+    // ==================== TẠO MỚI ====================
+    function showAddModal() {
+        editingId = null;
+        document.getElementById('modalTitle').textContent = 'Tạo phiếu nhập mới';
+        document.getElementById('receiptForm').reset();
+
+        const newCode = `PN${String(nextReceiptNumber).padStart(3, '0')}`;
+        document.getElementById('receiptCode').value = newCode;
+        document.getElementById('receiptDate').value = new Date().toISOString().split('T')[0];
+
+        document.getElementById('productTableBody').innerHTML = '';
+        addProductRow();
+        updateTotalAmount();
+        $('#receiptModal').modal('show');
+    }
+
+    // ==================== THÊM SẢN PHẨM ====================
+    function addProductRow() {
+        const tbody = document.getElementById('productTableBody');
+        const tr = document.createElement('tr');
+        tr.innerHTML = `
+            <td><input type="text" class="form-control" placeholder="Tên sản phẩm" required></td>
+            <td><input type="text" class="form-control" placeholder="Bó, Cành..." required></td>
+            <td><input type="number" class="form-control" placeholder="0" min="1" required onchange="calculateRowTotal(this)"></td>
+            <td><input type="number" class="form-control" placeholder="0" min="0" required onchange="calculateRowTotal(this)"></td>
+            <td class="text-right"><strong class="row-total">0đ</strong></td>
+            <td><button type="button" class="btn btn-remove" onclick="removeProductRow(this)"><i class="fas fa-trash"></i></button></td>
+        `;
+        tbody.appendChild(tr);
+    }
+
+    function removeProductRow(btn) {
+        const row = btn.closest('tr');
+        row.remove();
+        updateTotalAmount();
+    }
+
+    function calculateRowTotal(input) {
+        const row = input.closest('tr');
+        const quantity = parseFloat(row.cells[2].querySelector('input').value) || 0;
+        const price = parseFloat(row.cells[3].querySelector('input').value) || 0;
+        const total = quantity * price;
+        row.cells[4].querySelector('.row-total').textContent = formatPrice(total);
+updateTotalAmount();
+    }
+
+    function updateTotalAmount() {
+        const tbody = document.getElementById('productTableBody');
+        let total = 0;
+        Array.from(tbody.children).forEach(row => {
+            const quantity = parseFloat(row.cells[2].querySelector('input').value) || 0;
+            const price = parseFloat(row.cells[3].querySelector('input').value) || 0;
+            total += quantity * price;
+        });
+        document.getElementById('totalAmount').textContent = formatPrice(total);
+    }
+
+    // ==================== LƯU PHIẾU NHẬP ====================
+    async function saveReceipt() {
+        const code = document.getElementById('receiptCode').value.trim();
+        const date = document.getElementById('receiptDate').value;
+        const note = document.getElementById('receiptNote').value.trim();
+        const tbody = document.getElementById('productTableBody');
+
+        if (!code || !date) {
+            alert('Vui lòng điền đầy đủ thông tin!');
+            return;
+        }
+
+        const products = [];
+        let totalAmount = 0;
+
+        Array.from(tbody.children).forEach(row => {
+            const name = row.cells[0].querySelector('input').value.trim();
+            const unit = row.cells[1].querySelector('input').value.trim();
+            const quantity = parseFloat(row.cells[2].querySelector('input').value) || 0;
+            const price = parseFloat(row.cells[3].querySelector('input').value) || 0;
+            const total = quantity * price;
+            if (name && unit && quantity > 0 && price > 0) {
+                products.push({ name, unit, quantity, price, total });
+                totalAmount += total;
+            }
+        });
+
+        if (products.length === 0) {
+            alert('Phải có ít nhất 1 sản phẩm!');
+            return;
+        }
+
+        if (editingId) {
+            const index = receipts.findIndex(r => r.id === editingId);
+            receipts[index] = { ...receipts[index], code, date, note, products, totalAmount };
+        } else {
+            const newId = receipts.length > 0 ? Math.max(...receipts.map(r => r.id)) + 1 : 1;
+            receipts.push({ id: newId, code, date, note, status: 'draft', products, totalAmount });
+            nextReceiptNumber++;
+        }
+
+        await saveToStorage();
+        $('#receiptModal').modal('hide');
+        renderReceipts();
+    }
+
+    // ==================== SỬA, HOÀN THÀNH, XEM ====================
+    function editReceipt(id) {
+        const receipt = receipts.find(r => r.id === id);
+        if (!receipt || receipt.status === 'completed') return alert('Không thể sửa phiếu đã hoàn thành!');
+        editingId = id;
+        document.getElementById('modalTitle').textContent = 'Chỉnh sửa phiếu nhập';
+        document.getElementById('receiptCode').value = receipt.code;
+        document.getElementById('receiptDate').value = receipt.date;
+        document.getElementById('receiptNote').value = receipt.note || '';
+const tbody = document.getElementById('productTableBody');
+        tbody.innerHTML = '';
+        receipt.products.forEach(p => {
+            const tr = document.createElement('tr');
+            tr.innerHTML = `
+                <td><input type="text" class="form-control" value="${p.name}"></td>
+                <td><input type="text" class="form-control" value="${p.unit}"></td>
+                <td><input type="number" class="form-control" value="${p.quantity}" onchange="calculateRowTotal(this)"></td>
+                <td><input type="number" class="form-control" value="${p.price}" onchange="calculateRowTotal(this)"></td>
+                <td class="text-right"><strong class="row-total">${formatPrice(p.total)}</strong></td>
+                <td><button type="button" class="btn btn-remove" onclick="removeProductRow(this)"><i class="fas fa-trash"></i></button></td>
+            `;
+            tbody.appendChild(tr);
+        });
+        updateTotalAmount();
+        $('#receiptModal').modal('show');
+    }
+
+    async function completeReceipt(id) {
+        const receipt = receipts.find(r => r.id === id);
+        if (!receipt) return;
+        if (confirm('Hoàn thành phiếu nhập này?')) {
+            receipt.status = 'completed';
+            await saveToStorage();
+            renderReceipts();
+        }
+    }
+
+    function viewReceipt(id) {
+        const r = receipts.find(x => x.id === id);
+        if (!r) return;
+        let rows = r.products.map((p, i) =>
+            `<tr><td>${i + 1}</td><td>${p.name}</td><td>${p.unit}</td><td class="text-right">${p.quantity}</td><td class="text-right">${formatPrice(p.price)}</td><td class="text-right">${formatPrice(p.total)}</td></tr>`
+        ).join('');
+        document.getElementById('viewModalBody').innerHTML = `
+            <div class="receipt-info">
+                <div class="receipt-row"><span class="receipt-label">Mã phiếu:</span><span>${r.code}</span></div>
+                <div class="receipt-row"><span class="receipt-label">Ngày nhập:</span><span>${formatDate(r.date)}</span></div>
+                <div class="receipt-row"><span class="receipt-label">Ghi chú:</span><span>${r.note || 'Không có'}</span></div>
+            </div>
+            <table class="product-table table mt-3">
+                <thead><tr><th>STT</th><th>Tên sản phẩm</th><th>Đơn vị</th><th class="text-right">SL</th><th class="text-right">Giá</th><th class="text-right">Thành tiền</th></tr></thead>
+                <tbody>${rows}</tbody>
+            </table>
+            <div class="total-amount">Tổng tiền: ${formatPrice(r.totalAmount)}</div>
+        `;
+        $('#viewModal').modal('show');
+    }
+
+    // ==================== XÓA PHIẾU NHẬP RIÊNG ====================
+    async function deleteReceipt(id) {
+        if (!confirm('Bạn có chắc muốn xóa phiếu nhập này?')) return;
+        receipts = receipts.filter(r => r.id !== id);
+        await saveToStorage();
+        renderReceipts();
+    }
+// ==================== TÌM KIẾM ====================
+    document.getElementById("searchButton").addEventListener("click", handleSearch);
+    document.getElementById("searchInput").addEventListener("keypress", e => {
+        if (e.key === "Enter") { e.preventDefault(); handleSearch(); }
+    });
+
+    function handleSearch() {
+        const term = document.getElementById("searchInput").value.trim().toLowerCase();
+        const cards = document.querySelectorAll('.receipt-card');
+        cards.forEach(c => {
+            const id = parseInt(c.dataset.receiptId);
+            const r = receipts.find(x => x.id === id);
+            const match = r.code.toLowerCase().includes(term) ||
+                          r.date.includes(term) ||
+                          (r.note && r.note.toLowerCase().includes(term));
+            c.style.display = match ? 'block' : 'none';
+        });
+    }
+
+    // ==================== KHỞI TẠO ====================
+    async function initialize() {
+        await loadFromStorage();
+        renderReceipts();
+    }
+    initialize();
+</script>
+
+</body>
+</html>

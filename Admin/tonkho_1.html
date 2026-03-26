@@ -1,0 +1,271 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>🌷 Quản lý tồn kho - Cửa hàng hoa</title>
+<style>
+  body {
+    font-family: 'Segoe UI', sans-serif;
+    background: linear-gradient(135deg, #06a906, #31ce41);
+    margin: 0;
+    padding: 0;
+    color: #333;
+    overflow-x: hidden;
+  }
+  
+  header {
+    background-color: #32ac3e;
+    color: white;
+    text-align: center;
+    padding: 20px 0;
+    box-shadow: 0 3px 8px rgba(0,0,0,0.2);
+  }
+  
+  .back-container {
+    display: flex;
+    justify-content: flex-start;
+    padding: 12px 20px;
+  }
+
+  .btn-back {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    background: #ffffff;
+    color: #000000;
+    border: none;
+    border-radius: 8px;
+    padding: 10px 18px;
+    font-weight: 600;
+    cursor: pointer;
+    transition: all 0.25s ease;
+    box-shadow: 0 3px 10px rgba(0,0,0,0.15);
+    text-decoration: none;
+  }
+
+  .btn-back:hover {
+    background: #22c81d;
+    transform: translateY(-2px);
+    box-shadow: 0 6px 14px rgba(0,0,0,0.25);
+    color: white;
+  }
+  
+  main {
+    max-width: 1000px;
+    margin: 30px auto;
+    background: rgba(255, 255, 255, 0.97);
+    border-radius: 16px;
+    box-shadow: 0 4px 12px rgba(0,0,0,0.15);
+    padding: 30px;
+  }
+  
+  h2 {
+    border-left: 5px solid #2cf430;
+    padding-left: 10px;
+    color: #a83a48;
+    font-weight: 600;
+  }
+  
+  section { 
+    margin-bottom: 40px; 
+  }
+  
+  .search-info {
+    background: #e7f3ff;
+    border-left: 4px solid #2196F3;
+    padding: 15px;
+    margin-bottom: 20px;
+    border-radius: 6px;
+  }
+  
+  .search-info p {
+    color: #0d47a1;
+    margin: 5px 0;
+    font-weight: 500;
+  }
+  
+  label {
+    display: block;
+    margin: 8px 0 4px;
+    font-weight: 500;
+  }
+  
+  select {
+    padding: 10px;
+    border: 1px solid #ccc;
+    border-radius: 6px;
+    width: 100%;
+    transition: all 0.3s;
+  }
+  
+  select:focus {
+    border-color: #34f066;
+    outline: none;
+    box-shadow: 0 0 5px #2be74a;
+  }
+  
+  table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-top: 15px;
+    border-radius: 8px;
+    overflow: hidden;
+  }
+  
+  th, td {
+    border: 1px solid #ddd;
+    padding: 10px;
+    text-align: center;
+  }
+  
+  th {
+    background-color: #42d556;
+    color: #ffffff;
+    font-weight: bold;
+  }
+  
+  tr:hover {
+    background-color: #fff0f0;
+    transition: background-color 0.3s;
+  }
+  
+  .low-stock {
+    color: red;
+    font-weight: bold;
+    animation: blink 1.5s infinite;
+  }
+  
+  @keyframes blink { 
+    50% { opacity: 0.5; } 
+  }
+  
+  .warning-box {
+    background: #fff3cd;
+    border-left: 4px solid #ffc107;
+    padding: 15px;
+    margin-top: 20px;
+    border-radius: 6px;
+  }
+  
+  .warning-box h3 {
+    margin: 0 0 10px 0;
+    color: #856404;
+  }
+  
+  .warning-box ul {
+    margin: 0;
+    padding-left: 20px;
+  }
+  
+  .warning-box li {
+    color: #856404;
+    margin: 5px 0;
+  }
+</style>
+</head>
+<body>
+  <div class="back-container">
+    <a href="tonkho.html" class="btn-back">
+      <span>⬅</span>
+      <span>Quay lại menu</span>
+    </a>
+  </div>
+
+  <header>
+    <h1>🌷 Quản lý tồn kho - Cửa hàng hoa</h1>
+  </header>
+
+  <main>
+    <div class="search-info">
+      <p><strong>📅 Ngày: </strong> 01/01/2025</p>
+      <p><strong>🌸 Loại hoa:</strong> thơm ngất lòng người</p>
+    </div>
+
+    <table id="inventoryTable">
+      <thead>
+        <tr>
+          <th>Tên hoa</th>
+          <th>Loại</th>
+          <th>Số lượng tồn</th>
+          <th>Trạng thái</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td>🌹 Hoa Hồng Đỏ</td>
+          <td>Hoa hồng</td>
+          <td class="low-stock">5</td>
+          <td><span style="color: red;">⚠️ Sắp hết</span></td>
+        </tr>
+        <tr>
+          <td>🌷 Hoa Tulip Vàng</td>
+          <td>Hoa tulip</td>
+          <td>12</td>
+          <td><span style="color: green;">✓ Đủ hàng</span></td>
+        </tr>
+        <tr>
+          <td>🌸 Hoa Lan Hồ Điệp</td>
+          <td>Hoa lan</td>
+          <td class="low-stock">2</td>
+          <td><span style="color: red;">⚠️ Sắp hết</span></td>
+        </tr>
+        <tr>
+          <td>🌼 Hoa Cúc Trắng</td>
+          <td>Hoa cúc</td>
+          <td>8</td>
+          <td><span style="color: green;">✓ Đủ hàng</span></td>
+        </tr>
+        <tr>
+          <td>🌺 Hoa Hồng Trắng</td>
+          <td>Hoa hồng</td>
+          <td>15</td>
+          <td><span style="color: green;">✓ Đủ hàng</span></td>
+        </tr>
+        <tr>
+          <td>🌻 Hoa Hướng Dương</td>
+          <td>Hoa hướng dương</td>
+          <td class="low-stock">3</td>
+          <td><span style="color: red;">⚠️ Sắp hết</span></td>
+        </tr>
+        <tr>
+          <td>💐 Hoa Ly Trắng</td>
+          <td>Hoa ly</td>
+          <td>20</td>
+          <td><span style="color: green;">✓ Đủ hàng</span></td>
+        </tr>
+        <tr>
+          <td>🌷 Hoa Tulip Đỏ</td>
+          <td>Hoa tulip</td>
+          <td>18</td>
+          <td><span style="color: green;">✓ Đủ hàng</span></td>
+        </tr>
+        <tr>
+          <td>🌼 Hoa Cúc Vàng</td>
+          <td>Hoa cúc</td>
+          <td class="low-stock">1</td>
+          <td><span style="color: red;">⚠️ Sắp hết</span></td>
+        </tr>
+        <tr>
+          <td>🌸 Hoa Lan Tím</td>
+          <td>Hoa lan</td>
+          <td>10</td>
+          <td><span style="color: green;">✓ Đủ hàng</span></td>
+        </tr>
+      </tbody>
+    </table>
+
+    <div class="warning-box">
+      <h3>⚠️ Cảnh báo tồn kho thấp (≤ 5 bông)</h3>
+      <ul>
+        <li><strong>Hoa Hồng Đỏ:</strong> Còn 5 bông - Cần nhập thêm</li>
+        <li><strong>Hoa Lan Hồ Điệp:</strong> Còn 2 bông - Cần nhập gấp</li>
+        <li><strong>Hoa Hướng Dương:</strong> Còn 3 bông - Cần nhập thêm</li>
+        <li><strong>Hoa Cúc Vàng:</strong> Còn 1 bông - Cần nhập gấp</li>
+      </ul>
+    </div>
+  </main>
+
+
+</body>
+</html>

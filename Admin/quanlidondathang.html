@@ -1,0 +1,192 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>🌷 Quản lý tồn kho - Cửa hàng hoa</title>
+<style>
+  * {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+  }
+
+  body {
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    background: linear-gradient(135deg, #06a906, #31ce41);
+    color: #333;
+    min-height: 100vh;
+  }
+  
+  header {
+    background-color: #32ac3e;
+    color: white;
+    text-align: center;
+    padding: 20px;
+    box-shadow: 0 3px 8px rgba(0,0,0,0.2);
+  }
+
+  header h1 {
+    font-size: 1.8rem;
+  }
+  
+  .back-container {
+    padding: 15px 20px;
+  }
+
+  .btn-back {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    background: #ffffff;
+    color: #000000;
+    border: none;
+    border-radius: 8px;
+    padding: 10px 18px;
+    font-weight: 600;
+    cursor: pointer;
+    transition: all 0.25s ease;
+    box-shadow: 0 3px 10px rgba(0,0,0,0.15);
+    text-decoration: none;
+  }
+
+  .btn-back:hover {
+    background: #22c81d;
+    transform: translateY(-2px);
+    box-shadow: 0 6px 14px rgba(0,0,0,0.25);
+    color: white;
+  }
+  
+  main {
+    max-width: 800px;
+    margin: 50px auto;
+    background: rgba(255, 255, 255, 0.97);
+    border-radius: 16px;
+    box-shadow: 0 4px 12px rgba(0,0,0,0.15);
+    padding: 40px;
+  }
+  
+  h2 {
+    border-left: 5px solid #2cf430;
+    padding-left: 10px;
+    color: #a83a48;
+    font-weight: 600;
+    margin-bottom: 30px;
+  }
+  
+  .filter-section {
+    background: #f8f9fa;
+    padding: 30px;
+    border-radius: 8px;
+  }
+
+  .form-group {
+    margin-bottom: 20px;
+  }
+  
+  label {
+    font-weight: 500;
+    margin-bottom: 8px;
+    color: #555;
+    display: block;
+  }
+  
+  input[type="date"],
+  select {
+    padding: 12px;
+    border: 1px solid #ccc;
+    border-radius: 6px;
+    font-size: 14px;
+    transition: all 0.3s;
+    width: 100%;
+  }
+  
+  input[type="date"]:focus,
+  select:focus {
+    border-color: #34f066;
+    outline: none;
+    box-shadow: 0 0 5px #2be74a;
+  }
+
+  .btn-search {
+    background: #32ac3e;
+    color: white;
+    border: none;
+    border-radius: 8px;
+    padding: 14px 32px;
+    font-weight: 600;
+    cursor: pointer;
+    transition: all 0.3s;
+    width: 100%;
+    font-size: 16px;
+    margin-top: 10px;
+  }
+
+  .btn-search:hover {
+    background: #28933a;
+    transform: translateY(-2px);
+    box-shadow: 0 4px 12px rgba(0,0,0,0.2);
+  }
+
+  .info-box {
+    background: #e7f3ff;
+    border-left: 4px solid #2196F3;
+    padding: 15px;
+    margin-top: 20px;
+    border-radius: 6px;
+  }
+
+  .info-box p {
+    color: #0d47a1;
+    margin: 5px 0;
+  }
+
+  @media (max-width: 768px) {
+    main {
+      margin: 20px 15px;
+      padding: 25px;
+    }
+  }
+</style>
+</head>
+<body>
+  <div class="back-container">
+    <a href="quanlidonhang.html" class="btn-back">
+      <span>⬅</span>
+      <span>Quay lại menu</span>
+    </a>
+  </div>
+
+  <header>
+    <h1>🌸 Quản lý đơn hàng - Cửa hàng hoa</h1>
+  </header>
+
+  <main>
+    <section id="orders">
+      <h2>🌸 Quản lý đơn đặt hàng</h2>
+      
+      <label for="startDate">Từ ngày:</label>
+      <input type="date" id="startDate" value="2025-01-01">
+      
+      <label for="endDate">Đến ngày:</label>
+      <input type="date" id="endDate" value="2025-12-31">
+      
+      <label for="status">Tình trạng đơn hàng:</label>
+      <select id="status">
+        <option value="all" selected>Tất cả</option>
+        <option value="new">Mới đặt</option>
+        <option value="processing">Đã xử lý</option>
+        <option value="delivered">Đã giao</option>
+        <option value="cancelled">Đã hủy</option>
+      </select>
+      
+      <button class="btn-search" onclick="redirectToPage()"> Tra cứu đơn hàng</button>
+      <script>
+        function redirectToPage() {
+            window.location.href = 'quanlidondathang_1.html';  // Chuyển sang trang code2.html
+        }
+      </script>
+    </section>
+  </main>
+</body>
+</html>
